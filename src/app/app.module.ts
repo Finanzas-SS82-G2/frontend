@@ -16,7 +16,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
-import {MatGridListModule} from '@angular/material/grid-list';
 
 // Views
 import { StartComponent } from './views/start/start.component';
@@ -24,12 +23,7 @@ import { LoginComponent } from './views/login/login.component';
 import { SignUpComponent } from './views/sign-up/sign-up.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    StartComponent,
-    SignUpComponent
-  ],
+  declarations: [AppComponent, LoginComponent, StartComponent, SignUpComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -45,9 +39,8 @@ import { SignUpComponent } from './views/sign-up/sign-up.component';
     MatSidenavModule,
     MatListModule,
     MatDividerModule,
-    MatGridListModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
