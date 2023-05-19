@@ -1,5 +1,5 @@
 <mat-drawer-container class="h-full">
-  <mat-drawer #drawer mode="side" opened class="w-44 ml-3 bg-mivivienda">
+  <mat-drawer #drawer mode="side" opened class="w-2/12 bg-mivivienda">
     <section>
       <img
         src="../../../assets/images/mivivienda_logo.png"
@@ -7,15 +7,33 @@
       />
     </section>
     <section>
-      <mat-selection-list [multiple]="false" hideSingleSelectionIndicator>
-        <mat-list-option>
+      <mat-selection-list
+        #section
+        [multiple]="false"
+        hideSingleSelectionIndicator
+      >
+        <mat-list-option [value]="'calculate'">
           <mat-icon matSuffix class="align-top">calculate</mat-icon>
           Simulador
         </mat-list-option>
-        <mat-list-option
+        <mat-list-option [value]="'history'"
           ><mat-icon matSuffix class="align-top">list_alt</mat-icon> Historial
         </mat-list-option>
       </mat-selection-list>
     </section>
   </mat-drawer>
+  <mat-drawer-container>
+    <div
+      *ngIf="
+        !section.selectedOptions.hasValue() ||
+          section.selectedOptions.selected[0].value == 'calculate';
+        else other_section
+      "
+    >
+      <app-simulator></app-simulator>
+    </div>
+    <ng-template #other_section>
+      <app-history></app-history>
+    </ng-template>
+  </mat-drawer-container>
 </mat-drawer-container>

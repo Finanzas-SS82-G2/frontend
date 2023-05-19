@@ -16,12 +16,15 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 // Views
 import { StartComponent } from './views/start/start.component';
 import { LoginComponent } from './views/login/login.component';
 import { SignUpComponent } from './views/sign-up/sign-up.component';
 import { HomeComponent } from './views/home/home.component';
+import { SimulatorComponent } from './views/simulator/simulator.component';
+import { HistoryComponent } from './views/history/history.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,8 @@ import { HomeComponent } from './views/home/home.component';
     StartComponent,
     SignUpComponent,
     HomeComponent,
+    SimulatorComponent,
+    HistoryComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +51,7 @@ import { HomeComponent } from './views/home/home.component';
     MatSidenavModule,
     MatListModule,
     MatDividerModule,
+    MatButtonToggleModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

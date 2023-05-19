@@ -1,58 +1,53 @@
-<div class="flex flex-row h-full">
-  <div class="flex flex-col w-8/12 p-10 bg-mivivienda">
-    <app-start></app-start>
-  </div>
-  <div class="flex flex-col w-4/12 m-20 my-80">
-    <div class="flex flex-col">
-      <mat-form-field appearance="outline">
-        <mat-label>Email</mat-label>
-        <input
-          matInput
-          placeholder="example@email.com"
-          [formControl]="email"
-          required
-        />
-        <mat-icon matSuffix>email</mat-icon>
-        <mat-error *ngIf="email.invalid">{{
-          getEmailErrorMessage()
-        }}</mat-error>
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Password</mat-label>
-        <input
-          matInput
-          placeholder="*********"
-          [type]="hide ? 'password' : 'text'"
-          [formControl]="password"
-          required
-        />
-        <button
-          mat-icon-button
-          (click)="hide = !hide"
-          [attr.aria-label]="'Hide password'"
-          [attr.aria-pressed]="hide"
-          matSuffix
-        >
-          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
-        </button>
-        <mat-error *ngIf="password.invalid">{{
-          getPasswordErrorMessage()
-        }}</mat-error>
-      </mat-form-field>
-      <div class="flex flex-col items-center mb-3">
-        <p class="underline"><a [routerLink]="'/sign-up'">Create account</a></p>
-        <p class="underline">Forgot your password?</p>
-      </div>
+<div class="flex flex-col m-36">
+  <div class="flex flex-col">
+    <mat-label class="m-2 tc-mivivienda">Email address</mat-label>
+    <mat-form-field appearance="outline">
+      <input
+        matInput
+        placeholder="example@email.com"
+        [formControl]="email"
+        required
+      />
+      <mat-icon matSuffix>email</mat-icon>
+      <mat-error *ngIf="email.invalid">{{ getEmailErrorMessage() }}</mat-error>
+    </mat-form-field>
+    <mat-label class="m-2 tc-mivivienda">Password</mat-label>
+    <mat-form-field appearance="outline">
+      <input
+        matInput
+        placeholder="*********"
+        [type]="hide ? 'password' : 'text'"
+        [formControl]="password"
+        required
+      />
       <button
-        mat-raised-button
-        class="uppercase"
-        color="primary"
-        aria-label="Button to login"
-        [disabled]="!email.valid || !password.valid"
-        (click)="checkUser()"
+        mat-icon-button
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+        matSuffix
       >
-        Login
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
       </button>
+      <mat-error *ngIf="password.invalid">{{
+        getPasswordErrorMessage()
+      }}</mat-error>
+    </mat-form-field>
+    <div class="flex flex-col items-center mb-3">
+      <p class="underline">
+        <a [routerLink]="'/sign-up'" class="tc-mivivienda">Create account</a>
+      </p>
+      <p class="underline tc-mivivienda">Forgot your password?</p>
     </div>
+    <button
+      mat-raised-button
+      class="uppercase"
+      color="primary"
+      aria-label="Button to login"
+      [disabled]="!email.valid || !password.valid"
+      (click)="checkUser()"
+    >
+      Login
+    </button>
   </div>
 </div>

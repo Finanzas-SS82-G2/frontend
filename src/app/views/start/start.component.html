@@ -1,21 +1,44 @@
-<div class="grid">
-  <img
-    src="../../../assets/images/mivivienda_logo.png"
-    alt="Mi vivienda logo"
-    class="p-4 justify-self-center"
-  />
-  <img
-    src="../../../assets/images/home.png"
-    alt="Home"
-    class="p-4 justify-self-center"
-  />
-  <div class="m-10">
-    <h1 class="tc-mivivienda font-montserrat">
-      ¡Con Fondo MiVivienda, accede a tu hogar propio hoy mismo!
-      <b>
-        Construye tu futuro y asegura tu patrimonio con nuestro crédito
-        accesible y confiable.
-      </b>
-    </h1>
+<div class="flex flex-row h-full">
+  <div class="flex flex-col w-7/12 p-10 bg-mivivienda">
+    <div class="grid">
+      <img
+        src="../../../assets/images/mivivienda_logo.png"
+        alt="Mi vivienda logo"
+        class="p-4 justify-self-center"
+      />
+      <img
+        src="../../../assets/images/home.png"
+        alt="Home"
+        class="p-4 justify-self-center"
+      />
+      <div class="m-10">
+        <h1 class="tc-mivivienda font-montserrat">
+          ¡Con Fondo MiVivienda, accede a tu hogar propio hoy mismo!
+          <b>
+            Construye tu futuro y asegura tu patrimonio con nuestro crédito
+            accesible y confiable.
+          </b>
+        </h1>
+      </div>
+    </div>
+  </div>
+  <div class="w-5/12">
+    <div class="flex justify-center my-10">
+      <mat-button-toggle-group #start_page="matButtonToggleGroup">
+        <mat-button-toggle value="login">Login</mat-button-toggle>
+        <mat-button-toggle value="sign-up">Sign Up</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+    <div
+      *ngIf="
+        !start_page.value || start_page.value == 'login';
+        else other_register
+      "
+    >
+      <app-login></app-login>
+    </div>
+    <ng-template #other_register>
+      <app-sign-up></app-sign-up>
+    </ng-template>
   </div>
 </div>
