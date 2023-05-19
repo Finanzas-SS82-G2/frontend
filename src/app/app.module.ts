@@ -17,6 +17,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatSelectModule } from '@angular/material/select';
 
 // Views
 import { StartComponent } from './views/start/start.component';
@@ -25,6 +26,7 @@ import { SignUpComponent } from './views/sign-up/sign-up.component';
 import { HomeComponent } from './views/home/home.component';
 import { SimulatorComponent } from './views/simulator/simulator.component';
 import { HistoryComponent } from './views/history/history.component';
+import { NavbarComponent } from './views/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,7 @@ import { HistoryComponent } from './views/history/history.component';
     HomeComponent,
     SimulatorComponent,
     HistoryComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +55,7 @@ import { HistoryComponent } from './views/history/history.component';
     MatListModule,
     MatDividerModule,
     MatButtonToggleModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

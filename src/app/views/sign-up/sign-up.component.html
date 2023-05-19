@@ -1,13 +1,13 @@
-<div class="flex flex-col m-20">
+<div class="flex flex-col m-10">
   <form class="flex flex-col" [formGroup]="registerForm">
-    <mat-label class="m-2 tc-mivivienda">Name</mat-label>
+    <mat-label class="m-1 tc-mivivienda">Name</mat-label>
     <mat-form-field appearance="outline">
       <input matInput placeholder="Name" formControlName="name" required />
       <mat-error *ngIf="registerForm.get('name')?.invalid">{{
         getMinLengthErrorMessage("name", 3)
       }}</mat-error>
     </mat-form-field>
-    <mat-label class="m-2 tc-mivivienda">Last Name</mat-label>
+    <mat-label class="m-1 tc-mivivienda">Last Name</mat-label>
     <mat-form-field appearance="outline">
       <input
         matInput
@@ -19,7 +19,7 @@
         getMinLengthErrorMessage("lastname", 3)
       }}</mat-error>
     </mat-form-field>
-    <mat-label class="m-2 tc-mivivienda">Email</mat-label>
+    <mat-label class="m-1 tc-mivivienda">Email</mat-label>
     <mat-form-field appearance="outline">
       <input
         matInput
@@ -32,7 +32,7 @@
         getEmailErrorMessage()
       }}</mat-error>
     </mat-form-field>
-    <mat-label class="m-2 tc-mivivienda">Password</mat-label>
+    <mat-label class="m-1 tc-mivivienda">Password</mat-label>
     <mat-form-field appearance="outline">
       <input
         matInput
@@ -57,7 +57,7 @@
         getPasswordErrorMessage()
       }}</mat-error>
     </mat-form-field>
-    <mat-label class="m-2 tc-mivivienda">Confirm Password</mat-label>
+    <mat-label class="m-1 tc-mivivienda">Confirm Password</mat-label>
     <mat-form-field appearance="outline">
       <input
         matInput
@@ -94,10 +94,4 @@
       {{ passwordMatchMessage }}</mat-error
     >
   </form>
-  <div class="flex flex-col items-center mt-3 mb-1 tc-mivivienda">
-    <p>
-      Already have an account?
-      <a [routerLink]="''" class="underline">Login</a>
-    </p>
-  </div>
 </div>

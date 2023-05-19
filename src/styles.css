@@ -23,6 +23,10 @@ body {
   background: rgba(145, 204, 48, 0.12);
 }
 
+.bg-navbar {
+  background: rgba(40, 40, 40, 0.12);
+}
+
 .tc-mivivienda {
   color: rgba(84, 125, 32, 1);
 }
