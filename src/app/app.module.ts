@@ -18,6 +18,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSliderModule } from '@angular/material/slider';
 
 // Views
 import { StartComponent } from './views/start/start.component';
@@ -56,6 +57,7 @@ import { NavbarComponent } from './views/navbar/navbar.component';
     MatDividerModule,
     MatButtonToggleModule,
     MatSelectModule,
+    MatSliderModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

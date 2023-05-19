@@ -1,17 +1,17 @@
 <div class="flex flex-col m-36">
   <div class="flex flex-col">
-    <mat-label class="m-2 tc-mivivienda">Email address</mat-label>
+    <mat-label class="m-2 tc-mivivienda">Correo electrónico</mat-label>
     <mat-form-field appearance="outline">
       <input
         matInput
-        placeholder="example@email.com"
+        placeholder="ejemplo@email.com"
         [formControl]="email"
         required
       />
       <mat-icon matSuffix>email</mat-icon>
       <mat-error *ngIf="email.invalid">{{ getEmailErrorMessage() }}</mat-error>
     </mat-form-field>
-    <mat-label class="m-2 tc-mivivienda">Password</mat-label>
+    <mat-label class="m-2 tc-mivivienda">Contraseña</mat-label>
     <mat-form-field appearance="outline">
       <input
         matInput
@@ -34,7 +34,7 @@
       }}</mat-error>
     </mat-form-field>
     <div class="flex flex-col items-end mb-3">
-      <p class="underline tc-mivivienda">Forgot your password?</p>
+      <p class="underline tc-mivivienda">Olvidaste tu contraseña?</p>
     </div>
     <button
       mat-raised-button
@@ -44,7 +44,7 @@
       [disabled]="!email.valid || !password.valid"
       (click)="checkUser()"
     >
-      Login
+      Iniciar Sesión
     </button>
   </div>
 </div>
