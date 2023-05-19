@@ -21,9 +21,16 @@ import { MatDividerModule } from '@angular/material/divider';
 import { StartComponent } from './views/start/start.component';
 import { LoginComponent } from './views/login/login.component';
 import { SignUpComponent } from './views/sign-up/sign-up.component';
+import { HomeComponent } from './views/home/home.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, StartComponent, SignUpComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    StartComponent,
+    SignUpComponent,
+    HomeComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

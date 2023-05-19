@@ -1,0 +1,21 @@
+<mat-drawer-container class="h-full">
+  <mat-drawer #drawer mode="side" opened class="w-44 ml-3 bg-mivivienda">
+    <section>
+      <img
+        src="../../../assets/images/mivivienda_logo.png"
+        alt="Mi vivienda logo"
+      />
+    </section>
+    <section>
+      <mat-selection-list [multiple]="false" hideSingleSelectionIndicator>
+        <mat-list-option>
+          <mat-icon matSuffix class="align-top">calculate</mat-icon>
+          Simulador
+        </mat-list-option>
+        <mat-list-option
+          ><mat-icon matSuffix class="align-top">list_alt</mat-icon> Historial
+        </mat-list-option>
+      </mat-selection-list>
+    </section>
+  </mat-drawer>
+</mat-drawer-container>
