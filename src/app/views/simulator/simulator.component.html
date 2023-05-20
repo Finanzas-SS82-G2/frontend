@@ -1,61 +1,71 @@
 <app-navbar [title]="'Simulador de nuevo crédito mivivienda'"></app-navbar>
 <form class="flex flex-col mx-40 my-10" [formGroup]="simulatorForm">
-  <mat-label class="m-1">Nombres</mat-label>
-  <mat-form-field appearance="outline">
-    <input matInput placeholder="Name" formControlName="name" required />
-    <mat-error *ngIf="simulatorForm.get('name')?.invalid">{{
-      getMinLengthErrorMessage("name", 3)
-    }}</mat-error>
-  </mat-form-field>
-  <mat-label class="m-1">Apellidos</mat-label>
-  <mat-form-field appearance="outline">
-    <input
-      matInput
-      placeholder="Apellidos"
-      formControlName="lastname"
-      required
-    />
-    <mat-error *ngIf="simulatorForm.get('lastname')?.invalid">{{
-      getMinLengthErrorMessage("lastname", 3)
-    }}</mat-error>
-  </mat-form-field>
-  <div class="flex flex-col">
-    <mat-label class="m-2">Moneda</mat-label>
-    <mat-button-toggle-group #moneda="matButtonToggleGroup">
-      <mat-button-toggle value="'soles'">
-        <div class="flex flex-row">
-          <img
-            class="p-3 bg-black"
-            src="../../../assets/images/soles.png"
-            alt="Soles"
-          />
-          <h2 class="self-center p-1">Soles</h2>
-        </div>
-      </mat-button-toggle>
-      <mat-button-toggle value="'dolares'">
-        <div class="flex flex-row">
-          <img
-            class="p-3 bg-black"
-            src="../../../assets/images/dolares.png"
-            alt="Dólares"
-          />
-          <h2 class="self-center p-1">Dólares</h2>
-        </div>
-      </mat-button-toggle>
-    </mat-button-toggle-group>
+  <div class="flex flex-row justify-between">
+    <div class="flex flex-col w-5/12">
+      <mat-label class="my-1">Nombres</mat-label>
+      <mat-form-field appearance="outline">
+        <input matInput placeholder="Name" formControlName="name" required />
+        <mat-error *ngIf="simulatorForm.get('name')?.invalid">{{
+          getMinLengthErrorMessage("name", 3)
+        }}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="flex flex-col w-5/12">
+      <mat-label class="my-1">Apellidos</mat-label>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          placeholder="Apellidos"
+          formControlName="lastname"
+          required
+        />
+        <mat-error *ngIf="simulatorForm.get('lastname')?.invalid">{{
+          getMinLengthErrorMessage("lastname", 3)
+        }}</mat-error>
+      </mat-form-field>
+    </div>
   </div>
-  <mat-label class="m-1 mt-2">¿Cuánto es su ingreso mensual? </mat-label>
-  <mat-form-field appearance="outline">
-    <input
-      matInput
-      placeholder="0000"
-      formControlName="ingreso_mensual"
-      required
-    />
-    <!-- <mat-error *ngIf="simulatorForm.get('ingreso_mensual')?.invalid">{{
+  <div class="flex flex-col">
+    <mat-label class="mb-2">Moneda</mat-label>
+    <div>
+      <mat-button-toggle-group #moneda="matButtonToggleGroup">
+        <mat-button-toggle value="'soles'">
+          <div class="flex flex-row">
+            <img
+              class="p-3 bg-black"
+              src="../../../assets/images/soles.png"
+              alt="Soles"
+            />
+            <h2 class="self-center p-1">Soles</h2>
+          </div>
+        </mat-button-toggle>
+        <mat-button-toggle value="'dolares'">
+          <div class="flex flex-row">
+            <img
+              class="p-3 bg-black"
+              src="../../../assets/images/dolares.png"
+              alt="Dólares"
+            />
+            <h2 class="self-center p-1">Dólares</h2>
+          </div>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+  </div>
+  <mat-label class="mb-2 mt-4">¿Cuánto es su ingreso mensual? </mat-label>
+  <div>
+    <mat-form-field appearance="outline">
+      <input
+        matInput
+        placeholder="0000"
+        formControlName="ingreso_mensual"
+        required
+      />
+      <!-- <mat-error *ngIf="simulatorForm.get('ingreso_mensual')?.invalid">{{
       }}</mat-error> -->
-  </mat-form-field>
-  <mat-label class="m-1">Valor de la Vivienda </mat-label>
+    </mat-form-field>
+  </div>
+  <mat-label class="mb-2">Valor de la Vivienda </mat-label>
   <mat-slider
     [max]="precioViviendaMax"
     [min]="precioViviendaMin"
@@ -66,33 +76,35 @@
     <input matSliderThumb />
   </mat-slider>
   <div class="flex flex-col">
-    <mat-label class="m-2"
+    <mat-label class="my-2"
       >¿Ha recibido anteriormente apoyo habitacional?</mat-label
     >
-    <mat-button-toggle-group #apoyo_habitacional="matButtonToggleGroup">
-      <mat-button-toggle value="true">
-        <div class="flex flex-row">
-          <img
-            class="p-3 bg-black"
-            src="../../../assets/images/check.png"
-            alt="Yes"
-          />
-          <h2 class="self-center p-1">Sí</h2>
-        </div>
-      </mat-button-toggle>
-      <mat-button-toggle value="false">
-        <div class="flex flex-row">
-          <img
-            class="p-3 bg-black"
-            src="../../../assets/images/remove.png"
-            alt="No"
-          />
-          <h2 class="self-center p-1">No</h2>
-        </div>
-      </mat-button-toggle>
-    </mat-button-toggle-group>
+    <div>
+      <mat-button-toggle-group #apoyo_habitacional="matButtonToggleGroup">
+        <mat-button-toggle value="true">
+          <div class="flex flex-row">
+            <img
+              class="p-3 bg-black"
+              src="../../../assets/images/check.png"
+              alt="Yes"
+            />
+            <h2 class="self-center p-1">Sí</h2>
+          </div>
+        </mat-button-toggle>
+        <mat-button-toggle value="false">
+          <div class="flex flex-row">
+            <img
+              class="p-3 bg-black"
+              src="../../../assets/images/remove.png"
+              alt="No"
+            />
+            <h2 class="self-center p-1">No</h2>
+          </div>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
   </div>
-  <mat-label class="m-1">Cuota Inicial</mat-label>
+  <mat-label class="mb-2 mt-4">Cuota Inicial</mat-label>
   <mat-slider
     [max]="cuotaInicialMax"
     [min]="cuotaInicialMin"
@@ -102,41 +114,43 @@
   >
     <input matSliderThumb />
   </mat-slider>
-  <mat-label>Bono del buen pagador</mat-label>
-  <mat-card class="green">
+  <mat-label class="my-2">Bono del buen pagador</mat-label>
+  <mat-card class="green w-4/12">
     <mat-card-content>Bono</mat-card-content>
   </mat-card>
   <div class="flex flex-col">
-    <mat-label class="m-2">¿La vivienda es sostenible?</mat-label>
-    <mat-button-toggle-group #vivienda_sostenible="matButtonToggleGroup">
-      <mat-button-toggle value="true">
-        <div class="flex flex-row">
-          <img
-            class="p-3 bg-black"
-            src="../../../assets/images/tree.png"
-            alt="Yes"
-          />
-          <h2 class="self-center p-1">Sí</h2>
-        </div>
-      </mat-button-toggle>
-      <mat-button-toggle value="false">
-        <div class="flex flex-row">
-          <img
-            class="p-3 bg-black"
-            src="../../../assets/images/home_icon.png"
-            alt="No"
-          />
-          <h2 class="self-center p-1">No</h2>
-        </div>
-      </mat-button-toggle>
-    </mat-button-toggle-group>
+    <mat-label class="mb-2 mt-4">¿La vivienda es sostenible?</mat-label>
+    <div>
+      <mat-button-toggle-group #vivienda_sostenible="matButtonToggleGroup">
+        <mat-button-toggle value="true">
+          <div class="flex flex-row">
+            <img
+              class="p-3 bg-black"
+              src="../../../assets/images/tree.png"
+              alt="Yes"
+            />
+            <h2 class="self-center p-1">Sí</h2>
+          </div>
+        </mat-button-toggle>
+        <mat-button-toggle value="false">
+          <div class="flex flex-row">
+            <img
+              class="p-3 bg-black"
+              src="../../../assets/images/home_icon.png"
+              alt="No"
+            />
+            <h2 class="self-center p-1">No</h2>
+          </div>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
   </div>
-  <mat-label>Total Bono del buen pagador</mat-label>
-  <mat-card class="green">
+  <mat-label class="mb-2 mt-4">Total Bono del buen pagador</mat-label>
+  <mat-card class="green w-4/12">
     <mat-card-content>Total Bono</mat-card-content>
   </mat-card>
-  <span class="m-3"></span>
-  <mat-card class="gray">
+  <span class="my-3"></span>
+  <mat-card class="gray w-6/12">
     <mat-card-content>
       <div class="flex flex-row justify-between">
         <h2><b>Monto a financiar</b></h2>
@@ -144,7 +158,7 @@
       </div>
     </mat-card-content>
   </mat-card>
-  <mat-label class="m-1">Tasa Efectiva Anual (%)</mat-label>
+  <mat-label class="mb-2 mt-4">Tasa Efectiva Anual (%)</mat-label>
   <mat-slider
     [max]="tasaEfectivaAnualMax"
     [min]="tasaEfectivaAnualMin"
@@ -154,31 +168,37 @@
   >
     <input matSliderThumb />
   </mat-slider>
-  <mat-label class="m-1">Seguro Degravamen Mensual (%)</mat-label>
-  <mat-form-field appearance="outline">
-    <input
-      matInput
-      placeholder="0.00 %"
-      formControlName="seguro_desgravamen_mensual"
-      required
-    />
-    <!-- <mat-error *ngIf="simulatorForm.get('seguro_desgravamen_mensual')?.invalid">{{
+  <div class="flex flex-row justify-between">
+    <div class="flex flex-col w-5/12">
+      <mat-label class="my-1">Seguro Degravamen Mensual (%)</mat-label>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          placeholder="0.00 %"
+          formControlName="seguro_desgravamen_mensual"
+          required
+        />
+        <!-- <mat-error *ngIf="simulatorForm.get('seguro_desgravamen_mensual')?.invalid">{{
       getMinLengthErrorMessage("name", 3)
     }}</mat-error> -->
-  </mat-form-field>
-  <mat-label class="m-1">Seguro de Inmueble Anual (%)</mat-label>
-  <mat-form-field appearance="outline">
-    <input
-      matInput
-      placeholder="0.00 %"
-      formControlName="seguro_inmueble_anual"
-      required
-    />
-    <!-- <mat-error *ngIf="simulatorForm.get('seguro_inmueble_anual')?.invalid">{{
+      </mat-form-field>
+    </div>
+    <div class="flex flex-col w-5/12">
+      <mat-label class="my-1">Seguro de Inmueble Anual (%)</mat-label>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          placeholder="0.00 %"
+          formControlName="seguro_inmueble_anual"
+          required
+        />
+        <!-- <mat-error *ngIf="simulatorForm.get('seguro_inmueble_anual')?.invalid">{{
       getMinLengthErrorMessage("name", 3)
     }}</mat-error> -->
-  </mat-form-field>
-  <mat-label class="m-1">Plazo (en meses)</mat-label>
+      </mat-form-field>
+    </div>
+  </div>
+  <mat-label class="my-2">Plazo (en meses)</mat-label>
   <mat-slider
     [max]="plazoMesesMax"
     [min]="plazoMesesMin"
@@ -188,12 +208,12 @@
   >
     <input matSliderThumb />
   </mat-slider>
-  <mat-label>Tasa de Costo Efectivo Anual(%)</mat-label>
+  <mat-label class="mb-2">Tasa de Costo Efectivo Anual(%)</mat-label>
   <mat-card class="green">
     <mat-card-content>TCEA</mat-card-content>
   </mat-card>
-  <span class="m-3"></span>
-  <mat-card class="gray">
+  <span class="my-3"></span>
+  <mat-card class="gray w-6/12">
     <mat-card-content>
       <div class="flex flex-row justify-between">
         <h2 class="tc-mivivienda"><b>Cuota Mensual</b></h2>
@@ -201,13 +221,15 @@
       </div>
     </mat-card-content>
   </mat-card>
-  <span class="m-3"></span>
-  <button
-    mat-raised-button
-    color="primary"
-    [disabled]="!simulatorForm.valid"
-    (click)="save()"
-  >
-    <p class="uppercase">Guardar</p>
-  </button>
+  <span class="my-3"></span>
+  <div>
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="!simulatorForm.valid"
+      (click)="save()"
+    >
+      <p class="uppercase">Guardar</p>
+    </button>
+  </div>
 </form>
