@@ -19,6 +19,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 // Views
 import { StartComponent } from './views/start/start.component';
@@ -58,6 +59,7 @@ import { NavbarComponent } from './views/navbar/navbar.component';
     MatButtonToggleModule,
     MatSelectModule,
     MatSliderModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
