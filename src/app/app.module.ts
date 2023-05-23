@@ -20,6 +20,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 // Views
 import { StartComponent } from './views/start/start.component';
@@ -29,6 +31,10 @@ import { HomeComponent } from './views/home/home.component';
 import { SimulatorComponent } from './views/simulator/simulator.component';
 import { HistoryComponent } from './views/history/history.component';
 import { NavbarComponent } from './views/navbar/navbar.component';
+
+import { HttpClientModule } from '@angular/common/http';
+import { DialogBoxInvalidFormComponent } from './views/dialog-box-invalid-form/dialog-box-invalid-form.component';
+import { DialogBoxValidFormComponent } from './views/dialog-box-valid-form/dialog-box-valid-form.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +46,8 @@ import { NavbarComponent } from './views/navbar/navbar.component';
     SimulatorComponent,
     HistoryComponent,
     NavbarComponent,
+    DialogBoxInvalidFormComponent,
+    DialogBoxValidFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,6 +68,8 @@ import { NavbarComponent } from './views/navbar/navbar.component';
     MatSelectModule,
     MatSliderModule,
     MatPaginatorModule,
+    HttpClientModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

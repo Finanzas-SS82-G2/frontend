@@ -25,20 +25,9 @@
   <div class="w-5/12">
     <div class="flex justify-center my-10">
       <mat-button-toggle-group #start_page="matButtonToggleGroup">
-        <mat-button-toggle value="login">Iniciar Sesión</mat-button-toggle>
-        <mat-button-toggle value="sign-up">Registrarse</mat-button-toggle>
+        <mat-button-toggle routerLink="login" value="before" checked>Iniciar Sesión</mat-button-toggle>
+        <mat-button-toggle  routerLink="sign-up" value="after">Registrarse</mat-button-toggle>
       </mat-button-toggle-group>
     </div>
-    <div
-      *ngIf="
-        !start_page.value || start_page.value == 'login';
-        else other_register
-      "
-    >
-      <app-login></app-login>
-    </div>
-    <ng-template #other_register>
-      <app-sign-up></app-sign-up>
-    </ng-template>
-  </div>
+  <router-outlet></router-outlet>
 </div>

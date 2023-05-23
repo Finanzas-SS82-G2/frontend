@@ -32,6 +32,22 @@
         getEmailErrorMessage()
       }}</mat-error>
     </mat-form-field>
+
+    <mat-label class="m-1 tc-mivivienda">Celular</mat-label>
+    <mat-form-field appearance="outline">
+      <input
+        matInput
+        placeholder="Número de celular"
+        formControlName="phone"
+        required
+        maxlength="9"
+        minlength="9"
+      />
+      <mat-error *ngIf="registerForm.get('phone')?.invalid">{{
+        getMinLengthErrorMessage("phone", 9)
+      }}</mat-error>
+    </mat-form-field>
+
     <mat-label class="m-1 tc-mivivienda">Contraseña</mat-label>
     <mat-form-field appearance="outline">
       <input
@@ -86,7 +102,7 @@
       mat-raised-button
       color="primary"
       [disabled]="!registerForm.valid"
-      (click)="createUser()"
+      (click)="openDialog()"
     >
       Sign Up
     </button>
