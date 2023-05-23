@@ -106,9 +106,12 @@ export class SignUpComponent implements OnInit {
     this.userService.postUser(this.tempUser).subscribe((data) => {
       console.log(data);
       this.dialog.open(DialogBoxValidFormComponent, {
-        data: { message: 'Usuario creado exitosamente' },
+        data: { message: 'Usuario creado exitosamente. Inicie sesión' },
       });
-      this.router.navigate(['/login']);
+      this.dialog.afterAllClosed.subscribe(result => {
+        // Código a ejecutar después de cerrar el diálogo
+        this.router.navigate(['/login']);
+      });
     }
     );
   }

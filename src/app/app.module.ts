@@ -23,6 +23,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 
 
+
 // Views
 import { StartComponent } from './views/start/start.component';
 import { LoginComponent } from './views/login/login.component';
