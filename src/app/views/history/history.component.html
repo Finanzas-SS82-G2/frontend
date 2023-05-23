@@ -1,0 +1,20 @@
+<app-navbar
+  [title]="'Consultas sobre el nuevo crédito mivivienda'"
+></app-navbar>
+<div class="flex flex-row justify-evenly mt-8">
+  <h1>Nombre</h1>
+  <mat-form-field appearance="outline">
+    <input matInput type="text" placeholder="Buscar" />
+    <button matSuffix mat-icon-button aria-label="Search">
+      <mat-icon>search</mat-icon>
+    </button>
+  </mat-form-field>
+</div>
+<mat-paginator
+  [length]="100"
+  [pageSize]="10"
+  [pageSizeOptions]="[5, 10, 25, 50, 100]"
+  [showFirstLastButtons]="true"
+  aria-label="Select page"
+>
+</mat-paginator>

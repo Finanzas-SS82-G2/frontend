@@ -1,0 +1,18 @@
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+img {
+  width: 5rem;
+  height: 5rem;
+}
+
+.gray .mat-mdc-card-content {
+  background-color: rgba(0, 0, 0, 0.16);
+}
+
+.green .mat-mdc-card-content {
+  background-color: rgba(145, 204, 48, 0.12);
+}
