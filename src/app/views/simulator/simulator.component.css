@@ -16,3 +16,7 @@ img {
 .green .mat-mdc-card-content {
   background-color: rgba(145, 204, 48, 0.12);
 }
+
+.button-group .mat-button-toggle-checked {
+  background-color: rgb(179, 235, 184) !important;
+}

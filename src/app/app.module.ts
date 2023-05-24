@@ -21,8 +21,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
-
-
+import { MatRadioModule } from '@angular/material/radio';
 
 // Views
 import { StartComponent } from './views/start/start.component';
@@ -71,6 +70,7 @@ import { DialogBoxValidFormComponent } from './views/dialog-box-valid-form/dialo
     MatPaginatorModule,
     HttpClientModule,
     MatDialogModule,
+    MatRadioModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
