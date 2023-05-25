@@ -74,7 +74,7 @@ export class SimulatorComponent implements OnInit {
         validators: [Validators.required],
         updateOn: 'change',
       }),
-      plazo: new FormControl('', {
+      plazo: new FormControl(this.plazoMesesMin, {
         validators: [Validators.required],
         updateOn: 'change',
       }),
@@ -112,6 +112,12 @@ export class SimulatorComponent implements OnInit {
         validators: [Validators.required],
         updateOn: 'change',
       }),
+
+      bank_loan: new FormControl('', {
+        validators: [Validators.required],
+        updateOn: 'change',
+      }),
+
     });
 
     this.initialValuesOfForm();
@@ -121,8 +127,9 @@ export class SimulatorComponent implements OnInit {
   ngOnInit(): void {
 
     this.simulatorForm.get('percentage_initial_fee')?.valueChanges.subscribe(value => {
-      console.log(this.simulatorForm.get('percentage_initial_fee')?.value);
       this.simulatorForm.get('cuota_inicial')?.setValue(this.simulatorForm.get('precio_vivienda')?.value * this.simulatorForm.get('percentage_initial_fee')?.value/100);
+      this.setTotalInitialFee();
+      this.setBankLoan();
     });
 
     this.simulatorForm.get('precio_vivienda')?.valueChanges.subscribe(value => {
@@ -130,16 +137,25 @@ export class SimulatorComponent implements OnInit {
       this.simulatorForm.get('cuota_inicial')?.setValue(this.simulatorForm.get('precio_vivienda')?.value * this.simulatorForm.get('percentage_initial_fee')?.value/100);
       this.setValueBonoBuenPagador();
       this.setMinimunInitialFee();
+      this.setBonoHomeSosteinable();
       this.setTotalBono();
+      this.setTotalInitialFee();
+      this.setBankLoan();
     });
 
     this.simulatorForm.get('recibio_apoyo_habitacional')?.valueChanges.subscribe(value => {
       this.setValueBonoBuenPagador();
+      this.setBonoHomeSosteinable();
+      this.setTotalBono();
+      this.setTotalInitialFee();
+      this.setBankLoan();
     });
 
     this.simulatorForm.get('vivienda_sustentable')?.valueChanges.subscribe(value => {
       this.setBonoHomeSosteinable();
       this.setTotalBono();
+      this.setTotalInitialFee();
+      this.setBankLoan();
     });
     
     
@@ -151,6 +167,8 @@ export class SimulatorComponent implements OnInit {
     this.setValueBonoBuenPagador();
     this.setBonoHomeSosteinable();
     this.setTotalBono();
+    this.setTotalInitialFee();
+    this.setBankLoan();
   }
 
   
@@ -248,6 +266,12 @@ export class SimulatorComponent implements OnInit {
       else if(valueHome > 232200 && valueHome <= 343900){
         bono = 10800;
       }
+      else{
+        bono=0
+      }
+    }
+    else{
+      bono=0
     }
     this.simulatorForm.get('bono_buen_pagador')?.setValue(bono);
   }
@@ -259,6 +283,9 @@ export class SimulatorComponent implements OnInit {
     let homeSosteinable = this.simulatorForm.get('vivienda_sustentable')?.value;
     if(recieveHelp == 'false' && homeSosteinable == 'true' && valueHome <= 343900){
       bono = 5410;
+    }
+    else if(valueHome > 343900 || homeSosteinable == 'false' || recieveHelp == 'true'){
+      bono = 0;
     }
     this.simulatorForm.get('bono_home_sosteinable')?.setValue(bono);
   }
@@ -283,6 +310,20 @@ export class SimulatorComponent implements OnInit {
       this.simulatorForm.get('percentage_cuota_inicial_min')?.setValue(this.percentageCuotaInicialMin);   
     }
     this.simulatorForm.get('percentage_initial_fee')?.setValue(this.simulatorForm.get('percentage_cuota_inicial_min')?.value);
+  }
+
+  setTotalInitialFee(){
+    const totalBono = this.simulatorForm.get('total_bono')?.value;
+    const initialFee = this.simulatorForm.get('cuota_inicial')?.value;
+    var totalInitialFee = totalBono + initialFee;
+    this.simulatorForm.get('final_initial_fee')?.setValue(totalInitialFee);
+  }
+
+  setBankLoan(){
+    var valueHome = this.simulatorForm.get('precio_vivienda')?.value;
+    var totalInitialFee = this.simulatorForm.get('final_initial_fee')?.value;
+    var bankLoan = valueHome - totalInitialFee;
+    this.simulatorForm.get('bank_loan')?.setValue(bankLoan);
   }
 
   updatePercentajeInitialFee(){

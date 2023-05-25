@@ -191,14 +191,14 @@
   </mat-card>
   <mat-label class="mb-2 mt-4">Total Cuota Inicial</mat-label>
   <mat-card class="green w-4/12">
-    <mat-card-content>{{simulatorForm.get('total_bono')?.value}}</mat-card-content>
+    <mat-card-content>{{verifyMoney()+ ' ' + simulatorForm.get('final_initial_fee')?.value}}</mat-card-content>
   </mat-card>
   <span class="my-3"></span>
   <mat-card class="gray w-6/12">
     <mat-card-content>
       <div class="flex flex-row justify-between">
         <h2><b>Monto a financiar</b></h2>
-        <p class="self-center">Monto</p>
+        <p class="self-center">{{verifyMoney()+ ' ' + simulatorForm.get('bank_loan')?.value}}</p>
       </div>
     </mat-card-content>
   </mat-card>
