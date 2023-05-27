@@ -11,7 +11,7 @@ import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms'
 export class SimulatorComponent implements OnInit {
 
   precioViviendaMax = 464200;
-  precioViviendaMin = 65000;
+  precioViviendaMin = 65200;
 
   percentageCuotaInicialMax = 30;
   percentageCuotaInicialMin = 7.5;
@@ -39,11 +39,11 @@ export class SimulatorComponent implements OnInit {
         updateOn: 'change',
       }),
       ingreso_mensual: new FormControl('', {
-        validators: [Validators.required, Validators.min(499), Validators.max(10001)],
+        validators: [Validators.required, Validators.min(500), Validators.max(10000)],
         updateOn: 'change',
       }),
-      precio_vivienda: new FormControl('', {
-        validators: [Validators.required, Validators.min(this.precioViviendaMin-1), Validators.max(this.precioViviendaMax+1)],
+      precio_vivienda: new FormControl(this.precioViviendaMin, {
+        validators: [Validators.required, Validators.min(this.precioViviendaMin), Validators.max(this.precioViviendaMax)],
         updateOn: 'change',
       }),
       recibio_apoyo_habitacional: new FormControl('false', {
@@ -62,8 +62,8 @@ export class SimulatorComponent implements OnInit {
         validators: [Validators.required],
         updateOn: 'change',
       }),
-      tasa_efectiva_anual: new FormControl('', {
-        validators: [Validators.required],
+      tasa_efectiva_anual: new FormControl(this.tasaEfectivaAnualMin, {
+        validators: [Validators.required, Validators.min(this.tasaEfectivaAnualMin), Validators.max(this.tasaEfectivaAnualMax)],
         updateOn: 'change',
       }),
       seguro_desgravamen_mensual: new FormControl('', {
@@ -117,6 +117,15 @@ export class SimulatorComponent implements OnInit {
         validators: [Validators.required],
         updateOn: 'change',
       }),
+      constant_monthly_fee: new FormControl('', {
+        validators: [Validators.required],
+        updateOn: 'change',
+      }),
+      
+      effective_monthly_rate: new FormControl('', {
+        validators: [Validators.required],
+        updateOn: 'change',
+      }),
 
     });
 
@@ -124,23 +133,40 @@ export class SimulatorComponent implements OnInit {
 
   }
 
+  initialValuesOfForm() {
+
+    this.calculateInitialFee();
+    this.setValueBonoBuenPagador();
+    this.setBonoHomeSosteinable();
+    this.setTotalBono();
+    this.setTotalInitialFee();
+    this.setBankLoan();
+    this.calculateEffectiveMonthlyRate();
+    this.calculateConstantMonthlyFee();
+  }
+
   ngOnInit(): void {
 
     this.simulatorForm.get('percentage_initial_fee')?.valueChanges.subscribe(value => {
-      this.simulatorForm.get('cuota_inicial')?.setValue(this.simulatorForm.get('precio_vivienda')?.value * this.simulatorForm.get('percentage_initial_fee')?.value/100);
+      
+      this.calculateInitialFee();
+
       this.setTotalInitialFee();
       this.setBankLoan();
+      this.calculateConstantMonthlyFee();
     });
 
     this.simulatorForm.get('precio_vivienda')?.valueChanges.subscribe(value => {
-      console.log(this.simulatorForm.get('precio_vivienda')?.value);
-      this.simulatorForm.get('cuota_inicial')?.setValue(this.simulatorForm.get('precio_vivienda')?.value * this.simulatorForm.get('percentage_initial_fee')?.value/100);
+      
+      this.calculateInitialFee();
+
       this.setValueBonoBuenPagador();
       this.setMinimunInitialFee();
       this.setBonoHomeSosteinable();
       this.setTotalBono();
       this.setTotalInitialFee();
       this.setBankLoan();
+      this.calculateConstantMonthlyFee();
     });
 
     this.simulatorForm.get('recibio_apoyo_habitacional')?.valueChanges.subscribe(value => {
@@ -149,6 +175,7 @@ export class SimulatorComponent implements OnInit {
       this.setTotalBono();
       this.setTotalInitialFee();
       this.setBankLoan();
+      this.calculateConstantMonthlyFee();
     });
 
     this.simulatorForm.get('vivienda_sustentable')?.valueChanges.subscribe(value => {
@@ -156,62 +183,33 @@ export class SimulatorComponent implements OnInit {
       this.setTotalBono();
       this.setTotalInitialFee();
       this.setBankLoan();
+      this.calculateConstantMonthlyFee();
+    });
+
+    this.simulatorForm.get('tasa_efectiva_anual')?.valueChanges.subscribe(value => {
+      this.calculateEffectiveMonthlyRate();
+      this.calculateConstantMonthlyFee();
+    });
+
+    this.simulatorForm.get('plazo')?.valueChanges.subscribe(value => {
+      this.calculateConstantMonthlyFee();
     });
     
-    
   }
 
-  initialValuesOfForm() {
-    this.simulatorForm.get('precio_vivienda')?.setValue(this.precioViviendaMin);
-    this.simulatorForm.get('cuota_inicial')?.setValue(this.simulatorForm.get('precio_vivienda')?.value * this.simulatorForm.get('percentage_initial_fee')?.value/100);
-    this.setValueBonoBuenPagador();
-    this.setBonoHomeSosteinable();
-    this.setTotalBono();
-    this.setTotalInitialFee();
-    this.setBankLoan();
+  calculateEffectiveMonthlyRate(){
+    var tasaEfectivaAnual = this.simulatorForm.get('tasa_efectiva_anual')?.value;
+    var tasaCostoEfectivoMensual = (Math.pow((1+(tasaEfectivaAnual/100)),(1/12))-1)*100;
+    this.simulatorForm.get('effective_monthly_rate')?.setValue(tasaCostoEfectivoMensual);
   }
 
-  
-
-  getMinLengthErrorMessage(element: string, numOfCharacters: number) {
-    if (this.simulatorForm.get(element)?.hasError('required')) {
-      return 'Debes ingresar un valor';
-    }
-    return this.simulatorForm.get(element)?.hasError('minlength')
-      ? `Debe tener mínimo ${numOfCharacters} caracteres`
-      : '';
+  calculateConstantMonthlyFee(){
+    var effectiveMonthlyRate = this.simulatorForm.get('effective_monthly_rate')?.value;
+    var plazo = this.simulatorForm.get('plazo')?.value;
+    var bankLoan = this.simulatorForm.get('bank_loan')?.value;
+    var constantMonthlyFee = (bankLoan * (effectiveMonthlyRate/100) * Math.pow((1+(effectiveMonthlyRate/100)),plazo)) / (Math.pow((1+(effectiveMonthlyRate/100)),plazo)-1);
+    this.simulatorForm.get('constant_monthly_fee')?.setValue(constantMonthlyFee);
   }
-
-  getOnlyLettersErrorMessage(element: string) {
-    if (this.simulatorForm.get(element)?.hasError('required')) {
-      return 'Debes ingresar un valor';
-    }
-    else if (this.simulatorForm.get(element)?.hasError('minlength')) {
-      return 'Mínimo 3 caracteres';
-    }
-    return this.simulatorForm.get(element)?.hasError('pattern')
-      ? 'Debe ingresar un nombre válido'
-      : '';
-  }
-
-  getMinValueErrorMessage(element: string, minValue: number) {
-    if (this.simulatorForm.get(element)?.hasError('required')) {
-      return 'Debes ingresar un valor';
-    }
-    return this.simulatorForm.get(element)?.hasError('min')
-      ? `Debe ser mínimo ${minValue}`
-      : '';
-  }
-
-  getMaxValueErrorMessage(element: string, maxValue: number) {
-    if (this.simulatorForm.get(element)?.hasError('required')) {
-      return 'Debes ingresar un valor';
-    }
-    return this.simulatorForm.get(element)?.hasError('max')
-      ? `Debe ser maximo ${maxValue}`
-      : '';
-  }
-
 
   save() {}
 
@@ -246,9 +244,6 @@ export class SimulatorComponent implements OnInit {
     }
   }
 
-
-
-  
   setValueBonoBuenPagador(){
     const valueHome = this.simulatorForm.get('precio_vivienda')?.value;
     var bono : number = 0;
@@ -303,11 +298,12 @@ export class SimulatorComponent implements OnInit {
 
   setMinimunInitialFee(){
     const valueHome = this.simulatorForm.get('precio_vivienda')?.value;
-    if(valueHome >= 343900  && valueHome <= this.precioViviendaMax){
+    const actualPercentage = this.simulatorForm.get('percentage_initial_fee')?.value;
+    if(valueHome > 343900  && valueHome <= this.precioViviendaMax){
       this.simulatorForm.get('percentage_cuota_inicial_min')?.setValue(10);
     }
     else{
-      this.simulatorForm.get('percentage_cuota_inicial_min')?.setValue(this.percentageCuotaInicialMin);   
+      this.simulatorForm.get('percentage_cuota_inicial_min')?.setValue(this.percentageCuotaInicialMin);
     }
     this.simulatorForm.get('percentage_initial_fee')?.setValue(this.simulatorForm.get('percentage_cuota_inicial_min')?.value);
   }
@@ -334,5 +330,50 @@ export class SimulatorComponent implements OnInit {
     this.simulatorForm.get('percentage_initial_fee')?.setValue(roundedPercentaje);
   }
 
+  getMinLengthErrorMessage(element: string, numOfCharacters: number) {
+    if (this.simulatorForm.get(element)?.hasError('required')) {
+      return 'Debes ingresar un valor';
+    }
+    return this.simulatorForm.get(element)?.hasError('minlength')
+      ? `Debe tener mínimo ${numOfCharacters} caracteres`
+      : '';
+  }
+
+  getOnlyLettersErrorMessage(element: string) {
+    if (this.simulatorForm.get(element)?.hasError('required')) {
+      return 'Debes ingresar un valor';
+    }
+    else if (this.simulatorForm.get(element)?.hasError('minlength')) {
+      return 'Mínimo 3 caracteres';
+    }
+    return this.simulatorForm.get(element)?.hasError('pattern')
+      ? 'Debe ingresar un nombre válido'
+      : '';
+  }
+
+  getMinValueErrorMessage(element: string, minValue: number) {
+    if (this.simulatorForm.get(element)?.hasError('required')) {
+      return 'Debes ingresar un valor';
+    }
+    return this.simulatorForm.get(element)?.hasError('min')
+      ? `Debe ser mínimo ${minValue}`
+      : '';
+  }
+
+  getMaxValueErrorMessage(element: string, maxValue: number) {
+    if (this.simulatorForm.get(element)?.hasError('required')) {
+      return 'Debes ingresar un valor';
+    }
+    return this.simulatorForm.get(element)?.hasError('max')
+      ? `Debe ser maximo ${maxValue}`
+      : '';
+  }
+
+  calculateInitialFee(){
+    var valueHome = this.simulatorForm.get('precio_vivienda')?.value;
+    var percentage = this.simulatorForm.get('percentage_initial_fee')?.value;
+    var initialFee = valueHome * percentage/100;
+    this.simulatorForm.get('cuota_inicial')?.setValue(initialFee);
+  }
 
 }

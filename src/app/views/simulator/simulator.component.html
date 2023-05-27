@@ -86,14 +86,14 @@
   <div>
     <mat-label class="my-1">{{ verifyMoney() }}</mat-label>
     <mat-form-field appearance="outline">
-    <input matInput type="number" value="{{simulatorForm.get('precio_vivienda')?.value}}" formControlName="precio_vivienda" required>
-    <mat-error *ngIf="simulatorForm.get('precio_vivienda')?.hasError('min')">{{
-      getMinValueErrorMessage("precio_vivienda", precioViviendaMin)
-    }}</mat-error>
-    <mat-error *ngIf="simulatorForm.get('precio_vivienda')?.hasError('max')">{{
-      getMaxValueErrorMessage("precio_vivienda", precioViviendaMax)
-    }}</mat-error>
-  </mat-form-field>
+      <input matInput type="number" value="{{simulatorForm.get('precio_vivienda')?.value}}" formControlName="precio_vivienda" required>
+      <mat-error *ngIf="simulatorForm.get('precio_vivienda')?.hasError('min')">{{
+        getMinValueErrorMessage("precio_vivienda", precioViviendaMin)
+      }}</mat-error>
+      <mat-error *ngIf="simulatorForm.get('precio_vivienda')?.hasError('max')">{{
+        getMaxValueErrorMessage("precio_vivienda", precioViviendaMax)
+      }}</mat-error>
+    </mat-form-field>
   </div>
   
   <div class="flex flex-col">
@@ -204,16 +204,30 @@
   </mat-card>
   
   <mat-label class="mb-2 mt-4">Tasa Efectiva Anual (%)</mat-label>
-  <mat-label class="mb-2 mt-4">TEA: {{simulatorForm.get('tasa_efectiva_anual')?.value}} %</mat-label>
   <mat-slider
     [max]="tasaEfectivaAnualMax"
     [min]="tasaEfectivaAnualMin"
     [step]="0.1"
     [discrete]="true"
     [showTickMarks]="true"
+    [displayWith]="formatSliderLabelPercentaje"
   >
-    <input matSliderThumb formControlName="tasa_efectiva_anual"/>
+  <input matSliderThumb formControlName="tasa_efectiva_anual" value="{{simulatorForm.get('tasa_efectiva_anual')?.value}}" />
   </mat-slider>
+
+  <div>
+    <mat-form-field appearance="outline">
+      <input matInput type="number" [value]="simulatorForm.get('tasa_efectiva_anual')?.value" formControlName="tasa_efectiva_anual" required>
+      <mat-error *ngIf="simulatorForm.get('tasa_efectiva_anual')?.hasError('min')">{{
+        getMinValueErrorMessage("tasa_efectiva_anual", tasaEfectivaAnualMin)
+      }}</mat-error>
+      <mat-error *ngIf="simulatorForm.get('tasa_efectiva_anual')?.hasError('max')">{{
+        getMaxValueErrorMessage("tasa_efectiva_anual", tasaEfectivaAnualMax)
+      }}</mat-error>
+    </mat-form-field>
+    <mat-label class="my-1">  %</mat-label>
+  </div>
+
   <div class="flex flex-row justify-between">
     <div class="flex flex-col w-5/12">
       <mat-label class="my-1">Seguro Degravamen Mensual (%)</mat-label>
@@ -263,7 +277,7 @@
     <mat-card-content>
       <div class="flex flex-row justify-between">
         <h2 class="tc-mivivienda"><b>Cuota Mensual</b></h2>
-        <p class="self-center">Cuota</p>
+        <p class="self-center">{{verifyMoney() + ' ' + simulatorForm.get('constant_monthly_fee')?.value}}</p>
       </div>
     </mat-card-content>
   </mat-card>
@@ -278,9 +292,11 @@
       <p class="uppercase">Guardar</p>
     </button>
   </div>
+  <!--
   <p>
     <pre>
       {{ simulatorForm.value | json }}
     </pre>
+  -->
   
 </form>
