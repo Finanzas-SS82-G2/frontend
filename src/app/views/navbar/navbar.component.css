@@ -5,3 +5,32 @@ h1 {
 .mat-mdc-form-field-infix .ng-tns-c4276651467-6 {
   padding-top: 16px;
 }
+
+.title-nav{
+ 
+margin-inline: 6vw;
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 2rem;
+line-height: 26px;
+/* identical to box height */
+
+
+color: #4C4C58;
+}
+
+.mat-form-field input {
+  height: 20px;
+  transition: height ease-in-out 400ms;
+}
+
+.mat-form-field input:focus {
+  background-color: red !important;
+  height: 50px;
+  transition: height ease-in-out 400ms;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #4C4C58;
+}

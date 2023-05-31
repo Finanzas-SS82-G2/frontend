@@ -1,7 +1,109 @@
 <app-navbar
   [title]="'Consultas sobre el nuevo crédito mivivienda'"
 ></app-navbar>
-<div class="flex flex-row justify-evenly mt-8">
+<div class="history flex flex-row justify-evenly mt-10">
+  <div class="container"  style=" align-items: center;">
+    <!--
+      <div class="card-header">
+        <h3>Personas</h3>
+      </div>
+      -->
+    <mat-card class="card-body">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>
+              <div style="display: flex;">
+                <div class="label-table" style="flex: 1; display: flex;">
+                  Nombre
+                </div>
+                <div style="flex: 1; display: flex;" >
+                  <mat-form-field appearance="outline">
+                    <input matInput type="text" placeholder="Buscar" />
+                    <button matSuffix mat-icon-button aria-label="Search">
+                      <mat-icon>search</mat-icon>
+                    </button>
+                  </mat-form-field>
+                </div>
+                <div style="flex: 1; justify-content: flex-end;" >
+                  <mat-button-toggle-group #group="matButtonToggleGroup">
+                    <mat-button-toggle value="cuadricula" aria-label="Text align left">
+                      <mat-icon>view_headline</mat-icon>
+                    </mat-button-toggle>
+                    <mat-button-toggle value="lineal" aria-label="Text align center">
+                      <mat-icon>grid_on</mat-icon>
+                    </mat-button-toggle>
+                  </mat-button-toggle-group>
+                </div>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="text-center">
+            <mat-card class="card-plan">
+              <mat-card-content>
+                <td>Plan de pago 1</td>
+                <td>Hace 1 hora</td>
+                <td>
+                  <div style="display: flex;">
+                  <div class="botones">
+                    <button mat-raised-button color="accent" matBadgeColor="warn"  (click)="toggleBadgeVisibility();compare.showModal();">COMPARAR</button>
+                  </div>
+                  <div>
+                    <button mat-raised-button color="warn" matBadgeColor="warn"  (click)="toggleBadgeVisibility();verPlan.showModal();">VER</button>
+                  </div>
+                  </div>
+                </td>
+              </mat-card-content>
+            </mat-card>
+            <mat-card class="card-plan">
+              <mat-card-content>
+                <td>Plan de pago 2</td>
+                <td>Hace 1 hora</td>
+                <td>
+                  <div style="display: flex;">
+                  <div class="botones">
+                    <button mat-raised-button color="accent" matBadgeColor="warn"  (click)="toggleBadgeVisibility();compare.showModal();">COMPARAR</button>
+                  </div>
+                  <div>
+                    <button mat-raised-button color="warn" matBadgeColor="warn"  (click)="toggleBadgeVisibility();verPlan.showModal();">VER</button>
+                  </div>
+                  </div>
+                </td>
+              </mat-card-content>
+            </mat-card>
+            <mat-card class="card-plan">
+              <mat-card-content>
+                <td>Plan de pago 3</td>
+                <td>Hace 1 hora</td>
+                <td>
+                  <div style="display: flex;">
+                  <div class="botones">
+                    <button mat-raised-button color="accent"  matBadgeColor="warn"  (click)="toggleBadgeVisibility();compare.showModal();">COMPARAR</button>
+                  </div>
+                  <div>
+                    <button mat-raised-button color="warn" matBadgeColor="warn"  (click)="toggleBadgeVisibility();verPlan.showModal();">VER</button>
+                  </div>
+                  </div>
+                </td>
+              </mat-card-content>
+            </mat-card>
+          </tr>
+        </tbody>
+        
+      </table>
+      <mat-paginator
+          [length]="100"
+          [pageSize]="10"
+          [pageSizeOptions]="[5, 10, 25, 50, 100]"
+          [showFirstLastButtons]="true"
+          aria-label="Select page"
+          >
+      </mat-paginator>
+    </mat-card>
+  </div>
+<!--
   <h1>Nombre</h1>
   <mat-form-field appearance="outline">
     <input matInput type="text" placeholder="Buscar" />
@@ -9,7 +111,9 @@
       <mat-icon>search</mat-icon>
     </button>
   </mat-form-field>
+-->
 </div>
+<!--
 <mat-paginator
   [length]="100"
   [pageSize]="10"
@@ -18,3 +122,26 @@
   aria-label="Select page"
 >
 </mat-paginator>
+-->
+
+
+<app-compare [title]="'COMPARAR PLANES'" #compare >
+  <div>
+      <mat-card class="example-card" >
+      </mat-card>
+      <br>
+      <mat-card class="card-rejected"   >
+      </mat-card>
+      <br>
+  </div>    
+</app-compare>
+<app-compare [title]="'PLAN DE PAGO #'" #verPlan >
+  <div>
+      <mat-card class="example-card" >
+      </mat-card>
+      <br>
+      <mat-card class="card-rejected"   >
+      </mat-card>
+      <br>
+  </div>    
+</app-compare>

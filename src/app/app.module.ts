@@ -35,6 +35,7 @@ import { NavbarComponent } from './views/navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DialogBoxInvalidFormComponent } from './views/dialog-box-invalid-form/dialog-box-invalid-form.component';
 import { DialogBoxValidFormComponent } from './views/dialog-box-valid-form/dialog-box-valid-form.component';
+import { CompareComponent } from './views/history/compare-modal/compare/compare.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { DialogBoxValidFormComponent } from './views/dialog-box-valid-form/dialo
     NavbarComponent,
     DialogBoxInvalidFormComponent,
     DialogBoxValidFormComponent,
+    CompareComponent,
   ],
   imports: [
     BrowserModule,

@@ -12,13 +12,19 @@
         [multiple]="false"
         hideSingleSelectionIndicator
       >
-        <mat-list-option [value]="'calculate'">
-          <mat-icon matSuffix class="align-top">calculate</mat-icon>
-          Simulador
-        </mat-list-option>
-        <mat-list-option [value]="'history'"
-          ><mat-icon matSuffix class="align-top">list_alt</mat-icon> Historial
-        </mat-list-option>
+    <mat-card class="card-lista"> 
+        
+          <mat-list-option class="text-lista" [value]="'calculate'">
+            <mat-icon matSuffix class="align-top">calculate</mat-icon>
+            Simulador
+          </mat-list-option>      
+    </mat-card>  
+    <mat-card class="card-lista"> 
+          <mat-list-option class="text-lista" [value]="'history'">
+            <mat-icon matSuffix class="align-top">list_alt</mat-icon> Historial
+          </mat-list-option>
+    </mat-card> 
+        
       </mat-selection-list>
     </section>
   </mat-drawer>
