@@ -22,6 +22,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
+import {MatMenuModule} from '@angular/material/menu';
 
 // Views
 import { StartComponent } from './views/start/start.component';
@@ -73,6 +74,7 @@ import { CompareComponent } from './views/history/compare-modal/compare/compare.
     HttpClientModule,
     MatDialogModule,
     MatRadioModule,
+    MatMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,8 +1,36 @@
-<div class="flex flex-row bg-navbar p-4">
+<div class="nav-edit flex flex-row bg-navbar p-4">
   <h1 class="title-nav uppercase  self-center">
     {{ title }}
   </h1>
   <div class="w-3/12" >
+<div class="close-session">
+  <button  mat-button [matMenuTriggerFor]="beforeMenu">
+    <mat-label>
+      <div class="user-button" style="display: flex; align-items: center;">
+        <div>
+          <mat-icon class="align-top mr-2">account_circle</mat-icon>
+        </div>
+        <div class="name-user">
+          {{user.firstName + " " + user.lastName}}
+
+        </div>
+        <div>
+          <mat-icon>arrow_drop_down</mat-icon>
+        </div>
+      </div>
+      
+    </mat-label>
+    
+  </button>
+  <mat-menu class="close-button" #beforeMenu="matMenu" xPosition="before" >  
+    <button class="close-account" mat-menu-item (click)="close_session()">Cerrar Sesión</button>
+  </mat-menu>
+
+</div>
+      
+      <!--
+
+      
     <mat-form-field class="user-mat flex-grow" >
       <div class=" flex flex-row justify-between" style="justify-content: flex-end;">
         <div class="pb-4">
@@ -16,5 +44,6 @@
         </div>
       </div>
     </mat-form-field>
+    -->
   </div>
 </div>
