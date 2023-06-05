@@ -66,12 +66,12 @@ export class SimulatorComponent implements OnInit {
         validators: [Validators.required, Validators.min(this.tasaEfectivaAnualMin), Validators.max(this.tasaEfectivaAnualMax)],
         updateOn: 'change',
       }),
-      seguro_desgravamen_mensual: new FormControl('', {
-        validators: [Validators.required],
+      seguro_desgravamen_mensual: new FormControl(0, {
+        validators: [Validators.required, Validators.min(0), Validators.max(5)],
         updateOn: 'change',
       }),
-      seguro_inmueble_anual: new FormControl('', {
-        validators: [Validators.required],
+      seguro_inmueble_anual: new FormControl(0, {
+        validators: [Validators.required, Validators.min(0), Validators.max(5)],
         updateOn: 'change',
       }),
       plazo: new FormControl(this.plazoMesesMin, {

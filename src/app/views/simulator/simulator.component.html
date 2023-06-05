@@ -223,7 +223,6 @@
         getMaxValueErrorMessage("tasa_efectiva_anual", tasaEfectivaAnualMax)
       }}</mat-error>
     </mat-form-field>
-    <mat-label class="my-1">  %</mat-label>
   </div>
 
   <div class="flex flex-row justify-between">
@@ -234,10 +233,14 @@
           matInput
           placeholder="0.00 %"
           formControlName="seguro_desgravamen_mensual"
-          required />
-        <!-- <mat-error *ngIf="simulatorForm.get('seguro_desgravamen_mensual')?.invalid">{{
-      getMinLengthErrorMessage("name", 3)
-    }}</mat-error> -->
+          required 
+          type="number"/>
+        <mat-error *ngIf="simulatorForm.get('seguro_desgravamen_mensual')?.hasError('min')">{{
+          getMinValueErrorMessage("seguro_desgravamen_mensual", 0)
+        }}</mat-error>
+        <mat-error *ngIf="simulatorForm.get('seguro_desgravamen_mensual')?.hasError('max')">{{
+          getMaxValueErrorMessage("seguro_desgravamen_mensual", 5)
+        }}</mat-error>
       </mat-form-field>
     </div>
     <div class="flex flex-col w-5/12">
@@ -247,10 +250,14 @@
           matInput
           placeholder="0.00 %"
           formControlName="seguro_inmueble_anual"
-          required />
-        <!-- <mat-error *ngIf="simulatorForm.get('seguro_inmueble_anual')?.invalid">{{
-      getMinLengthErrorMessage("name", 3)
-    }}</mat-error> -->
+          required 
+          type="number"/>
+          <mat-error *ngIf="simulatorForm.get('seguro_inmueble_anual')?.hasError('min')">{{
+            getMinValueErrorMessage("seguro_inmueble_anual", 0)
+          }}</mat-error>
+          <mat-error *ngIf="simulatorForm.get('seguro_inmueble_anual')?.hasError('max')">{{
+            getMaxValueErrorMessage("seguro_inmueble_anual", 5)
+          }}</mat-error>
       </mat-form-field>
     </div>
   </div>
@@ -288,11 +295,8 @@
       <p class="uppercase">Guardar</p>
     </button>
   </div>
-  <!--
   <p>
     <pre>
       {{ simulatorForm.value | json }}
     </pre>
-  -->
-  
 </form>
