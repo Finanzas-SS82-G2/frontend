@@ -1,11 +1,16 @@
-<div class="m-10">
+<div class="m-10 pl-20 pr-20 signup-main">
   <form class="flex flex-col" [formGroup]="registerForm">
     <mat-label class="m-1 tc-mivivienda">Nombres</mat-label>
     <mat-form-field appearance="outline">
-      <input matInput placeholder="Nombres" formControlName="name" required />
+      <input
+        matInput
+        placeholder="Nombres"
+        formControlName="name"
+        required />
       <mat-error *ngIf="registerForm.get('name')?.invalid">{{
         getMinLengthErrorMessage("name", 3)
-      }}</mat-error>
+        }}</mat-error>
+
     </mat-form-field>
     <mat-label class="m-1 tc-mivivienda">Apellidos</mat-label>
     <mat-form-field appearance="outline">
@@ -13,24 +18,23 @@
         matInput
         placeholder="Apellidos"
         formControlName="lastname"
-        required
-      />
+        required />
       <mat-error *ngIf="registerForm.get('lastname')?.invalid">{{
         getMinLengthErrorMessage("lastname", 3)
-      }}</mat-error>
+        }}</mat-error>
     </mat-form-field>
+
     <mat-label class="m-1 tc-mivivienda">Correo Electrónico</mat-label>
     <mat-form-field appearance="outline">
       <input
         matInput
         placeholder="ejemplo@email.com"
         formControlName="email"
-        required
-      />
+        required />
       <mat-icon matSuffix>email</mat-icon>
-      <mat-error *ngIf="registerForm.get('email')?.invalid">{{
-        getEmailErrorMessage()
-      }}</mat-error>
+      <mat-error *ngIf="registerForm.get('email')?.invalid">
+        {{        getEmailErrorMessage()        }}
+      </mat-error>
     </mat-form-field>
 
     <mat-label class="m-1 tc-mivivienda">Celular</mat-label>
@@ -41,11 +45,10 @@
         formControlName="phone"
         required
         maxlength="9"
-        minlength="9"
-      />
-      <mat-error *ngIf="registerForm.get('phone')?.invalid">{{
-        getMinLengthErrorMessage("phone", 9)
-      }}</mat-error>
+        minlength="9" />
+      <mat-error *ngIf="registerForm.get('phone')?.invalid">
+        {{        getPhoneErrorMessage()      }}
+      </mat-error>
     </mat-form-field>
 
     <mat-label class="m-1 tc-mivivienda">Contraseña</mat-label>
@@ -56,23 +59,24 @@
         [type]="hidePassword ? 'password' : 'text'"
         formControlName="password"
         (change)="passwordMatchErrorMessage()"
-        required
-      />
+        required />
       <button
         mat-icon-button
         (click)="hidePassword = !hidePassword"
         [attr.aria-label]="'Hide password'"
         [attr.aria-pressed]="hidePassword"
-        matSuffix
-      >
-        <mat-icon>{{
+        matSuffix>
+        <mat-icon>
+          {{
           hidePassword ? "visibility_off" : "visibility"
-        }}</mat-icon>
+          }}
+        </mat-icon>
       </button>
       <mat-error *ngIf="registerForm.get('password')?.invalid">{{
-        getPasswordErrorMessage()
-      }}</mat-error>
+        getPasswordErrorMessage()}}
+      </mat-error>
     </mat-form-field>
+
     <mat-label class="m-1 tc-mivivienda">Confirmar contraseña</mat-label>
     <mat-form-field appearance="outline">
       <input
@@ -81,33 +85,30 @@
         [type]="hideConfirmPassword ? 'password' : 'text'"
         formControlName="confirmPassword"
         (change)="passwordMatchErrorMessage()"
-        required
-      />
+        required />
       <button
         mat-icon-button
         (click)="hideConfirmPassword = !hideConfirmPassword"
         [attr.aria-label]="'Hide password'"
         [attr.aria-pressed]="hideConfirmPassword"
-        matSuffix
-      >
-        <mat-icon>{{
-          hideConfirmPassword ? "visibility_off" : "visibility"
-        }}</mat-icon>
+        matSuffix>
+        <mat-icon>
+          {{          hideConfirmPassword ? "visibility_off" : "visibility"          }}
+        </mat-icon>
       </button>
       <mat-error *ngIf="registerForm.get('confirmPassword')?.invalid">{{
         getConfirmPasswordErrorMessage()
-      }}</mat-error>
+        }}</mat-error>
     </mat-form-field>
+
     <button
       mat-raised-button
       color="primary"
       [disabled]="!registerForm.valid"
-      (click)="openDialog()"
-    >
+      (click)="openDialog()">
       Sign Up
     </button>
     <mat-error *ngIf="passwordMatchMessage !== ''">
-      {{ passwordMatchMessage }}</mat-error
-    >
+      {{ passwordMatchMessage }}</mat-error>
   </form>
 </div>
