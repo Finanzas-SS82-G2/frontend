@@ -22,7 +22,7 @@
           required />
         <mat-error
           *ngIf="simulatorForm.get('lastname')?.invalid || simulatorForm.get('lastname')?.errors?.['pattern']">{{
-          getOnlyLettersErrorMessage("name")
+          getOnlyLettersErrorMessage("lastname")
           }}</mat-error>
       </mat-form-field>
     </div>

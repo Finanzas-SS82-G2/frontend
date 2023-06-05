@@ -1,22 +1,19 @@
-
 .left-pane {
-    background-color: #e0e0e0;
-    padding: 2rem;
-    border-radius: 8px;
-}
-  
-.right-pane {
-    padding: 2rem;
+  background-color: #e0e0e0;
+  padding: 2rem;
+  border-radius: 8px;
 }
 
-.login-va{
-   vertical-align: middle;
-   /*Alinear al medio verticalmente*/
-    
+.right-pane {
+  padding: 2rem;
+}
+
+.login-va {
+  vertical-align: middle;
 }
 
 @media screen and (max-width: 1324px) {
-  .login-main{
+  .login-main {
     padding-left: 0rem;
     padding-right: 0rem;
   }
