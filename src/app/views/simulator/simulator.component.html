@@ -270,6 +270,31 @@
     [showTickMarks]="true">
     <input matSliderThumb formControlName="plazo" />
   </mat-slider>
+  <mat-label class="mb-2 mt-4 font-medium text-lg">
+    Plazo de pago: {{simulatorForm.get('plazo')?.value}} meses
+  </mat-label>
+
+  <mat-label class="my-2 font-bold text-lg">Periodo de gracia (en meses)</mat-label>
+  <mat-slider
+    [max]= "6"
+    [min]="0"
+    [step]="1"
+    [discrete]="true"
+    [showTickMarks]="true">
+    <input matSliderThumb formControlName="periodo_gracia" />
+  </mat-slider>
+  <mat-label class="mb-2 mt-4 font-medium text-lg">
+    Periodo de gracia: {{simulatorForm.get('periodo_gracia')?.value}} meses
+  </mat-label>
+  <div>
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="!simulatorForm.valid"
+      (click)="elaborarCronogramaDePagos()">
+      <p class="uppercase">Calcular Cuota</p>
+    </button>
+  </div>
   <mat-label class="mb-2 font-bold text-lg">Tasa de Costo Efectivo Anual(%)</mat-label>
   <mat-card class="green">
     <mat-card-content >
@@ -281,22 +306,18 @@
     <mat-card-content>
       <div class="flex flex-row justify-between">
         <h2 class="tc-mivivienda"><b>Cuota Mensual</b></h2>
-        <p class="self-center">{{verifyMoney() + ' ' + simulatorForm.get('constant_monthly_fee')?.value}}</p>
+        <p class="self-center">{{verifyMoney() + ' ' + _cuotaFinalEstandarizada}}</p>
       </div>
     </mat-card-content>
   </mat-card>
   <span class="my-3"></span>
-  <div>
-    <button
-      mat-raised-button
-      color="primary"
-      [disabled]="!simulatorForm.valid"
-      (click)="save()">
-      <p class="uppercase">Guardar</p>
-    </button>
-  </div>
-  <p>
+  <!--<p>
     <pre>
       {{ simulatorForm.value | json }}
     </pre>
+  -->
 </form>
+<div>
+  
+
+</div>
