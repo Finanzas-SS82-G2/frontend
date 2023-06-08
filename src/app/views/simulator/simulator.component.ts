@@ -214,6 +214,12 @@ export class SimulatorComponent implements OnInit {
   }
 
   elaborarCronogramaDePagos(){
+    this._listSaldoInicialPeriodo = [];
+    this._listInteresPeriodo = [];
+    this._listAmortizacionPeriodo = [];
+    this._listSaldoFinalPeriodo = [];
+    this._listSeguroDesgravamen = [];
+    this._listCuotaMensualFinalPeriodo = [];
     this.calculateEffectiveMonthlyRate();
     this._seguroDesgravamenPorcentaje = this.simulatorForm.get('seguro_desgravamen_mensual')?.value;
     this._seguroViviendaPorcentaje = this.simulatorForm.get('seguro_inmueble_anual')?.value;
@@ -250,7 +256,7 @@ export class SimulatorComponent implements OnInit {
           InteresPeriodo = saldoInicialPeriodo * (this._tasaEfectivaMensual/100);
           amortizacionPeriodo = 0;
           seguroDesgravamen = saldoInicialPeriodo * (this._seguroDesgravamenPorcentaje/100);
-          saldoFinalPeriodo = saldoInicialPeriodo + InteresPeriodo + seguroDesgravamen;
+          saldoFinalPeriodo = saldoInicialPeriodo + InteresPeriodo + seguroDesgravamen + + this._seguroVivienda;
           cuotaPeriodo = 0;
         }
       }
