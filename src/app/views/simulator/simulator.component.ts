@@ -62,6 +62,8 @@ export class SimulatorComponent implements OnInit {
     planDePagos: []
   }
 
+  cuotaCalculada: Boolean = false;
+
   constructor(private formBuilder: FormBuilder, public dialog: MatDialog) {
     this.simulatorForm = this.formBuilder.group({
       name: new FormControl('', {
@@ -226,6 +228,8 @@ export class SimulatorComponent implements OnInit {
       planDePagos: []
     }
 
+    this.cuotaCalculada = false;
+
     this.simulatorForm.get('percentage_initial_fee')?.valueChanges.subscribe(value => {
       this.calculateInitialFee();
       this.setTotalInitialFee();
@@ -351,6 +355,7 @@ export class SimulatorComponent implements OnInit {
       }
       this._cuotaFinalEstandarizada = suma / nuevoPlazo;
       this._cuotaFinalEstandarizada = toNumber(this._cuotaFinalEstandarizada.toFixed(2));
+      this.cuotaCalculada = true;
 
 
     }
@@ -380,6 +385,7 @@ export class SimulatorComponent implements OnInit {
       }
       this._cuotaFinalEstandarizada = suma / this._plazoPago;
       this._cuotaFinalEstandarizada = toNumber(this._cuotaFinalEstandarizada.toFixed(2));
+      this.cuotaCalculada = true;
     }
   }
 
@@ -573,7 +579,7 @@ export class SimulatorComponent implements OnInit {
 
     console.log(this._listSaldoInicialPeriodo.length)
     console.log(this._listAmortizacionPeriodo)
-    for (let i = 0; i <= this._plazoPago; i++) {
+    for (let i = 1; i <= this._plazoPago; i++) {
       let nuevaCuota: Cuota = {
         position: i,
         saldo: toNumber(this._listSaldoInicialPeriodo[i].toFixed(2)),
@@ -587,4 +593,15 @@ export class SimulatorComponent implements OnInit {
 
     }
   }
+
+  //verficiar si un dato del formulario ha sido cambiado
+  isChanged(element: string) {
+    return this.simulatorForm.get(element)?.dirty;
+  }
+
+  cuotaCalculadaFalse(){
+    this.cuotaCalculada = false;
+    console.log(this.cuotaCalculada);
+  }
+
 }
