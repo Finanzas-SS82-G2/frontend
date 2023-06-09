@@ -214,12 +214,6 @@ export class SimulatorComponent implements OnInit {
   }
 
   elaborarCronogramaDePagos(){
-    this._listSaldoInicialPeriodo = [];
-    this._listInteresPeriodo = [];
-    this._listAmortizacionPeriodo = [];
-    this._listSaldoFinalPeriodo = [];
-    this._listSeguroDesgravamen = [];
-    this._listCuotaMensualFinalPeriodo = [];
     this.calculateEffectiveMonthlyRate();
     this._seguroDesgravamenPorcentaje = this.simulatorForm.get('seguro_desgravamen_mensual')?.value;
     this._seguroViviendaPorcentaje = this.simulatorForm.get('seguro_inmueble_anual')?.value;
