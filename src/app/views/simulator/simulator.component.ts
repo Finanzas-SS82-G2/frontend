@@ -179,6 +179,53 @@ export class SimulatorComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.precioViviendaMax = 464200;
+    this.precioViviendaMin = 65200;
+
+    this.percentageCuotaInicialMax = 30;
+    this.percentageCuotaInicialMin = 7.5;
+
+    this.tasaEfectivaAnualMax = 9.8;
+    this.tasaEfectivaAnualMin = 6.6;
+
+    this.plazoMesesMax = 300;
+    this.plazoMesesMin = 60;
+
+    //this.simulatorForm! = 
+
+    this._tasaEfectivaMensual = 0;
+    this._seguroDesgravamenPorcentaje = 0;
+    this._seguroViviendaPorcentaje = 0;
+    this._plazoPago = 0;
+    this._periodoGracia = 0;
+    this._financiamientoBancario = 0;
+
+    this._listSaldoInicialPeriodo = [];
+    this._listInteresPeriodo = [];
+    this._listAmortizacionPeriodo = [];
+    this._cuotaFrances = 0;
+    this._listSaldoFinalPeriodo = [];
+    this._listSeguroDesgravamen = [];
+    this._seguroVivienda = 0;
+    this._listCuotaMensualFinalPeriodo = [];
+    this._cuotaFinalEstandarizada = 0;
+
+    this._TIR = 0;
+    this._TCEA = 0;
+
+    this.planDePagos = {
+      nombre: '',
+      apellido: '',
+      moneda: '',
+      importePrestamo: 0,
+      bonoBuenPagador: 0,
+      plazoPago: 0,
+      porcSeguroDesgravamen: 0,
+      porcSeguroVivienda: 0,
+      cuotaInicial: 0,
+      planDePagos: []
+    }
+
     this.simulatorForm.get('percentage_initial_fee')?.valueChanges.subscribe(value => {
       this.calculateInitialFee();
       this.setTotalInitialFee();
@@ -289,7 +336,7 @@ export class SimulatorComponent implements OnInit {
         this._listSeguroDesgravamen.push(seguroDesgravamen);
         this._listCuotaMensualFinalPeriodo.push(cuotaPeriodo);
         //Calculos para el periodo 1
-        if (i < nuevoPlazo - 1) {
+        if (i < nuevoPlazo) {
           saldoInicialPeriodo = this._listSaldoFinalPeriodo[this._periodoGracia + i];
           InteresPeriodo = saldoInicialPeriodo * (this._tasaEfectivaMensual / 100);
           amortizacionPeriodo = this._cuotaFrances - InteresPeriodo;
@@ -303,6 +350,7 @@ export class SimulatorComponent implements OnInit {
         suma = suma + this._listCuotaMensualFinalPeriodo[i];
       }
       this._cuotaFinalEstandarizada = suma / nuevoPlazo;
+      this._cuotaFinalEstandarizada = toNumber(this._cuotaFinalEstandarizada.toFixed(2));
 
 
     }
@@ -317,7 +365,7 @@ export class SimulatorComponent implements OnInit {
         this._listSeguroDesgravamen.push(seguroDesgravamen);
         this._listCuotaMensualFinalPeriodo.push(cuotaPeriodo);
         //Calculos para el periodo 1
-        if (i < this._plazoPago ) {
+        if (i < this._plazoPago) {
           saldoInicialPeriodo = this._listSaldoFinalPeriodo[i];
           InteresPeriodo = saldoInicialPeriodo * (this._tasaEfectivaMensual / 100);
           amortizacionPeriodo = this._cuotaFrances - InteresPeriodo;
@@ -331,6 +379,7 @@ export class SimulatorComponent implements OnInit {
         suma = suma + this._listCuotaMensualFinalPeriodo[i];
       }
       this._cuotaFinalEstandarizada = suma / this._plazoPago;
+      this._cuotaFinalEstandarizada = toNumber(this._cuotaFinalEstandarizada.toFixed(2));
     }
   }
 
@@ -504,19 +553,8 @@ export class SimulatorComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       //this.ngOnInit();
-      this.planDePagos = {
-        nombre: '',
-        apellido: '',
-        moneda: '',
-        importePrestamo: 0,
-        bonoBuenPagador: 0,
-        plazoPago: 0,
-        porcSeguroDesgravamen: 0,
-        porcSeguroVivienda: 0,
-        cuotaInicial: 0,
-        planDePagos: []
-      }
       console.log('The dialog was closed');
+      this.ngOnInit();
     });
 
   }
@@ -543,7 +581,7 @@ export class SimulatorComponent implements OnInit {
         interes: toNumber(this._listInteresPeriodo[i].toFixed(2)),
         segDesgravamen: toNumber(this._listSeguroDesgravamen[i].toFixed(2)),
         segVivienda: toNumber(this._seguroVivienda.toFixed(2)),
-        cuota: toNumber(this._cuotaFinalEstandarizada.toFixed(2))
+        cuota: toNumber(this._cuotaFinalEstandarizada)
       }
       this.planDePagos.planDePagos.push(nuevaCuota);
 
