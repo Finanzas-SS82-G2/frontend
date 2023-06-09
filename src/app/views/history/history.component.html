@@ -48,10 +48,22 @@
                 <td>
                   <div style="display: flex;">
                   <div class="botones">
-                    <button mat-raised-button color="accent" matBadgeColor="warn"  (click)="toggleBadgeVisibility();compare.showModal();">COMPARAR</button>
+                    <button 
+                      mat-raised-button 
+                      color="accent" 
+                      matBadgeColor="warn"  
+                      (click)="toggleBadgeVisibility();compare.showModal();">
+                      COMPARAR
+                    </button>
                   </div>
                   <div>
-                    <button mat-raised-button color="warn" matBadgeColor="warn"  (click)="toggleBadgeVisibility();verPlan.showModal();">VER</button>
+                    <button 
+                      mat-raised-button 
+                      color="warn" 
+                      matBadgeColor="warn"  
+                      (click)="showPlanDePagos()">
+                      VER
+                    </button>
                   </div>
                   </div>
                 </td>

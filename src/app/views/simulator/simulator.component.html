@@ -294,6 +294,14 @@
       (click)="elaborarCronogramaDePagos()">
       <p class="uppercase">Calcular Cuota</p>
     </button>
+    <button
+      mat-raised-button
+      color="primary"
+      class="ml-5"
+      [disabled]="!simulatorForm.valid"
+      (click)="mostrarTabla()">
+      <p class="uppercase">Mostrar Plan de Pagos</p>
+    </button>
   </div>
   <mat-label class="mb-2 font-bold text-lg">Tasa de Costo Efectivo Anual(%)</mat-label>
   <mat-card class="green">

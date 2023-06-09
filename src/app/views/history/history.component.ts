@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogPlanDePagosComponent } from 'src/app/views/dialog-plan-de-pagos/dialog-plan-de-pagos.component';
 
 @Component({
   selector: 'app-history',
@@ -23,4 +25,12 @@ export class HistoryComponent {
   toggleBadgeVisibility() {
     this.hidden = true;
   }
+
+  showPlanDePagos(){
+    this.dialog.open(DialogPlanDePagosComponent, {
+      data: { message: 'Plan de Pagos' },
+    });
+  }
+
+  constructor(public dialog: MatDialog) {}
 }
