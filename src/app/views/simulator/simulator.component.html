@@ -22,7 +22,7 @@
           required />
         <mat-error
           *ngIf="simulatorForm.get('lastname')?.invalid || simulatorForm.get('lastname')?.errors?.['pattern']">{{
-          getOnlyLettersErrorMessage("name")
+          getOnlyLettersErrorMessage("lastname")
           }}</mat-error>
       </mat-form-field>
     </div>
@@ -86,17 +86,13 @@
   <div class="mb-5">
     <mat-label class="my-1">{{ verifyMoney() }}</mat-label>
     <mat-form-field appearance="outline">
-      <input matInput type="number"
-        value="{{simulatorForm.get('precio_vivienda')?.value}}"
-        formControlName="precio_vivienda" required>
+      <input matInput type="number" value="{{simulatorForm.get('precio_vivienda')?.value}}" formControlName="precio_vivienda" required>
       <mat-error *ngIf="simulatorForm.get('precio_vivienda')?.hasError('min')">{{
         getMinValueErrorMessage("precio_vivienda", precioViviendaMin)
-        }}</mat-error>
-      <mat-error *ngIf="simulatorForm.get('precio_vivienda')?.hasError('max')">
-        {{
+      }}</mat-error>
+      <mat-error *ngIf="simulatorForm.get('precio_vivienda')?.hasError('max')">{{
         getMaxValueErrorMessage("precio_vivienda", precioViviendaMax)
-        }}
-      </mat-error>
+      }}</mat-error>
     </mat-form-field>
   </div>
 
@@ -192,18 +188,17 @@
   </mat-card>
   <mat-label class="mb-2 mt-4 font-bold text-lg">Total Cuota Inicial</mat-label>
   <mat-card class="green w-4/12">
-    <mat-card-content>{{simulatorForm.get('total_bono')?.value}}</mat-card-content>
+    <mat-card-content>{{verifyMoney()+ ' ' + simulatorForm.get('final_initial_fee')?.value}}</mat-card-content>
   </mat-card>
   <span class="my-3"></span>
   <mat-card class="gray w-6/12">
     <mat-card-content>
       <div class="flex flex-row justify-between">
         <h2><b class="font-medium text-lg">Monto a financiar</b></h2>
-        <p class="self-center">Monto</p>
+        <p class="self-center">{{verifyMoney()+ ' ' + simulatorForm.get('bank_loan')?.value}}</p>
       </div>
     </mat-card-content>
   </mat-card>
-
   <mat-label class="mb-2 mt-4 font-bold text-lg">Tasa Efectiva Anual (%)</mat-label>
   <mat-label class="mb-2 mt-4 font-medium text-lg">TEA: {{simulatorForm.get('tasa_efectiva_anual')?.value}}
     %</mat-label>
@@ -212,9 +207,24 @@
     [min]="tasaEfectivaAnualMin"
     [step]="0.1"
     [discrete]="true"
-    [showTickMarks]="true">
-    <input matSliderThumb formControlName="tasa_efectiva_anual" />
+    [showTickMarks]="true"
+    [displayWith]="formatSliderLabelPercentaje"
+  >
+  <input matSliderThumb formControlName="tasa_efectiva_anual" value="{{simulatorForm.get('tasa_efectiva_anual')?.value}}" />
   </mat-slider>
+
+  <div>
+    <mat-form-field appearance="outline">
+      <input matInput type="number" [value]="simulatorForm.get('tasa_efectiva_anual')?.value" formControlName="tasa_efectiva_anual" required>
+      <mat-error *ngIf="simulatorForm.get('tasa_efectiva_anual')?.hasError('min')">{{
+        getMinValueErrorMessage("tasa_efectiva_anual", tasaEfectivaAnualMin)
+      }}</mat-error>
+      <mat-error *ngIf="simulatorForm.get('tasa_efectiva_anual')?.hasError('max')">{{
+        getMaxValueErrorMessage("tasa_efectiva_anual", tasaEfectivaAnualMax)
+      }}</mat-error>
+    </mat-form-field>
+  </div>
+
   <div class="flex flex-row justify-between">
     <div class="flex flex-col w-5/12">
       <mat-label class="my-1 font-bold text-lg">Seguro Degravamen Mensual (%)</mat-label>
@@ -223,10 +233,14 @@
           matInput
           placeholder="0.00 %"
           formControlName="seguro_desgravamen_mensual"
-          required />
-        <!-- <mat-error *ngIf="simulatorForm.get('seguro_desgravamen_mensual')?.invalid">{{
-      getMinLengthErrorMessage("name", 3)
-    }}</mat-error> -->
+          required 
+          type="number"/>
+        <mat-error *ngIf="simulatorForm.get('seguro_desgravamen_mensual')?.hasError('min')">{{
+          getMinValueErrorMessage("seguro_desgravamen_mensual", 0)
+        }}</mat-error>
+        <mat-error *ngIf="simulatorForm.get('seguro_desgravamen_mensual')?.hasError('max')">{{
+          getMaxValueErrorMessage("seguro_desgravamen_mensual", 5)
+        }}</mat-error>
       </mat-form-field>
     </div>
     <div class="flex flex-col w-5/12">
@@ -236,10 +250,14 @@
           matInput
           placeholder="0.00 %"
           formControlName="seguro_inmueble_anual"
-          required />
-        <!-- <mat-error *ngIf="simulatorForm.get('seguro_inmueble_anual')?.invalid">{{
-      getMinLengthErrorMessage("name", 3)
-    }}</mat-error> -->
+          required 
+          type="number"/>
+          <mat-error *ngIf="simulatorForm.get('seguro_inmueble_anual')?.hasError('min')">{{
+            getMinValueErrorMessage("seguro_inmueble_anual", 0)
+          }}</mat-error>
+          <mat-error *ngIf="simulatorForm.get('seguro_inmueble_anual')?.hasError('max')">{{
+            getMaxValueErrorMessage("seguro_inmueble_anual", 5)
+          }}</mat-error>
       </mat-form-field>
     </div>
   </div>
@@ -252,6 +270,31 @@
     [showTickMarks]="true">
     <input matSliderThumb formControlName="plazo" />
   </mat-slider>
+  <mat-label class="mb-2 mt-4 font-medium text-lg">
+    Plazo de pago: {{simulatorForm.get('plazo')?.value}} meses
+  </mat-label>
+
+  <mat-label class="my-2 font-bold text-lg">Periodo de gracia (en meses)</mat-label>
+  <mat-slider
+    [max]= "6"
+    [min]="0"
+    [step]="1"
+    [discrete]="true"
+    [showTickMarks]="true">
+    <input matSliderThumb formControlName="periodo_gracia" />
+  </mat-slider>
+  <mat-label class="mb-2 mt-4 font-medium text-lg">
+    Periodo de gracia: {{simulatorForm.get('periodo_gracia')?.value}} meses
+  </mat-label>
+  <div>
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="!simulatorForm.valid"
+      (click)="elaborarCronogramaDePagos()">
+      <p class="uppercase">Calcular Cuota</p>
+    </button>
+  </div>
   <mat-label class="mb-2 font-bold text-lg">Tasa de Costo Efectivo Anual(%)</mat-label>
   <mat-card class="green">
     <mat-card-content >
@@ -263,23 +306,18 @@
     <mat-card-content>
       <div class="flex flex-row justify-between">
         <h2 class="tc-mivivienda"><b>Cuota Mensual</b></h2>
-        <p class="self-center">Cuota</p>
+        <p class="self-center">{{verifyMoney() + ' ' + _cuotaFinalEstandarizada}}</p>
       </div>
     </mat-card-content>
   </mat-card>
   <span class="my-3"></span>
-  <div>
-    <button
-      mat-raised-button
-      color="primary"
-      [disabled]="!simulatorForm.valid"
-      (click)="save()">
-      <p class="uppercase">Guardar</p>
-    </button>
-  </div>
-  <!-- <p>
+  <!--<p>
     <pre>
       {{ simulatorForm.value | json }}
     </pre>
   -->
 </form>
+<div>
+  
+
+</div>
