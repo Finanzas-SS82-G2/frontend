@@ -23,6 +23,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
 import {MatMenuModule} from '@angular/material/menu';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTableModule } from '@angular/material/table';
 
 // Views
 import { StartComponent } from './views/start/start.component';
@@ -78,6 +80,8 @@ import { DialogComparacionComponent } from './views/dialog-comparacion/dialog-co
     MatDialogModule,
     MatRadioModule,
     MatMenuModule,
+    MatCheckboxModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent],

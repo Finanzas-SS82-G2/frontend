@@ -1,7 +1,7 @@
 .card-body{
     padding: 1vw;
     margin-inline: 3vw;
-    width: 60vw;
+    /* width: 60vw; */
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,.1);
@@ -52,7 +52,6 @@
 td{
     font-family: 'Montserrat';
     font-style: normal;
-    font-weight: 600;
     font-size: 1.2rem;
     padding-inline: 4vw;
     text-align: center;
@@ -62,6 +61,15 @@ td{
     display: flex;
     flex:1;
 }
+
+.mdc-data-table__header-cell {
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    outline: none;
+    text-align: center;
+}
+
 @media (max-width:1400px){
     .card-body{
         
