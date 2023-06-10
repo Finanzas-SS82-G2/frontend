@@ -66,11 +66,13 @@ export class SimulatorComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, public dialog: MatDialog) {
     this.simulatorForm = this.formBuilder.group({
-      name: new FormControl('', {
+      //name: new FormControl('', {
+      name: new FormControl('Abel', {
         validators: [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z ]*$')],
         updateOn: 'change',
       }),
-      lastname: new FormControl('', {
+      //lastname: new FormControl('', {
+      lastname: new FormControl('Cierto', {
         validators: [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z ]*$')],
         updateOn: 'change',
       }),
@@ -78,11 +80,13 @@ export class SimulatorComponent implements OnInit {
         validators: [Validators.required],
         updateOn: 'change',
       }),
-      ingreso_mensual: new FormControl('', {
+      //ingreso_mensual: new FormControl(0, {
+      ingreso_mensual: new FormControl(600, {
         validators: [Validators.required, Validators.min(500), Validators.max(10000)],
         updateOn: 'change',
       }),
-      precio_vivienda: new FormControl(this.precioViviendaMin, {
+      //precio_vivienda: new FormControl(this.precioViviendaMin, {
+      precio_vivienda: new FormControl(153900, {
         validators: [Validators.required, Validators.min(this.precioViviendaMin), Validators.max(this.precioViviendaMax)],
         updateOn: 'change',
       }),
@@ -106,20 +110,23 @@ export class SimulatorComponent implements OnInit {
         validators: [Validators.required, Validators.min(this.tasaEfectivaAnualMin), Validators.max(this.tasaEfectivaAnualMax)],
         updateOn: 'change',
       }),
-      seguro_desgravamen_mensual: new FormControl(0, {
+      //seguro_desgravamen_mensual: new FormControl(0, {
+      seguro_desgravamen_mensual: new FormControl(0.056, {
         validators: [Validators.required, Validators.min(0), Validators.max(5)],
         updateOn: 'change',
       }),
-      seguro_inmueble_anual: new FormControl(0, {
+      //seguro_inmueble_anual: new FormControl(0, {
+      seguro_inmueble_anual: new FormControl(0.031, {
         validators: [Validators.required, Validators.min(0), Validators.max(5)],
         updateOn: 'change',
       }),
-      plazo: new FormControl(this.plazoMesesMin, {
+      //plazo: new FormControl(this.plazoMesesMin,
+      plazo: new FormControl(180, {
         validators: [Validators.required],
         updateOn: 'change',
       }),
-
-      percentage_initial_fee: new FormControl(this.percentageCuotaInicialMin, {
+      //percentage_initial_fee: new FormControl(this.percentageCuotaInicialMin,
+      percentage_initial_fee: new FormControl(15, {
         validators: [Validators.required],
         updateOn: 'change',
       }),
@@ -297,14 +304,12 @@ export class SimulatorComponent implements OnInit {
     var saldoFinalPeriodo = this._financiamientoBancario;
     var seguroDesgravamen = 0;
     var cuotaPeriodo = 0;
-
-    var nuevoPlazo = 0;
     var nuevoCapital = 0;
 
     var suma = 0;
 
     if (this._periodoGracia > 0) {
-      nuevoPlazo = this._plazoPago - this._periodoGracia;
+
       for (let i = 0; i < this._periodoGracia + 1; i++) {
         this._listSaldoInicialPeriodo.push(saldoInicialPeriodo);
         this._listInteresPeriodo.push(InteresPeriodo);
@@ -312,27 +317,31 @@ export class SimulatorComponent implements OnInit {
         this._listSaldoFinalPeriodo.push(saldoFinalPeriodo);
         this._listSeguroDesgravamen.push(seguroDesgravamen);
         this._listCuotaMensualFinalPeriodo.push(cuotaPeriodo);
-        //Calculo de interes que se va sumar al capital
-        if (i < this._periodoGracia - 1) {
+        //Calculo de interes que se va sumar al capital 
+        if (i < this._periodoGracia) {
           saldoInicialPeriodo = this._listSaldoFinalPeriodo[i];
           InteresPeriodo = saldoInicialPeriodo * (this._tasaEfectivaMensual / 100);
           amortizacionPeriodo = 0;
           seguroDesgravamen = saldoInicialPeriodo * (this._seguroDesgravamenPorcentaje / 100);
-          saldoFinalPeriodo = saldoInicialPeriodo + InteresPeriodo + seguroDesgravamen + + this._seguroVivienda;
-          cuotaPeriodo = 0;
+          saldoFinalPeriodo = saldoInicialPeriodo + InteresPeriodo + seguroDesgravamen + this._seguroVivienda;
+          cuotaPeriodo = 0;  
         }
       }
       nuevoCapital = this._listSaldoFinalPeriodo[this._periodoGracia];
-      this._cuotaFrances = (nuevoCapital * (this._tasaEfectivaMensual / 100) * Math.pow((1 + (this._tasaEfectivaMensual / 100)), this._plazoPago)) / (Math.pow((1 + (this._tasaEfectivaMensual / 100)), this._plazoPago) - 1);
-
+      console.log("nuevoCapital", nuevoCapital);
+      this._cuotaFrances = (nuevoCapital * (this._tasaEfectivaMensual / 100) * Math.pow((1 + (this._tasaEfectivaMensual / 100)), (this._plazoPago - this._periodoGracia))) / (Math.pow((1 + (this._tasaEfectivaMensual / 100)), (this._plazoPago - this._periodoGracia)) - 1);
+      console.log("cuotaFrances", this._cuotaFrances);
       saldoInicialPeriodo = nuevoCapital;
+      console.log("nuevoCapital", nuevoCapital);
       InteresPeriodo = saldoInicialPeriodo * (this._tasaEfectivaMensual / 100);
+      console.log("InteresPeriodo", InteresPeriodo);
       amortizacionPeriodo = this._cuotaFrances - InteresPeriodo;
+      console.log("amortizacionPeriodo", amortizacionPeriodo);
       saldoFinalPeriodo = saldoInicialPeriodo - amortizacionPeriodo;
+      console.log("saldoFinalPeriodo", saldoFinalPeriodo);
       seguroDesgravamen = saldoInicialPeriodo * (this._seguroDesgravamenPorcentaje / 100);
       cuotaPeriodo = this._cuotaFrances + seguroDesgravamen + this._seguroVivienda;
-
-      for (let i = 0; i < nuevoPlazo; i++) {
+      for (let i = 0; i < this._plazoPago - this._periodoGracia; i++) {
         this._listSaldoInicialPeriodo.push(saldoInicialPeriodo);
         this._listInteresPeriodo.push(InteresPeriodo);
         this._listAmortizacionPeriodo.push(amortizacionPeriodo);
@@ -340,8 +349,8 @@ export class SimulatorComponent implements OnInit {
         this._listSeguroDesgravamen.push(seguroDesgravamen);
         this._listCuotaMensualFinalPeriodo.push(cuotaPeriodo);
         //Calculos para el periodo 1
-        if (i < nuevoPlazo) {
-          saldoInicialPeriodo = this._listSaldoFinalPeriodo[this._periodoGracia + i];
+        if (i < this._plazoPago - this._periodoGracia) {
+          saldoInicialPeriodo = this._listSaldoFinalPeriodo[this._periodoGracia + i + 1];
           InteresPeriodo = saldoInicialPeriodo * (this._tasaEfectivaMensual / 100);
           amortizacionPeriodo = this._cuotaFrances - InteresPeriodo;
           saldoFinalPeriodo = saldoInicialPeriodo - amortizacionPeriodo;
@@ -349,11 +358,12 @@ export class SimulatorComponent implements OnInit {
           cuotaPeriodo = this._cuotaFrances + seguroDesgravamen + this._seguroVivienda;
         }
       }
+      
 
       for (let i = 0; i < this._listCuotaMensualFinalPeriodo.length; i++) {
         suma = suma + this._listCuotaMensualFinalPeriodo[i];
       }
-      this._cuotaFinalEstandarizada = suma / nuevoPlazo;
+      this._cuotaFinalEstandarizada = suma / (this._plazoPago - this._periodoGracia);
       this._cuotaFinalEstandarizada = toNumber(this._cuotaFinalEstandarizada.toFixed(2));
       this.cuotaCalculada = true;
 

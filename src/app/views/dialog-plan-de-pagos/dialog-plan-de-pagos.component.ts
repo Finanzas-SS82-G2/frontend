@@ -28,7 +28,6 @@ export class DialogPlanDePagosComponent implements AfterViewInit {
     seguroDesgravamen: 0.11,
     seguroVivienda: 0.11,
     cuotaInicial: 100
-
   }
 
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
