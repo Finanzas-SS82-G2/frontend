@@ -59,10 +59,13 @@ export class SimulatorComponent implements OnInit {
     porcSeguroDesgravamen: 0,
     porcSeguroVivienda: 0,
     cuotaInicial: 0,
+    valorVivienda: 0,
+    tcea: 0,
+    van: 0,
     planDePagos: []
   }
 
-  cuotaCalculada: Boolean = false;
+  cuotaCalculada: Boolean = true;
 
   constructor(private formBuilder: FormBuilder, public dialog: MatDialog) {
     this.simulatorForm = this.formBuilder.group({
@@ -232,7 +235,10 @@ export class SimulatorComponent implements OnInit {
       porcSeguroDesgravamen: 0,
       porcSeguroVivienda: 0,
       cuotaInicial: 0,
-      planDePagos: []
+      planDePagos: [],
+      valorVivienda: 0,
+      tcea: 0,
+      van: 0
     }
 
     this.cuotaCalculada = false;
@@ -397,6 +403,8 @@ export class SimulatorComponent implements OnInit {
       this._cuotaFinalEstandarizada = toNumber(this._cuotaFinalEstandarizada.toFixed(2));
       this.cuotaCalculada = true;
     }
+
+    this.mostrarTabla();
   }
 
   save() { }
@@ -585,11 +593,15 @@ export class SimulatorComponent implements OnInit {
     this.planDePagos.porcSeguroDesgravamen = this._seguroDesgravamenPorcentaje;
     this.planDePagos.porcSeguroVivienda = this._seguroViviendaPorcentaje;
     this.planDePagos.cuotaInicial = this.simulatorForm.get('cuota_inicial')?.value;
+    this.planDePagos.tcea = this._TCEA;
+    this.planDePagos.van = this._TIR; //Cambiar
+    this.planDePagos.valorVivienda = this.simulatorForm.get('precio_vivienda')?.value;
 
-
-    console.log(this._listSaldoInicialPeriodo.length)
-    console.log(this._listAmortizacionPeriodo)
     for (let i = 1; i <= this._plazoPago; i++) {
+      let _cuota = toNumber(this._cuotaFinalEstandarizada);
+      if (i <= this._periodoGracia) {
+        _cuota = 0; 
+      }
       let nuevaCuota: Cuota = {
         position: i,
         saldo: toNumber(this._listSaldoInicialPeriodo[i].toFixed(2)),
@@ -597,7 +609,7 @@ export class SimulatorComponent implements OnInit {
         interes: toNumber(this._listInteresPeriodo[i].toFixed(2)),
         segDesgravamen: toNumber(this._listSeguroDesgravamen[i].toFixed(2)),
         segVivienda: toNumber(this._seguroVivienda.toFixed(2)),
-        cuota: toNumber(this._cuotaFinalEstandarizada)
+        cuota: _cuota
       }
       this.planDePagos.planDePagos.push(nuevaCuota);
 
@@ -610,7 +622,7 @@ export class SimulatorComponent implements OnInit {
   }
 
   cuotaCalculadaFalse(){
-    this.cuotaCalculada = false;
+    //this.cuotaCalculada = false;
     console.log(this.cuotaCalculada);
   }
 

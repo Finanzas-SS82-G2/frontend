@@ -38,6 +38,7 @@ import { DialogBoxInvalidFormComponent } from './views/dialog-box-invalid-form/d
 import { DialogBoxValidFormComponent } from './views/dialog-box-valid-form/dialog-box-valid-form.component';
 import { CompareComponent } from './views/history/compare-modal/compare/compare.component';
 import { DialogPlanDePagosComponent } from './views/dialog-plan-de-pagos/dialog-plan-de-pagos.component';
+import { DialogComparacionComponent } from './views/dialog-comparacion/dialog-comparacion.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { DialogPlanDePagosComponent } from './views/dialog-plan-de-pagos/dialog-
     NavbarComponent,
     DialogBoxInvalidFormComponent,
     DialogBoxValidFormComponent,
-    CompareComponent
+    CompareComponent,
+    DialogComparacionComponent
     ],
   imports: [
     BrowserModule,

@@ -52,7 +52,7 @@
                       mat-raised-button 
                       color="accent" 
                       matBadgeColor="warn"  
-                      (click)="toggleBadgeVisibility();compare.showModal();">
+                      (click)="selectElement()">
                       COMPARAR
                     </button>
                   </div>
@@ -76,10 +76,18 @@
                 <td>
                   <div style="display: flex;">
                   <div class="botones">
-                    <button mat-raised-button color="accent" matBadgeColor="warn"  (click)="toggleBadgeVisibility();compare.showModal();">COMPARAR</button>
+                    <button 
+                      mat-raised-button 
+                      color="accent" 
+                      matBadgeColor="warn"  
+                      (click)="selectElement()">COMPARAR</button>
                   </div>
                   <div>
-                    <button mat-raised-button color="warn" matBadgeColor="warn"  (click)="toggleBadgeVisibility();verPlan.showModal();">VER</button>
+                    <button 
+                      mat-raised-button 
+                      color="warn" 
+                      matBadgeColor="warn"  
+                      (click)="showPlanDePagos()">VER</button>
                   </div>
                   </div>
                 </td>
@@ -92,10 +100,17 @@
                 <td>
                   <div style="display: flex;">
                   <div class="botones">
-                    <button mat-raised-button color="accent"  matBadgeColor="warn"  (click)="toggleBadgeVisibility();compare.showModal();">COMPARAR</button>
+                    <button 
+                      mat-raised-button color="accent"  
+                      matBadgeColor="warn"  
+                      (click)="selectElement()">COMPARAR</button>
                   </div>
                   <div>
-                    <button mat-raised-button color="warn" matBadgeColor="warn"  (click)="toggleBadgeVisibility();verPlan.showModal();">VER</button>
+                    <button 
+                      mat-raised-button 
+                      color="warn" 
+                      matBadgeColor="warn"  
+                      (click)="showPlanDePagos()">VER</button>
                   </div>
                   </div>
                 </td>
@@ -103,6 +118,10 @@
             </mat-card>
           </tr>
         </tbody>
+
+        <div *ngIf="showDialog">
+          <button>Mostrar diálogo</button>
+        </div>
         
       </table>
       <mat-paginator

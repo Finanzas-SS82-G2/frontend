@@ -311,19 +311,18 @@
     Periodo de gracia: {{simulatorForm.get('periodo_gracia')?.value}} meses
   </mat-label>
   <div>
-    <button
+    <!-- <button
       mat-raised-button
       color="primary"
       [disabled]="!simulatorForm.valid"
       (click)="elaborarCronogramaDePagos()">
       <p class="uppercase">Calcular Cuota</p>
-    </button>
+    </button> -->
     <button
       mat-raised-button
       color="primary"
-      class="ml-5"
-      [disabled]="!simulatorForm.valid || !cuotaCalculada"
-      (click)="mostrarTabla()">
+      [disabled]="!simulatorForm.valid"
+      (click)="elaborarCronogramaDePagos()">
       <p class="uppercase">Mostrar Plan de Pagos</p>
     </button>
   </div>

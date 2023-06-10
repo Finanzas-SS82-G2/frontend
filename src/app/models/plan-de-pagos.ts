@@ -12,11 +12,14 @@ export interface PlanDePagos {
     nombre: string,
     apellido: string,
     moneda: string,
+    valorVivienda: number,
     importePrestamo: number,
     bonoBuenPagador: number,
     plazoPago: number,
     porcSeguroDesgravamen: number,
     porcSeguroVivienda: number,
     cuotaInicial: number,
+    tcea: number,
+    van: number,
     planDePagos: Cuota[]
 }

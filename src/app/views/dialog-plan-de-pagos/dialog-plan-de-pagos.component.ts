@@ -14,21 +14,10 @@ import { PlanDePagos } from 'src/app/models/plan-de-pagos';
   imports: [MatTableModule, MatPaginatorModule],
 })
 export class DialogPlanDePagosComponent implements AfterViewInit {
-  displayedColumns: string[] = ['position', 'saldo', 'capital', 'interes', 'segDesgravamen', 'cuota'];
+  displayedColumns: string[] = ['position', 'saldo', 'capital', 'interes', 'segDesgravamen', 'segVivienda', 'cuota'];
 
   dataSource = new MatTableDataSource<PlanDePagos>();
-  dataPrueba = {
-    nombre: 'Juan',
-    apellido: 'Perez',
-    moneda: 'SOLES',
 
-    importePrestamo: 1000,
-    bonoBuenPagador: 100,
-    plazoPago: 100,
-    seguroDesgravamen: 0.11,
-    seguroVivienda: 0.11,
-    cuotaInicial: 100
-  }
 
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
 
