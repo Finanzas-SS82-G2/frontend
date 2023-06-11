@@ -3,22 +3,26 @@
     <section>
       <img
         src="../../../assets/images/mivivienda_logo.png"
-        alt="Mi vivienda logo"
-      />
+        alt="Mi vivienda logo" />
     </section>
     <section>
       <mat-selection-list
         #section
         [multiple]="false"
-        hideSingleSelectionIndicator
-      >
-        <mat-list-option [value]="'calculate'">
-          <mat-icon matSuffix class="align-top">calculate</mat-icon>
-          Simulador
-        </mat-list-option>
-        <mat-list-option [value]="'history'"
-          ><mat-icon matSuffix class="align-top">list_alt</mat-icon> Historial
-        </mat-list-option>
+        hideSingleSelectionIndicator>
+        <mat-card class="card-lista">
+
+          <mat-list-option class="text-lista" [value]="'calculate'">
+            <mat-icon matSuffix class="align-top">calculate</mat-icon>
+            Simulador
+          </mat-list-option>
+        </mat-card>
+        <mat-card class="card-lista">
+          <mat-list-option class="text-lista" [value]="'history'">
+            <mat-icon matSuffix class="align-top">list_alt</mat-icon> Historial
+          </mat-list-option>
+        </mat-card>
+
       </mat-selection-list>
     </section>
   </mat-drawer>
@@ -28,8 +32,7 @@
         !section.selectedOptions.hasValue() ||
           section.selectedOptions.selected[0].value == 'calculate';
         else other_section
-      "
-    >
+      ">
       <app-simulator></app-simulator>
     </div>
     <ng-template #other_section>

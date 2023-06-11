@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
       console.log(user);
       if (user.email == this.email.value) {
         if (user.password == this.password.value) {
-          console.log('User logged in');
+          console.log('User logged in'); 
           localStorage.setItem("id", user.id);
           this.router.navigate(['/home']);
         } else {

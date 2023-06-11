@@ -22,6 +22,9 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
+import {MatMenuModule} from '@angular/material/menu';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTableModule } from '@angular/material/table';
 
 // Views
 import { StartComponent } from './views/start/start.component';
@@ -35,6 +38,9 @@ import { NavbarComponent } from './views/navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DialogBoxInvalidFormComponent } from './views/dialog-box-invalid-form/dialog-box-invalid-form.component';
 import { DialogBoxValidFormComponent } from './views/dialog-box-valid-form/dialog-box-valid-form.component';
+import { CompareComponent } from './views/history/compare-modal/compare/compare.component';
+import { DialogPlanDePagosComponent } from './views/dialog-plan-de-pagos/dialog-plan-de-pagos.component';
+import { DialogComparacionComponent } from './views/dialog-comparacion/dialog-comparacion.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +54,9 @@ import { DialogBoxValidFormComponent } from './views/dialog-box-valid-form/dialo
     NavbarComponent,
     DialogBoxInvalidFormComponent,
     DialogBoxValidFormComponent,
-  ],
+    CompareComponent,
+    DialogComparacionComponent
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -71,6 +79,9 @@ import { DialogBoxValidFormComponent } from './views/dialog-box-valid-form/dialo
     HttpClientModule,
     MatDialogModule,
     MatRadioModule,
+    MatMenuModule,
+    MatCheckboxModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent],

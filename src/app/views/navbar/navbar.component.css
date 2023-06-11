@@ -5,3 +5,72 @@ h1 {
 .mat-mdc-form-field-infix .ng-tns-c4276651467-6 {
   padding-top: 16px;
 }
+.nav-edit{
+  padding-block: 4vh;
+}
+.title-nav{
+ 
+margin-inline: 6vw;
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 2rem;
+line-height: 26px;
+/* identical to box height */
+
+
+color: #4C4C58;
+}
+
+.mat-form-field input {
+  height: 20px;
+  transition: height ease-in-out 400ms;
+}
+
+.mat-form-field input:focus {
+  background-color: red !important;
+  height: 50px;
+  transition: height ease-in-out 400ms;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #4C4C58;
+}
+
+.close-session{
+  margin-inline: 6vw;
+  padding-inline: -1vw;
+  font-family: 'Roboto';
+  font-style: light;
+  font-size: 1rem;
+  /* identical to box height */
+  
+  &:hover{
+    
+    transform: scale(1.03);
+    -webkit-transform: scale(1.03);
+    -moz-transform: scale(1.03);
+  }
+  color: #4C4C58;
+}
+.user-button{
+  font-family: 'Roboto';
+  font-size: 1.5vh;
+  font-style: light;
+  height: 2rem;
+  padding: 0.3rem;
+  line-height: 16px;
+  background: #282828;
+  border-radius: 32px;
+  color: #E1E1E1;
+  
+}
+.name-user{
+  padding-inline: 0.2vw;
+  white-space: nowrap;
+}
+.close-account{
+  margin-top: -1vh;
+  margin-bottom: -0.9vh;
+  white-space: nowrap;
+}

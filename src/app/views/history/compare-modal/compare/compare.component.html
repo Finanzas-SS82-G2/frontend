@@ -1,0 +1,27 @@
+<ng-container *ngIf="show">
+    <div class="modalc" #modalBack>
+        <div class="modalc-content">
+            <div class="modalc-header">
+                <h4 class="modalc-title">
+                    {{title}}
+                </h4>
+                <ng-template [ngTemplateOutlet]="closeIcon"></ng-template>
+
+            </div>
+            <div class="modalc-container">
+                <ng-content></ng-content>
+            </div>
+
+        </div>
+    </div>
+</ng-container>
+<ng-template #closeIcon>
+    <svg xmlns="http://www.w3.org/2000/svg" width="103.536" height="103.536" viewBox="0 0 103.536 103.536" (click)="show=false">
+        <g id="Group_65" data-name="Group 65" transform="translate(-142.732 -214.732)">
+          <line id="Line_7" data-name="Line 7" x2="100" y2="100" transform="translate(144.5 216.5)" fill="none" stroke="#000000"
+         stroke-width="20"/>
+          <line id="Line_8" data-name="Line 8" y1="99" x2="99" transform="translate(144.5 216.5)" fill="none" stroke="#000000"
+         stroke-width="20"/>
+        </g>
+    </svg>
+</ng-template>
