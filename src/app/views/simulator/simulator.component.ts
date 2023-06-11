@@ -48,6 +48,7 @@ export class SimulatorComponent implements OnInit {
 
   _TIR: number = 0;
   _TCEA: number = 0;
+  _VAN: number = 0;
 
   planDePagos: PlanDePagos = {
     nombre: '',
@@ -301,7 +302,6 @@ export class SimulatorComponent implements OnInit {
     this._financiamientoBancario = this.simulatorForm.get('bank_loan')?.value;
     this._plazoPago = this.simulatorForm.get('plazo')?.value;
     this._periodoGracia = this.simulatorForm.get('periodo_gracia')?.value;
-
     this._seguroVivienda = this.simulatorForm.get('precio_vivienda')?.value * (this._seguroViviendaPorcentaje / 100);
 
     var saldoInicialPeriodo = this._financiamientoBancario;
@@ -334,17 +334,11 @@ export class SimulatorComponent implements OnInit {
         }
       }
       nuevoCapital = this._listSaldoFinalPeriodo[this._periodoGracia];
-      console.log("nuevoCapital", nuevoCapital);
       this._cuotaFrances = (nuevoCapital * (this._tasaEfectivaMensual / 100) * Math.pow((1 + (this._tasaEfectivaMensual / 100)), (this._plazoPago - this._periodoGracia))) / (Math.pow((1 + (this._tasaEfectivaMensual / 100)), (this._plazoPago - this._periodoGracia)) - 1);
-      console.log("cuotaFrances", this._cuotaFrances);
       saldoInicialPeriodo = nuevoCapital;
-      console.log("nuevoCapital", nuevoCapital);
       InteresPeriodo = saldoInicialPeriodo * (this._tasaEfectivaMensual / 100);
-      console.log("InteresPeriodo", InteresPeriodo);
       amortizacionPeriodo = this._cuotaFrances - InteresPeriodo;
-      console.log("amortizacionPeriodo", amortizacionPeriodo);
       saldoFinalPeriodo = saldoInicialPeriodo - amortizacionPeriodo;
-      console.log("saldoFinalPeriodo", saldoFinalPeriodo);
       seguroDesgravamen = saldoInicialPeriodo * (this._seguroDesgravamenPorcentaje / 100);
       cuotaPeriodo = this._cuotaFrances + seguroDesgravamen + this._seguroVivienda;
       for (let i = 0; i < this._plazoPago - this._periodoGracia; i++) {
@@ -377,7 +371,6 @@ export class SimulatorComponent implements OnInit {
     }
     else {
       this._cuotaFrances = (this._financiamientoBancario * (this._tasaEfectivaMensual / 100) * Math.pow((1 + (this._tasaEfectivaMensual / 100)), this._plazoPago)) / (Math.pow((1 + (this._tasaEfectivaMensual / 100)), this._plazoPago) - 1);
-      console.log('cuota Frances' + this._cuotaFrances);
       for (let i = 0; i < this._plazoPago + 1; i++) {
         this._listSaldoInicialPeriodo.push(saldoInicialPeriodo);
         this._listInteresPeriodo.push(InteresPeriodo);
@@ -400,11 +393,63 @@ export class SimulatorComponent implements OnInit {
         suma = suma + this._listCuotaMensualFinalPeriodo[i];
       }
       this._cuotaFinalEstandarizada = suma / this._plazoPago;
-      this._cuotaFinalEstandarizada = toNumber(this._cuotaFinalEstandarizada.toFixed(2));
       this.cuotaCalculada = true;
     }
-
+    this.calculateVAN();
+    this.calculateTIR();
+    this.calculateTCEA();
     this.mostrarTabla();
+  }
+
+  calculateTCEA(){
+    this._TCEA = ((Math.pow((1 + (this._TIR / 100)), 12)) - 1) * 100;
+    this._TCEA = toNumber(this._TCEA.toFixed(2));
+  }
+
+  calculateTIR(){
+    let i1 = this._tasaEfectivaMensual;
+    console.log('i1: ' + i1);
+    let van1 = this._VAN;
+    let tir = 0;
+    let k = 0;
+    let van2 = 0;
+    let i2 = i1*2;
+    console.log('i2: ' + i2);
+    //Calculamos el VAN para i2
+    if(this._periodoGracia > 0){
+      for (let i = 0; i < this._plazoPago - this._periodoGracia; i++) {
+        van2 = van2 + (this._cuotaFinalEstandarizada / Math.pow((1 + (i2 / 100)), i + 1));
+      }
+    }
+    else{
+      for (let i = 0; i < this._plazoPago; i++) {
+        van2 = van2 + (this._cuotaFinalEstandarizada / Math.pow((1 + (i2 / 100)), i + 1));
+      }
+    }
+    van2 = van2 - this._financiamientoBancario;
+    console.log('van2: ' + van2);
+    k = (((van1*(i1/100-i2/100))/(van1-van2))-(1+i1/100))*(-1);
+    tir = k - 1;
+    this._TIR = tir*100;
+    console.log('TIR: ' + this._TIR);
+  }
+
+  calculateVAN(){
+    let sumaVAN = 0;
+    let VAN = 0;
+    if(this._periodoGracia > 0){
+      for (let i = 0; i < this._plazoPago - this._periodoGracia; i++) {
+        VAN = this._cuotaFinalEstandarizada / Math.pow((1 + (this._tasaEfectivaMensual / 100)), i + 1);
+        sumaVAN = sumaVAN + VAN;
+      }
+    }
+    else{
+      for (let i = 0; i < this._plazoPago; i++) {
+        VAN = this._cuotaFinalEstandarizada / Math.pow((1 + (this._tasaEfectivaMensual / 100)), i + 1);
+        sumaVAN = sumaVAN + VAN;
+      }
+    }
+    this._VAN = sumaVAN - this._financiamientoBancario;
   }
 
   save() { }
@@ -593,12 +638,12 @@ export class SimulatorComponent implements OnInit {
     this.planDePagos.porcSeguroDesgravamen = this._seguroDesgravamenPorcentaje;
     this.planDePagos.porcSeguroVivienda = this._seguroViviendaPorcentaje;
     this.planDePagos.cuotaInicial = this.simulatorForm.get('cuota_inicial')?.value;
-    this.planDePagos.tcea = this._TCEA;
-    this.planDePagos.van = this._TIR; //Cambiar
+    this.planDePagos.tcea = toNumber(this._TCEA.toFixed(2));
+    this.planDePagos.van = toNumber(this._VAN.toFixed(2)); //Cambiar
     this.planDePagos.valorVivienda = this.simulatorForm.get('precio_vivienda')?.value;
 
     for (let i = 1; i <= this._plazoPago; i++) {
-      let _cuota = toNumber(this._cuotaFinalEstandarizada);
+      let _cuota = toNumber(this._cuotaFinalEstandarizada.toFixed(2));
       if (i <= this._periodoGracia) {
         _cuota = 0; 
       }
