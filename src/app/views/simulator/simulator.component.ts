@@ -571,6 +571,7 @@ export class SimulatorComponent implements OnInit {
           (this._tasaEfectivaMensual / 100) *
           Math.pow(1 + this._tasaEfectivaMensual / 100, this._plazoPago)) /
         (Math.pow(1 + this._tasaEfectivaMensual / 100, this._plazoPago) - 1);
+        console.log('Cuota Frances' + this._cuotaFrances);
       for (let i = 0; i < this._plazoPago + 1; i++) {
         this._listSaldoInicialPeriodo.push(saldoInicialPeriodo);
         this._listInteresPeriodo.push(InteresPeriodo);
@@ -606,6 +607,7 @@ export class SimulatorComponent implements OnInit {
 
   calculateTCEA() {
     this._TCEA = (Math.pow(1 + this._TIR / 100, 12) - 1) * 100;
+    console.log('TCEA: ' + this._TCEA);
   }
 
   calculateTIR() {
@@ -614,27 +616,24 @@ export class SimulatorComponent implements OnInit {
     let van1 = this._VAN;
     console.log('van1: ' + van1);
     let tir = 0;
-    let k = 0;
     let van2 = 0;
-    let i2 = i1 * 2;
+    let i2 = i1 + 0.1567345679999999999;
     console.log('i2: ' + i2);
     //Calculamos el VAN para i2
     if (this._periodoGracia > 0) {
       for (let i = 0; i < this._plazoPago - this._periodoGracia; i++) {
         van2 =
-          van2 + this._cuotaFinalEstandarizada / Math.pow(1 + i2 / 100, i + 1);
+          van2 + this._cuotaFinalEstandarizada / Math.pow(1+ i2 / 100, i + 1);
       }
     } else {
       for (let i = 0; i < this._plazoPago; i++) {
-        van2 =
-          van2 + this._cuotaFinalEstandarizada / Math.pow(1 + i2 / 100, i + 1);
+        van2 = van2 + this._cuotaFinalEstandarizada / Math.pow(1 + i2 / 100, i + 1);
       }
     }
     van2 = van2 - this._financiamientoBancario;
     console.log('van2: ' + van2);
-    k = ((van1 * (i1 / 100 - i2 / 100)) / (van1 - van2) - (1 + i1 / 100)) * -1;
-    tir = k - 1;
-    this._TIR = tir * 100;
+    tir = i1/100 + (i2/100 - i1/100) * (van1 / (van1 - van2));
+    this._TIR = tir*100;
     console.log('TIR: ' + this._TIR);
   }
 
@@ -650,9 +649,7 @@ export class SimulatorComponent implements OnInit {
       }
     } else {
       for (let i = 0; i < this._plazoPago; i++) {
-        VAN =
-          this._cuotaFinalEstandarizada /
-          Math.pow(1 + this._tasaEfectivaMensual / 100, i + 1);
+        VAN = this._cuotaFinalEstandarizada / Math.pow(1 + this._tasaEfectivaMensual / 100, i + 1);
         sumaVAN = sumaVAN + VAN;
       }
     }
