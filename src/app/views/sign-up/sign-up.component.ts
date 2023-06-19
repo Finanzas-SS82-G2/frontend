@@ -43,7 +43,7 @@ export class SignUpComponent implements OnInit {
         updateOn: 'change',
       }),
       phone: new FormControl('', {
-        validators: [Validators.required, Validators.minLength(9), Validators.maxLength(9)],
+        validators: [Validators.required, Validators.minLength(9), Validators.maxLength(9), Validators.pattern('^[0-9]*$')],
         updateOn: 'change',
       }),
     });
@@ -86,6 +86,22 @@ export class SignUpComponent implements OnInit {
       : '';
   }
 
+  getPhoneErrorMessage() {
+    if (this.registerForm.get('phone')?.hasError('required')) {
+      return 'You must enter a value';
+    }
+    //Deber ser solo numeros
+    if(this.registerForm.get('phone')?.hasError('pattern')) {
+      return 'Must be only numbers';
+    }
+
+    return this.registerForm.get('phone')?.hasError('minlength')  
+      ? 'Must have a minimun of 9 numbers'
+      : this.registerForm.get('phone')?.hasError('maxlength')
+      ? 'Must have a maximun of 9 numbers'
+      : '';
+  }
+
   passwordMatchErrorMessage() {
     this.passwordMatchMessage =
       this.registerForm.get('password')?.value ===
@@ -94,6 +110,7 @@ export class SignUpComponent implements OnInit {
         : 'Passwords must match to create an account';
     console.log(this.passwordMatchMessage);
   }
+
 
   createUser() {
     console.log('User created');

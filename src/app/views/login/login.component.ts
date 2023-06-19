@@ -44,17 +44,9 @@ export class LoginComponent implements OnInit {
       console.log(user);
       if (user.email == this.email.value) {
         if (user.password == this.password.value) {
-          console.log('User logged in');
-          this.dialog.open(DialogBoxValidFormComponent, {
-            data: { message: 'Usuario logueado exitosamente' },
-          });
-
+          console.log('User logged in'); 
           localStorage.setItem("id", user.id);
-
-          this.dialog.afterAllClosed.subscribe(result => {
-            // Código a ejecutar después de cerrar el diálogo
-            this.router.navigate(['/home']);
-          });
+          this.router.navigate(['/home']);
         } else {
           console.log('Wrong password');
           this.dialog.open(DialogBoxInvalidFormComponent, {

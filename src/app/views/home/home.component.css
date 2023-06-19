@@ -1,0 +1,30 @@
+.card-lista{
+    
+    margin-inline: 1vw;
+    margin-bottom: 0.5vw;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,.1);
+    position: relative;
+    transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+
+    &:hover{
+        box-shadow: 0 0 20px rgba(0,0,0,.3);
+        transform: scale(1.03);
+        -webkit-transform: scale(1.03);
+        -moz-transform: scale(1.03);
+    }
+}
+
+.text-lista{
+    font-family: 'Montserrat';
+    font-style: normal;
+    width: 100%;
+    size: 3rem;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+    &:hover{
+        box-shadow: none; 
+    }
+}

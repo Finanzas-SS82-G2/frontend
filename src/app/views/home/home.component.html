@@ -1,39 +1,47 @@
 <mat-drawer-container class="h-full">
   <mat-drawer #drawer mode="side" opened class="w-2/12 bg-mivivienda">
     <section>
-      <img
-        src="../../../assets/images/mivivienda_logo.png"
-        alt="Mi vivienda logo"
-      />
+      <img src="../../../assets/images/mivivienda_logo.png" alt="Mi vivienda logo" />
     </section>
     <section>
-      <mat-selection-list
-        #section
-        [multiple]="false"
-        hideSingleSelectionIndicator
-      >
-        <mat-list-option [value]="'calculate'">
-          <mat-icon matSuffix class="align-top">calculate</mat-icon>
-          Simulador
-        </mat-list-option>
-        <mat-list-option [value]="'history'"
-          ><mat-icon matSuffix class="align-top">list_alt</mat-icon> Historial
-        </mat-list-option>
+      <mat-selection-list #section [multiple]="false" hideSingleSelectionIndicator>
+        <mat-card class="card-lista">
+          <mat-list-option class="text-lista" [value]="'calculate'">
+            <mat-icon matSuffix class="align-top">calculate</mat-icon>
+            Simulador
+          </mat-list-option>
+        </mat-card>
+        <mat-card class="card-lista">
+          <mat-list-option class="text-lista" [value]="'history'">
+            <mat-icon matSuffix class="align-top">list_alt</mat-icon> Historial
+          </mat-list-option>
+        </mat-card>
+        <mat-card class="card-lista">
+          <mat-list-option class="text-lista" [value]="'policies'">
+            <mat-icon matSuffix class="align-top">contact_mail</mat-icon>
+            Policies
+          </mat-list-option>
+        </mat-card>
       </mat-selection-list>
     </section>
   </mat-drawer>
   <mat-drawer-container>
-    <div
-      *ngIf="
+    <div *ngIf="
         !section.selectedOptions.hasValue() ||
           section.selectedOptions.selected[0].value == 'calculate';
-        else other_section
-      "
-    >
+        else history
+      ">
       <app-simulator></app-simulator>
     </div>
-    <ng-template #other_section>
-      <app-history></app-history>
+    <ng-template #history>
+      <app-history *ngIf="
+          !section.selectedOptions.hasValue() ||
+            section.selectedOptions.selected[0].value == 'history';
+          else policies
+        "></app-history>
+    </ng-template>
+    <ng-template #policies>
+      <app-policies></app-policies>
     </ng-template>
   </mat-drawer-container>
 </mat-drawer-container>
