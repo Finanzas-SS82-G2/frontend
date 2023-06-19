@@ -183,8 +183,8 @@ export class SimulatorComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, public dialog: MatDialog) {
     this.simulatorForm = this.formBuilder.group({
-      //name: new FormControl('', {
-      name: new FormControl('Abel', {
+      name: new FormControl('', {
+      //name: new FormControl('Abel', {
         validators: [
           Validators.required,
           Validators.minLength(3),
@@ -192,8 +192,8 @@ export class SimulatorComponent implements OnInit {
         ],
         updateOn: 'change',
       }),
-      //lastname: new FormControl('', {
-      lastname: new FormControl('Cierto', {
+      lastname: new FormControl('', {
+      //lastname: new FormControl('Cierto', {
         validators: [
           Validators.required,
           Validators.minLength(3),
@@ -201,12 +201,12 @@ export class SimulatorComponent implements OnInit {
         ],
         updateOn: 'change',
       }),
-      moneda: new FormControl('soles', {
+      moneda: new FormControl('Soles', {
         validators: [Validators.required],
         updateOn: 'change',
       }),
-      //ingreso_mensual: new FormControl(0, {
-      ingreso_mensual: new FormControl(this.sueldoMin, {
+      ingreso_mensual: new FormControl('', {
+      //ingreso_mensual: new FormControl(this.sueldoMin, {
         validators: [
           Validators.required,
           Validators.min(this.sueldoMin),
@@ -214,8 +214,8 @@ export class SimulatorComponent implements OnInit {
         ],
         updateOn: 'change',
       }),
-      //precio_vivienda: new FormControl(this.precioViviendaMin, {
-      precio_vivienda: new FormControl(153900, {
+      precio_vivienda: new FormControl(this.precioViviendaMin, {
+      //precio_vivienda: new FormControl(153900, {
         validators: [
           Validators.required,
           Validators.min(this.precioViviendaMin),
@@ -251,7 +251,6 @@ export class SimulatorComponent implements OnInit {
         validators: [Validators.required],
         updateOn: 'change',
       }),
-      //seguro_desgravamen_mensual: new FormControl(0, {
       seguro_desgravamen_mensual: new FormControl(
         this.seguroBancosDefecto[0].seguroDesgravamen,
         {
@@ -263,7 +262,6 @@ export class SimulatorComponent implements OnInit {
           updateOn: 'change',
         }
       ),
-      //seguro_inmueble_anual: new FormControl(0, {
       seguro_inmueble_anual: new FormControl(
         this.seguroBancosDefecto[0].seguroInmueble,
         {
@@ -275,13 +273,13 @@ export class SimulatorComponent implements OnInit {
           updateOn: 'change',
         }
       ),
-      //plazo: new FormControl(this.plazoMesesMin,
-      plazo: new FormControl(180, {
+      plazo: new FormControl(this.plazoMesesMin,{
+      //plazo: new FormControl(180, {
         validators: [Validators.required],
         updateOn: 'change',
       }),
-      //percentage_initial_fee: new FormControl(this.percentageCuotaInicialMin,
-      percentage_initial_fee: new FormControl(15, {
+      percentage_initial_fee: new FormControl(this.percentageCuotaInicialMin,{
+      //percentage_initial_fee: new FormControl(15, {
         validators: [Validators.required],
         updateOn: 'change',
       }),
@@ -446,6 +444,11 @@ export class SimulatorComponent implements OnInit {
 
     this.simulatorForm.get('seguros_banco')?.valueChanges.subscribe((value) => {
       this.changeSelectedBank();
+    });
+
+    this.simulatorForm.get('moneda')?.valueChanges.subscribe((value) => {
+      this.verifyMoney();
+      this.simulatorForm.get('precio_vivienda')?.setValue(this.precioViviendaMin);
     });
   }
 
@@ -656,16 +659,13 @@ export class SimulatorComponent implements OnInit {
     this._VAN = sumaVAN - this._financiamientoBancario;
   }
 
-  save() {}
-
   verifyMoney() {
-    if (this.simulatorForm.get('moneda')?.value == 'soles') {
+    if (this.simulatorForm.get('moneda')?.value == 'Soles') {
       this.precioViviendaMax = 464200;
       this.precioViviendaMin = 65200;
       this.sueldoMax = 100000;
       this.sueldoMin = 500;
-      this.simulatorForm.get('precio_vivienda')?.setValidators([Validators.min(this.precioViviendaMin),
-      Validators.max(this.precioViviendaMax)]);
+      this.simulatorForm.get('precio_vivienda')?.setValidators([Validators.min(this.precioViviendaMin), Validators.max(this.precioViviendaMax)]);
       this.simulatorForm.get('ingreso_mensual')?.setValidators([Validators.min(this.sueldoMin), Validators.max(this.sueldoMax)]);
       return 'S/. ';
     } else {
@@ -673,11 +673,8 @@ export class SimulatorComponent implements OnInit {
       this.precioViviendaMin = toNumber((65200/this.changeDivise).toFixed(2));
       this.sueldoMax = toNumber((100000/this.changeDivise).toFixed(2));
       this.sueldoMin = toNumber((500/this.changeDivise).toFixed(2));
-
-      this.simulatorForm.get('precio_vivienda')?.setValidators([Validators.min(this.precioViviendaMin),
-        Validators.max(this.precioViviendaMax)]);
-        this.simulatorForm.get('ingreso_mensual')?.setValidators([Validators.min(this.sueldoMin), Validators.max(this.sueldoMax)]);
-
+      this.simulatorForm.get('precio_vivienda')?.setValidators([Validators.min(this.precioViviendaMin), Validators.max(this.precioViviendaMax)]);
+      this.simulatorForm.get('ingreso_mensual')?.setValidators([Validators.min(this.sueldoMin), Validators.max(this.sueldoMax)]);
       return '$/. ';
     }
   }
@@ -709,7 +706,7 @@ export class SimulatorComponent implements OnInit {
       'recibio_apoyo_habitacional'
     )?.value;
     if (recieveHelp == 'false') {
-      if (this.simulatorForm.get('moneda')?.value == 'soles') {
+      if (this.simulatorForm.get('moneda')?.value == 'Soles') {
         if (valueHome >= 65000 && valueHome <= 93100) {
           bono = 25700;
         } else if (valueHome > 93100 && valueHome <= 139400) {
@@ -747,7 +744,7 @@ export class SimulatorComponent implements OnInit {
     var bono: number = 0;
     let recieveHelp = this.simulatorForm.get('recibio_apoyo_habitacional')?.value;
     let homeSosteinable = this.simulatorForm.get('vivienda_sustentable')?.value;
-    if (this.simulatorForm.get('moneda')?.value == 'soles'){
+    if (this.simulatorForm.get('moneda')?.value == 'Soles'){
       if (recieveHelp == 'false' && homeSosteinable == 'true' && valueHome <= 343900) {
         bono = 5410;
       } 
@@ -783,7 +780,7 @@ export class SimulatorComponent implements OnInit {
   setMinimunInitialFee() {
     const valueHome = this.simulatorForm.get('precio_vivienda')?.value;
     const actualPercentage = this.simulatorForm.get('percentage_initial_fee')?.value;
-    if(this.simulatorForm.get('moneda')?.value == 'soles'){
+    if(this.simulatorForm.get('moneda')?.value == 'Soles'){
       if (valueHome > 343900 && valueHome <= this.precioViviendaMax) {
         this.simulatorForm.get('percentage_cuota_inicial_min')?.setValue(10);
       } else {
