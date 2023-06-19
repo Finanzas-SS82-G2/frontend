@@ -136,21 +136,13 @@
     <!-- Checkbox Column -->
     <ng-container matColumnDef="select">
       <th mat-header-cell *matHeaderCellDef>
-        <mat-checkbox
-          (change)="$event ? toggleAllRows() : null"
-          [checked]="selection.hasValue() && isAllSelected()"
-          [indeterminate]="selection.hasValue() && !isAllSelected()"
-          [aria-label]="checkboxLabel()"
-        >
+        <mat-checkbox (change)="$event ? toggleAllRows() : null" [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
         </mat-checkbox>
       </th>
       <td mat-cell *matCellDef="let row">
-        <mat-checkbox
-          (click)="$event.stopPropagation()"
-          (change)="$event ? selection.toggle(row) : null"
-          [checked]="selection.isSelected(row)"
-          [aria-label]="checkboxLabel(row)"
-        >
+        <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+          [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
         </mat-checkbox>
       </td>
     </ng-container>
@@ -184,22 +176,13 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr
-      mat-row
-      *matRowDef="let row; columns: displayedColumns"
-      (click)="onRowClick($event)"
-    ></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="onRowClick($event)"></tr>
   </table>
 </div>
 
 <div class="flex flex-row justify-center">
-  <button
-    class="self-center"
-    mat-raised-button
-    color="primary"
-    [disabled]="selection.selected.length != 2"
-    (click)="showConsoleMessage()"
-  >
+  <button class="self-center" mat-raised-button color="primary" [disabled]="selection.selected.length != 2"
+    (click)="showConsoleMessage()">
     <p class="uppercase">Comparar</p>
   </button>
 </div>
