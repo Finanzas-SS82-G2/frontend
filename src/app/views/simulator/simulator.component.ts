@@ -664,9 +664,9 @@ export class SimulatorComponent implements OnInit {
       this.precioViviendaMin = 65200;
       this.sueldoMax = 100000;
       this.sueldoMin = 500;
-      this.simulatorForm.get('precio_vivienda')?.setValidators([Validators.min(this.precioViviendaMin),
-      Validators.max(this.precioViviendaMax)]);
+      this.simulatorForm.get('precio_vivienda')?.setValidators([Validators.min(this.precioViviendaMin), Validators.max(this.precioViviendaMax)]);
       this.simulatorForm.get('ingreso_mensual')?.setValidators([Validators.min(this.sueldoMin), Validators.max(this.sueldoMax)]);
+      this.simulatorForm.get('precio_vivienda')?.setValue(this.precioViviendaMin);
       return 'S/. ';
     } else {
       this.precioViviendaMax = toNumber((464200/this.changeDivise).toFixed(2));
@@ -674,10 +674,9 @@ export class SimulatorComponent implements OnInit {
       this.sueldoMax = toNumber((100000/this.changeDivise).toFixed(2));
       this.sueldoMin = toNumber((500/this.changeDivise).toFixed(2));
 
-      this.simulatorForm.get('precio_vivienda')?.setValidators([Validators.min(this.precioViviendaMin),
-        Validators.max(this.precioViviendaMax)]);
-        this.simulatorForm.get('ingreso_mensual')?.setValidators([Validators.min(this.sueldoMin), Validators.max(this.sueldoMax)]);
-
+      this.simulatorForm.get('precio_vivienda')?.setValidators([Validators.min(this.precioViviendaMin), Validators.max(this.precioViviendaMax)]);
+      this.simulatorForm.get('ingreso_mensual')?.setValidators([Validators.min(this.sueldoMin), Validators.max(this.sueldoMax)]);
+      this.simulatorForm.get('precio_vivienda')?.setValue(this.precioViviendaMin);
       return '$/. ';
     }
   }
