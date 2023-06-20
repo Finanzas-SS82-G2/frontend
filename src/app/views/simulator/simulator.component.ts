@@ -183,8 +183,8 @@ export class SimulatorComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, public dialog: MatDialog) {
     this.simulatorForm = this.formBuilder.group({
-      name: new FormControl('', {
-      //name: new FormControl('Abel', {
+      //name: new FormControl('', {
+      name: new FormControl('Abel', {
         validators: [
           Validators.required,
           Validators.minLength(3),
@@ -192,8 +192,8 @@ export class SimulatorComponent implements OnInit {
         ],
         updateOn: 'change',
       }),
-      lastname: new FormControl('', {
-      //lastname: new FormControl('Cierto', {
+      //lastname: new FormControl('', {
+      lastname: new FormControl('Cierto', {
         validators: [
           Validators.required,
           Validators.minLength(3),
@@ -205,8 +205,8 @@ export class SimulatorComponent implements OnInit {
         validators: [Validators.required],
         updateOn: 'change',
       }),
-      ingreso_mensual: new FormControl(0, {
-      //ingreso_mensual: new FormControl(this.sueldoMin, {
+      //ingreso_mensual: new FormControl(0, {
+      ingreso_mensual: new FormControl(this.sueldoMin, {
         validators: [
           Validators.required,
           Validators.min(this.sueldoMin),
@@ -214,8 +214,8 @@ export class SimulatorComponent implements OnInit {
         ],
         updateOn: 'change',
       }),
-      precio_vivienda: new FormControl(this.precioViviendaMin, {
-      //precio_vivienda: new FormControl(153900, {
+      //precio_vivienda: new FormControl(this.precioViviendaMin, {
+      precio_vivienda: new FormControl(153900, {
         validators: [
           Validators.required,
           Validators.min(this.precioViviendaMin),
@@ -251,6 +251,7 @@ export class SimulatorComponent implements OnInit {
         validators: [Validators.required],
         updateOn: 'change',
       }),
+      //seguro_desgravamen_mensual: new FormControl(0, {
       seguro_desgravamen_mensual: new FormControl(
         this.seguroBancosDefecto[0].seguroDesgravamen,
         {
@@ -262,6 +263,7 @@ export class SimulatorComponent implements OnInit {
           updateOn: 'change',
         }
       ),
+      //seguro_inmueble_anual: new FormControl(0, {
       seguro_inmueble_anual: new FormControl(
         this.seguroBancosDefecto[0].seguroInmueble,
         {
@@ -273,13 +275,13 @@ export class SimulatorComponent implements OnInit {
           updateOn: 'change',
         }
       ),
-      plazo: new FormControl(this.plazoMesesMin,{
-      //plazo: new FormControl(180, {
+      //plazo: new FormControl(this.plazoMesesMin,
+      plazo: new FormControl(180, {
         validators: [Validators.required],
         updateOn: 'change',
       }),
-      percentage_initial_fee: new FormControl(this.percentageCuotaInicialMin,{
-      //percentage_initial_fee: new FormControl(15, {
+      //percentage_initial_fee: new FormControl(this.percentageCuotaInicialMin,
+      percentage_initial_fee: new FormControl(15, {
         validators: [Validators.required],
         updateOn: 'change',
       }),
@@ -671,6 +673,7 @@ export class SimulatorComponent implements OnInit {
       this.precioViviendaMin = toNumber((65200/this.changeDivise).toFixed(2));
       this.sueldoMax = toNumber((100000/this.changeDivise).toFixed(2));
       this.sueldoMin = toNumber((500/this.changeDivise).toFixed(2));
+
       this.simulatorForm.get('precio_vivienda')?.setValidators([Validators.min(this.precioViviendaMin), Validators.max(this.precioViviendaMax)]);
       this.simulatorForm.get('ingreso_mensual')?.setValidators([Validators.min(this.sueldoMin), Validators.max(this.sueldoMax)]);
       this.simulatorForm.get('precio_vivienda')?.setValue(this.precioViviendaMin);
