@@ -361,8 +361,6 @@ export class SimulatorComponent implements OnInit {
     this.plazoMesesMax = 300;
     this.plazoMesesMin = 60;
 
-    //this.simulatorForm! =
-
     this._tasaEfectivaMensual = 0;
     this._seguroDesgravamenPorcentaje = 0;
     this._seguroViviendaPorcentaje = 0;

@@ -310,6 +310,13 @@
           getMaxValueErrorMessage("tasa_efectiva_anual", tasaEfectivaAnualMax)
         }}
       </mat-error>
+      <mat-error
+        *ngIf="simulatorForm.get('tasa_efectiva_anual')?.hasError('required')"
+      >
+        {{
+          getMaxValueErrorMessage("tasa_efectiva_anual", tasaEfectivaAnualMax)
+        }}
+      </mat-error>
     </mat-form-field>
   </div>
 
