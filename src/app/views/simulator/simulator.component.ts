@@ -215,6 +215,7 @@ export class SimulatorComponent implements OnInit {
           Validators.required,
           Validators.min(this.sueldoMin),
           Validators.max(this.sueldoMax),
+          Validators.pattern('^[0-9]+([.][0-9]+)?$'),
         ],
         updateOn: 'change',
       }),
@@ -224,6 +225,7 @@ export class SimulatorComponent implements OnInit {
           Validators.required,
           Validators.min(this.precioViviendaMin),
           Validators.max(this.precioViviendaMax),
+          Validators.pattern('^[0-9]+([.][0-9]+)?$'),
         ],
         updateOn: 'change',
       }),
@@ -405,9 +407,7 @@ export class SimulatorComponent implements OnInit {
 
 
 
-    this.simulatorForm
-      .get('percentage_initial_fee')
-      ?.valueChanges.subscribe((value) => {
+    this.simulatorForm.get('percentage_initial_fee')?.valueChanges.subscribe((value) => {
         this.calculateInitialFee();
         this.setTotalInitialFee();
         this.setBankLoan();
@@ -448,8 +448,8 @@ export class SimulatorComponent implements OnInit {
 
     this.simulatorForm.get('moneda')?.valueChanges.subscribe((value) => {
       this.verifyMoney();
-      this.simulatorForm.get('precio_vivienda')?.setValidators([Validators.min(this.precioViviendaMin), Validators.max(this.precioViviendaMax)]);
-      this.simulatorForm.get('ingreso_mensual')?.setValidators([Validators.min(this.sueldoMin), Validators.max(this.sueldoMax)]);
+      this.simulatorForm.get('precio_vivienda')?.setValidators([Validators.min(this.precioViviendaMin), Validators.max(this.precioViviendaMax), Validators.pattern('^[0-9]+([.][0-9]+)?$')]);
+      this.simulatorForm.get('ingreso_mensual')?.setValidators([Validators.min(this.sueldoMin), Validators.max(this.sueldoMax), Validators.pattern('^[0-9]+([.][0-9]+)?$')]);
       this.simulatorForm.get('precio_vivienda')?.setValue(this.precioViviendaMin);
     });
   }
@@ -833,6 +833,15 @@ export class SimulatorComponent implements OnInit {
     }
     return this.simulatorForm.get(element)?.hasError('pattern')
       ? 'Debe ingresar un nombre válido'
+      : '';
+  }
+
+  getOnlyNumbersErrorMessage(element: string) {
+    if (this.simulatorForm.get(element)?.hasError('required')) {
+      return 'Debes ingresar un valor';
+    }
+    return this.simulatorForm.get(element)?.hasError('pattern')
+      ? 'Ingrese un número válido'
       : '';
   }
 
