@@ -6,7 +6,8 @@
       <mat-form-field appearance="outline">
         <input matInput placeholder="Name" formControlName="name" required />
         <mat-error
-          *ngIf="simulatorForm.get('name')?.invalid || simulatorForm.get('name')?.errors?.['pattern']"
+          *ngIf="simulatorForm.get('name')?.invalid || simulatorForm.get('name')?.errors?.['pattern'] 
+                || simulatorForm.get('name')?.errors?.['required']"
           >{{ getOnlyLettersErrorMessage("name") }}</mat-error
         >
       </mat-form-field>
@@ -22,7 +23,8 @@
           required
         />
         <mat-error
-          *ngIf="simulatorForm.get('lastname')?.invalid || simulatorForm.get('lastname')?.errors?.['pattern']"
+          *ngIf="simulatorForm.get('lastname')?.invalid || simulatorForm.get('lastname')?.errors?.['pattern']
+          || simulatorForm.get('lastname')?.errors?.['required']"
           >{{ getOnlyLettersErrorMessage("lastname") }}</mat-error
         >
       </mat-form-field>
@@ -72,7 +74,6 @@
         placeholder="0000"
         formControlName="ingreso_mensual"
         required
-        type="number"
         (change)="cuotaCalculadaFalse()"
       />
       <mat-error *ngIf="simulatorForm.get('ingreso_mensual')?.hasError('min')">
@@ -80,6 +81,12 @@
       >
       <mat-error *ngIf="simulatorForm.get('ingreso_mensual')?.hasError('max')">
         {{ getMaxValueErrorMessage("ingreso_mensual", sueldoMax) }}</mat-error
+      >
+      <mat-error *ngIf="simulatorForm.get('ingreso_mensual')?.hasError('pattern')">
+        {{ getOnlyNumbersErrorMessage('ingreso_mensual') }}</mat-error
+      >
+      <mat-error *ngIf="simulatorForm.get('ingreso_mensual')?.hasError('required')">
+        {{ getOnlyNumbersErrorMessage('ingreso_mensual') }}</mat-error
       >
     </mat-form-field>
   </div>
@@ -104,7 +111,6 @@
     <mat-form-field appearance="outline">
       <input
         matInput
-        type="number"
         value="{{ simulatorForm.get('precio_vivienda')?.value }}"
         formControlName="precio_vivienda"
         (change)="cuotaCalculadaFalse()"
@@ -115,6 +121,16 @@
       </mat-error>
       <mat-error *ngIf="simulatorForm.get('precio_vivienda')?.hasError('max')">
         {{ getMaxValueErrorMessage("precio_vivienda", precioViviendaMax) }}
+      </mat-error>
+      <mat-error
+        *ngIf="simulatorForm.get('precio_vivienda')?.hasError('pattern')"
+      >
+        {{ getOnlyNumbersErrorMessage("precio_vivienda") }}
+      </mat-error>
+      <mat-error
+        *ngIf="simulatorForm.get('precio_vivienda')?.hasError('required')"
+      >
+        {{ getOnlyNumbersErrorMessage("precio_vivienda") }}
       </mat-error>
     </mat-form-field>
   </div>
