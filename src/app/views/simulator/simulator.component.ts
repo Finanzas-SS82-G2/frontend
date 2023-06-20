@@ -451,6 +451,7 @@ export class SimulatorComponent implements OnInit {
       this.simulatorForm.get('precio_vivienda')?.setValidators([Validators.min(this.precioViviendaMin), Validators.max(this.precioViviendaMax), Validators.pattern('^[0-9]+([.][0-9]+)?$')]);
       this.simulatorForm.get('ingreso_mensual')?.setValidators([Validators.min(this.sueldoMin), Validators.max(this.sueldoMax), Validators.pattern('^[0-9]+([.][0-9]+)?$')]);
       this.simulatorForm.get('precio_vivienda')?.setValue(this.precioViviendaMin);
+      this.simulatorForm.get('ingreso_mensual')?.setValue(this.sueldoMin);
     });
   }
 

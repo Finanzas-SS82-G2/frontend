@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError} from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import { InputData } from '../model/input-data';
+import { Consultation } from '../model/consultation';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ServiceInputDataService {
+export class ServiceConsultationService {
 
-  baseUrl: string = 'http://localhost:8080/api/v1/input-information';
+  baseUrl: string = 'http://localhost:8080/api/v1/consultations';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -18,6 +18,7 @@ export class ServiceInputDataService {
   }
 
   constructor(private http: HttpClient) { }
+
 
   handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
@@ -33,21 +34,27 @@ export class ServiceInputDataService {
   }
 
 
-  getInputInformationByConsultationId(id: number): Observable<InputData[]> {
+  getConsultationByUserId(id: number): Observable<Consultation[]> {
     return this.http
-      .get<InputData[]>(this.baseUrl + '/user/' + id)
+      .get<Consultation[]>(this.baseUrl + '/user/' + id)
       .pipe(retry(2), catchError(this.handleError));
   }
 
-  postInputInformation(inputInformation: InputData): Observable<any> {
+  getConsultationById(id: number): Observable<Consultation> {
     return this.http
-      .post<any>(this.baseUrl, JSON.stringify(inputInformation), this.httpOptions)
+      .get<Consultation>(this.baseUrl + '/' + id)
       .pipe(retry(2), catchError(this.handleError));
   }
 
-  getAllInputInformation(): Observable<InputData[]> {
+  getAllConsultation(): Observable<Consultation[]> {
     return this.http
-      .get<InputData[]>(this.baseUrl)
+      .get<Consultation[]>(this.baseUrl)
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
+  postConsultation(consultation: Consultation, userId: number): Observable<Consultation> {
+    return this.http
+      .post<Consultation>(this.baseUrl + '/' + userId, JSON.stringify(consultation), this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 

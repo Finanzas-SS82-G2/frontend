@@ -57,7 +57,7 @@ import { PoliciesComponent } from './views/policies/policies.component';
     DialogBoxValidFormComponent,
     CompareComponent,
     DialogComparacionComponent,
-    PoliciesComponent
+    PoliciesComponent,
     ],
   imports: [
     BrowserModule,
