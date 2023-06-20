@@ -121,6 +121,7 @@ export class SimulatorComponent implements OnInit {
       seguroInmueble: 0.0230,
     },
   ];
+  changeDivise : number = 3.63;
 
   bancoElegido: SeguroBancos = this.seguroBancosDefecto[0];
 
@@ -160,8 +161,6 @@ export class SimulatorComponent implements OnInit {
   _TIR: number = 0;
   _TCEA: number = 0;
   _VAN: number = 0;
-
-  changeDivise : number = 3.64;
 
   planDePagos: PlanDePagos = {
     nombre: '',
@@ -361,8 +360,6 @@ export class SimulatorComponent implements OnInit {
     this.plazoMesesMax = 300;
     this.plazoMesesMin = 60;
 
-    //this.simulatorForm! =
-
     this._tasaEfectivaMensual = 0;
     this._seguroDesgravamenPorcentaje = 0;
     this._seguroViviendaPorcentaje = 0;
@@ -451,6 +448,7 @@ export class SimulatorComponent implements OnInit {
       this.simulatorForm.get('precio_vivienda')?.setValidators([Validators.min(this.precioViviendaMin), Validators.max(this.precioViviendaMax), Validators.pattern('^[0-9]+([.][0-9]+)?$')]);
       this.simulatorForm.get('ingreso_mensual')?.setValidators([Validators.min(this.sueldoMin), Validators.max(this.sueldoMax), Validators.pattern('^[0-9]+([.][0-9]+)?$')]);
       this.simulatorForm.get('precio_vivienda')?.setValue(this.precioViviendaMin);
+      this.simulatorForm.get('ingreso_mensual')?.setValue(this.sueldoMin);
     });
   }
 
