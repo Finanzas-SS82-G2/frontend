@@ -1,10 +1,9 @@
 import { Component, AfterViewInit, ViewChild, Inject } from '@angular/core';
-import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import { MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
+import { MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
 import { PlanDePagos } from 'src/app/models/plan-de-pagos';
-
 
 @Component({
   selector: 'app-dialog-plan-de-pagos',
@@ -40,9 +39,12 @@ export class DialogPlanDePagosComponent implements AfterViewInit {
       this.dataSource.data = data;
     });
   }
+  saveData(){
+    console.log("saveClick");
+  }
 
   verifyMoney(){
-    if (this.data.planDePagos.moneda == 'soles'){
+    if (this.data.planDePagos.moneda == 'Soles'){
       return 'S/. ';
     }
     else{

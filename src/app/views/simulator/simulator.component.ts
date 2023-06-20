@@ -167,13 +167,17 @@ export class SimulatorComponent implements OnInit {
     nombre: '',
     apellido: '',
     moneda: '',
+    banco: '',//bancoElegido
     importePrestamo: 0,
     bonoBuenPagador: 0,
     plazoPago: 0,
+    periodoGracia: 0,//meses
+    tea: 0,//tasaEfectivaAnual
     porcSeguroDesgravamen: 0,
     porcSeguroVivienda: 0,
     cuotaInicial: 0,
     valorVivienda: 0,
+    cuotaMensual: 0,//cuotaFrances
     tcea: 0,
     van: 0,
     planDePagos: [],
@@ -381,14 +385,18 @@ export class SimulatorComponent implements OnInit {
       nombre: '',
       apellido: '',
       moneda: '',
+      banco: '',
       importePrestamo: 0,
       bonoBuenPagador: 0,
       plazoPago: 0,
+      periodoGracia: 0,
+      tea: 0,
       porcSeguroDesgravamen: 0,
       porcSeguroVivienda: 0,
       cuotaInicial: 0,
       planDePagos: [],
       valorVivienda: 0,
+      cuotaMensual: 0,
       tcea: 0,
       van: 0,
     };
@@ -405,9 +413,7 @@ export class SimulatorComponent implements OnInit {
         this.setBankLoan();
       });
 
-    this.simulatorForm
-      .get('precio_vivienda')
-      ?.valueChanges.subscribe((value) => {
+    this.simulatorForm.get('precio_vivienda')?.valueChanges.subscribe((value) => {
         this.calculateInitialFee();
         this.setValueBonoBuenPagador();
         this.setMinimunInitialFee();
@@ -417,9 +423,7 @@ export class SimulatorComponent implements OnInit {
         this.setBankLoan();
       });
 
-    this.simulatorForm
-      .get('recibio_apoyo_habitacional')
-      ?.valueChanges.subscribe((value) => {
+    this.simulatorForm.get('recibio_apoyo_habitacional')?.valueChanges.subscribe((value) => {
         this.setValueBonoBuenPagador();
         this.setBonoHomeSosteinable();
         this.setTotalBono();
@@ -427,18 +431,14 @@ export class SimulatorComponent implements OnInit {
         this.setBankLoan();
       });
 
-    this.simulatorForm
-      .get('vivienda_sustentable')
-      ?.valueChanges.subscribe((value) => {
+    this.simulatorForm.get('vivienda_sustentable')?.valueChanges.subscribe((value) => {
         this.setBonoHomeSosteinable();
         this.setTotalBono();
         this.setTotalInitialFee();
         this.setBankLoan();
       });
 
-    this.simulatorForm
-      .get('tasa_efectiva_anual')
-      ?.valueChanges.subscribe((value) => {
+    this.simulatorForm.get('tasa_efectiva_anual')?.valueChanges.subscribe((value) => {
         this.calculateEffectiveMonthlyRate();
       });
 
@@ -448,6 +448,8 @@ export class SimulatorComponent implements OnInit {
 
     this.simulatorForm.get('moneda')?.valueChanges.subscribe((value) => {
       this.verifyMoney();
+      this.simulatorForm.get('precio_vivienda')?.setValidators([Validators.min(this.precioViviendaMin), Validators.max(this.precioViviendaMax)]);
+      this.simulatorForm.get('ingreso_mensual')?.setValidators([Validators.min(this.sueldoMin), Validators.max(this.sueldoMax)]);
       this.simulatorForm.get('precio_vivienda')?.setValue(this.precioViviendaMin);
     });
   }
@@ -665,16 +667,12 @@ export class SimulatorComponent implements OnInit {
       this.precioViviendaMin = 65200;
       this.sueldoMax = 100000;
       this.sueldoMin = 500;
-      this.simulatorForm.get('precio_vivienda')?.setValidators([Validators.min(this.precioViviendaMin), Validators.max(this.precioViviendaMax)]);
-      this.simulatorForm.get('ingreso_mensual')?.setValidators([Validators.min(this.sueldoMin), Validators.max(this.sueldoMax)]);
       return 'S/. ';
     } else {
       this.precioViviendaMax = toNumber((464200/this.changeDivise).toFixed(2));
       this.precioViviendaMin = toNumber((65200/this.changeDivise).toFixed(2));
       this.sueldoMax = toNumber((100000/this.changeDivise).toFixed(2));
       this.sueldoMin = toNumber((500/this.changeDivise).toFixed(2));
-      this.simulatorForm.get('precio_vivienda')?.setValidators([Validators.min(this.precioViviendaMin), Validators.max(this.precioViviendaMax)]);
-      this.simulatorForm.get('ingreso_mensual')?.setValidators([Validators.min(this.sueldoMin), Validators.max(this.sueldoMax)]);
       return '$/. ';
     }
   }
@@ -818,16 +816,6 @@ export class SimulatorComponent implements OnInit {
     this._financiamientoBancario = bankLoan;
   }
 
-  updatePercentajeInitialFee() {
-    const valueHome = this.simulatorForm.get('precio_vivienda')?.value;
-    const initialFee = this.simulatorForm.get('cuota_inicial')?.value;
-    var percentaje = (initialFee / valueHome) * 100;
-    var roundedPercentaje = percentaje.toFixed(2);
-    this.simulatorForm
-      .get('percentage_initial_fee')
-      ?.setValue(roundedPercentaje);
-  }
-
   getMinLengthErrorMessage(element: string, numOfCharacters: number) {
     if (this.simulatorForm.get(element)?.hasError('required')) {
       return 'Debes ingresar un valor';
@@ -889,13 +877,16 @@ export class SimulatorComponent implements OnInit {
     this.planDePagos.importePrestamo = toNumber(this._financiamientoBancario.toFixed(2));
     this.planDePagos.bonoBuenPagador = toNumber(this.simulatorForm.get('bono_buen_pagador')?.value.toFixed(2));
     this.planDePagos.plazoPago = this._plazoPago;
+    this.planDePagos.banco = this.simulatorForm.get('seguros_banco')?.value;
+    this.planDePagos.periodoGracia = this._periodoGracia;
+    this.planDePagos.tea = this.simulatorForm.get('tasa_efectiva_anual')?.value;
+    this.planDePagos.cuotaMensual = toNumber(this._cuotaFinalEstandarizada.toFixed(2));
     this.planDePagos.porcSeguroDesgravamen = this._seguroDesgravamenPorcentaje;
     this.planDePagos.porcSeguroVivienda = this._seguroViviendaPorcentaje;
     this.planDePagos.cuotaInicial = toNumber(this.simulatorForm.get('cuota_inicial')?.value.toFixed(2));
     this.planDePagos.tcea = toNumber(this._TCEA.toFixed(2));
-    this.planDePagos.van = toNumber(this._VAN.toFixed(2)); //Cambiar
-    this.planDePagos.valorVivienda =
-      this.simulatorForm.get('precio_vivienda')?.value;
+    this.planDePagos.van = toNumber(this._VAN.toFixed(2));
+    this.planDePagos.valorVivienda = this.simulatorForm.get('precio_vivienda')?.value;
 
     for (let i = 1; i <= this._plazoPago; i++) {
       let _cuota = toNumber(this._cuotaFinalEstandarizada.toFixed(2));
