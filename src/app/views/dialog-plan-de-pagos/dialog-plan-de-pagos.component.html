@@ -6,15 +6,19 @@
             <div class="flex justify-around">
               <ul class="list-disc">
                 <li>Moneda: {{data.planDePagos.moneda}} </li>
-                <li>Valor de la vivienda: {{data.planDePagos.valorVivienda}}</li>
-                <li>Importe del préstamo: {{ verifyMoney() + ' ' + data.planDePagos.importePrestamo}}</li>
+                <li>Valor de la vivienda: {{verifyMoney() + ' ' + data.planDePagos.valorVivienda}}</li>
+                <li>Cuota inicial: {{ verifyMoney() + ' ' + data.planDePagos.cuotaInicial}}</li>
                 <li>Bono de buen pagador: {{ verifyMoney() + ' ' + data.planDePagos.bonoBuenPagador}}</li>
-                <li>Plazo: {{data.planDePagos.plazoPago}} meses</li>
+                <li>Importe del préstamo: {{ verifyMoney() + ' ' + data.planDePagos.importePrestamo}}</li>
+                <li>Plazo de pago: {{data.planDePagos.plazoPago}} meses</li>
+                <li>Periodo de gracia: {{data.planDePagos.periodoGracia}} meses</li>
               </ul>
               <ul class="list-disc">
-                <li>Cuota inicial: {{ verifyMoney() + ' ' + data.planDePagos.cuotaInicial}}</li>
+                <li>Banco: {{data.planDePagos.banco.nombre}}</li>
+                <li>Tasa efectiva anual: {{data.planDePagos.tea}} %</li>
                 <li>Seguro de desgravamen: {{data.planDePagos.porcSeguroDesgravamen}}%</li>
                 <li>Seguro de vivienda: {{data.planDePagos.porcSeguroVivienda}}%</li>
+                <li>Cuota Mensual: {{ data.planDePagos.cuotaMensual}}</li>
                 <li>TCEA: {{ data.planDePagos.tcea }}%</li>
                 <li>VAN: {{data.planDePagos.van}}</li>
               </ul>
