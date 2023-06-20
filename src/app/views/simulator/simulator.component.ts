@@ -121,6 +121,7 @@ export class SimulatorComponent implements OnInit {
       seguroInmueble: 0.0230,
     },
   ];
+  changeDivise : number = 3.63;
 
   bancoElegido: SeguroBancos = this.seguroBancosDefecto[0];
 
@@ -160,8 +161,6 @@ export class SimulatorComponent implements OnInit {
   _TIR: number = 0;
   _TCEA: number = 0;
   _VAN: number = 0;
-
-  changeDivise : number = 3.64;
 
   planDePagos: PlanDePagos = {
     nombre: '',
