@@ -6,9 +6,23 @@
     justify-content: space-between;
     padding: 2rem;
 }
+.custom-button {
+  background-color: blue;
+  color: white;
+  border: 1px solid black;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
 
 @media screen and (max-width: 1324px) {
     .main-container {
       width: 80vw;
     }
+  }
+  .custom-button {
+    background-color: blue;
+    color: white;
+    border: 1px solid black;
+    padding: 5px 10px;
+    border-radius: 10px;
   }
