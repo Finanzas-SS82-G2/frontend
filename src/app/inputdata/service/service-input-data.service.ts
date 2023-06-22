@@ -39,9 +39,9 @@ export class ServiceInputDataService {
       .pipe(retry(2), catchError(this.handleError));
   }
 
-  postInputInformation(inputInformation: InputData): Observable<any> {
+  postInputInformation(inputInformation: InputData, consulId: number): Observable<any> {
     return this.http
-      .post<any>(this.baseUrl, JSON.stringify(inputInformation), this.httpOptions)
+      .post<any>(this.baseUrl + '/' + consulId, JSON.stringify(inputInformation), this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 

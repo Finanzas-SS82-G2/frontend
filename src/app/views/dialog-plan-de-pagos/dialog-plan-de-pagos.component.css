@@ -13,16 +13,30 @@
   padding: 5px 10px;
   border-radius: 10px;
 }
+.disabled-button {
+  background-color: gray;
+  color: white;
+  border: 1px solid black;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
 
 @media screen and (max-width: 1324px) {
-    .main-container {
-      width: 80vw;
-    }
+  .main-container {
+    width: 80vw;
   }
-  .custom-button {
-    background-color: blue;
-    color: white;
-    border: 1px solid black;
-    padding: 5px 10px;
-    border-radius: 10px;
-  }
+}
+.custom-button {
+  background-color: blue;
+  color: white;
+  border: 1px solid black;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+.disabled-button {
+  background-color: gray;
+  color: white;
+  border: 1px solid black;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
