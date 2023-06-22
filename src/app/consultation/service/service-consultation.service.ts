@@ -9,7 +9,7 @@ import { Consultation } from '../model/consultation';
 })
 export class ServiceConsultationService {
 
-  baseUrl: string = 'http://localhost:8080/api/v1/consultations';
+  baseUrl: string = 'https://finanzasapi.azurewebsites.net/api/v1/consultations';
 
   httpOptions = {
     headers: new HttpHeaders({

@@ -9,7 +9,7 @@ import { PaymentPlan } from '../model/payment-plan';
 })
 export class ServicePaymentPlanService {
 
-  baseUrl: string = 'https://finanzasrestfulapi.azurewebsites.net/api/payment-plan';
+  baseUrl: string = 'https://finanzasapi.azurewebsites.net/api/v1/payment-plans';
 
   httpOptions = {
     headers: new HttpHeaders({

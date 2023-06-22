@@ -95,7 +95,7 @@ export class SignUpComponent implements OnInit {
       return 'Must be only numbers';
     }
 
-    return this.registerForm.get('phone')?.hasError('minlength')  
+    return this.registerForm.get('phone')?.hasError('minlength')
       ? 'Must have a minimun of 9 numbers'
       : this.registerForm.get('phone')?.hasError('maxlength')
       ? 'Must have a maximun of 9 numbers'
@@ -132,12 +132,12 @@ export class SignUpComponent implements OnInit {
     }
     );
   }
-  
+
   verifyUserRegistered() {
     console.log('Email checked');
     this.registered = false;
     var req = new XMLHttpRequest();
-    req.open('GET', `https://finanzasrestfulapi.azurewebsites.net/api/v1/users/searchByEmail/${this.registerForm.get('email')?.value}`, false);
+    req.open('GET', `https://finanzasapi.azurewebsites.net/api/v1/users/searchByEmail/${this.registerForm.get('email')?.value}`, false);
     req.send(null);
     if(req.status == 200){
       var user = JSON.parse(req.responseText);
@@ -159,9 +159,9 @@ export class SignUpComponent implements OnInit {
       this.createUser();
     }
   }
-  
-  
+
+
   ngOnInit(): void {
-    
+
   }
 }

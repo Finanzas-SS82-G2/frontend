@@ -63,12 +63,12 @@ export class DialogPlanDePagosComponent implements AfterViewInit {
     console.log(userID);
 
     var req = new XMLHttpRequest();
-    req.open('POST', `http://localhost:8080/api/v1/consultations/${userID}`, false);
+    req.open('POST', `https://finanzasapi.azurewebsites.net/api/v1/consultations/${userID}`, false);
     req.setRequestHeader('Content-Type', 'application/json');
     var requestData = {
       'id': 0,
       'user': {},
-    };    
+    };
 
     req.send(JSON.stringify(requestData));
 
@@ -76,14 +76,14 @@ export class DialogPlanDePagosComponent implements AfterViewInit {
       console.log('La solicitud POST CONSULT fue exitosa');
       console.log(req.responseText);
       var req2 = new XMLHttpRequest();
-      req2.open('GET', `http://localhost:8080/api/v1/consultations/`, false);
+      req2.open('GET', `https://finanzasapi.azurewebsites.net/api/v1/consultations/`, false);
       req2.send(null);
       if (req2.status === 200) {
         console.log('La solicitud GET ALL CONSULTS fue exitosa');
         var consulta = JSON.parse(req2.responseText);
         console.log(consulta.length);
         var req3 = new XMLHttpRequest();
-        req3.open('POST', `http://localhost:8080/api/v1/input-information/${consulta.length}`, false);
+        req3.open('POST', `https://finanzasapi.azurewebsites.net/api/v1/input-information/${consulta.length}`, false);
         req3.setRequestHeader('Content-Type', 'application/json');
         console.log(this.data.planDePagos);
         var requestData2 = {
@@ -109,7 +109,7 @@ export class DialogPlanDePagosComponent implements AfterViewInit {
           console.log('La solicitud POST INPUT DATA fue exitosa');
           console.log(req3.responseText);
           var req4 = new XMLHttpRequest();
-          req4.open('POST', `http://localhost:8080/api/v1/payment-plans/${consulta.length}`, false);
+          req4.open('POST', `https://finanzasapi.azurewebsites.net/api/v1/payment-plans/${consulta.length}`, false);
           req4.setRequestHeader('Content-Type', 'application/json');
           var requestData3 = {
             "consultation": {},

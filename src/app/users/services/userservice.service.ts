@@ -8,7 +8,7 @@ import { User } from '../model/user';
 })
 export class UserserviceService {
 
-  baseUrl: string = 'https://finanzasrestfulapi.azurewebsites.net/api/v1/users';
+  baseUrl: string = 'https://finanzasapi.azurewebsites.net/api/v1/users';
 
   httpOptions = {
     headers: new HttpHeaders({
