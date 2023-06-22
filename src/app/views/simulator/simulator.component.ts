@@ -10,6 +10,7 @@ import { DialogPlanDePagosComponent } from 'src/app/views/dialog-plan-de-pagos/d
 import { PlanDePagos } from 'src/app/models/plan-de-pagos';
 import { Cuota } from 'src/app/models/plan-de-pagos';
 import { toNumber } from 'lodash';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-simulator',
@@ -184,7 +185,7 @@ export class SimulatorComponent implements OnInit {
 
   cuotaCalculada: Boolean = true;
 
-  constructor(private formBuilder: FormBuilder, public dialog: MatDialog) {
+  constructor(private router: Router, private formBuilder: FormBuilder, public dialog: MatDialog) {
     this.simulatorForm = this.formBuilder.group({
       name: new FormControl('', {
       //name: new FormControl('Abel', {
@@ -874,6 +875,7 @@ export class SimulatorComponent implements OnInit {
       //this.ngOnInit();
       console.log('The dialog was closed');
       this.ngOnInit();
+      this.router.navigate(['/home']);
     });
   }
 

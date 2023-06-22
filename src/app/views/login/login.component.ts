@@ -37,14 +37,14 @@ export class LoginComponent implements OnInit {
   checkUser() {
     console.log('Email checked');
     var req = new XMLHttpRequest();
-    req.open('GET', `https://finanzasrestfulapi.azurewebsites.net/api/v1/users/searchByEmail/${this.email.value}`, false);
+    req.open('GET', `https://finanzasapi.azurewebsites.net/api/v1/users/searchByEmail/${this.email.value}`, false);
     req.send(null);
     if(req.status == 200){
       var user = JSON.parse(req.responseText);
       console.log(user);
       if (user.email == this.email.value) {
         if (user.password == this.password.value) {
-          console.log('User logged in'); 
+          console.log('User logged in');
           localStorage.setItem("id", user.id);
           this.router.navigate(['/home']);
         } else {
