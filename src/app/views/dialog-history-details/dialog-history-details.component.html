@@ -1,0 +1,36 @@
+<div style="height: 50vh; width: 50vw; padding: 20px;">
+    <h1>Detalles del cliente {{data.inputInformation.customerFirstName}}
+        {{data.inputInformation.customerLastName}}</h1>
+    <div class="mt-5">
+        <h3>Datos ingresados: </h3>
+        <ul style="list-style: circle; margin-left: 20px;">
+            <li> Banco: {{data.inputInformation.bank}} </li>
+            <li> Moneda: {{data.inputInformation.currency}} </li>
+            <li> TEA: {{data.inputInformation.effectiveAnnualRate}}% </li>
+            <li> Bono Buen Pagador: {{data.inputInformation.goodPayerBonus}}
+            </li>
+            <li> Periodo de gracia: {{data.inputInformation.gracePeriod}} meses
+            </li>
+            <li> Seguro de vivienda: {{data.inputInformation.homeInsurance}}
+            </li>
+            <li> Precio de la vivienda: {{data.inputInformation.housingPrice}}
+            </li>
+            <li> Inicial: {{data.inputInformation.initialFee}} </li>
+            <li> Insurance deduction:
+                {{data.inputInformation.insuranceDeduction}} </li>
+            <li> Valor del préstamo: {{data.inputInformation.loanAmount}} </li>
+            <li> Plazo de pago: {{data.inputInformation.paymentTerm}} </li>
+
+        </ul>
+    </div>
+
+    <div class="mt-5">
+        <h3>Resultados: </h3>
+        <ul style="list-style:circle; margin-left: 20px;">
+            <li>Cuota mensual: {{data.paymentPlan.monthlyFee}}</li>
+            <li>TCEA: {{data.paymentPlan.tcea}}%</li>
+            <li>VAN: {{data.paymentPlan.van}}</li>
+        </ul>
+    </div>
+
+</div>

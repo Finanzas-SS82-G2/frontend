@@ -1,0 +1,17 @@
+<div style="height: 25vh; width: 50vw; padding: 20px;" class="align-middle">
+    <h1 class="text-center">Comparación de planes de pago</h1>
+    <div class="flex flex-row justify-evenly">
+        <div *ngFor="let item of data">
+            <div class="mt-5">
+                <h3>Cliente: {{item.inputInformation.customerFirstName}}
+                    {{item.inputInformation.customerLastName}}</h3>
+
+                <ul style="list-style:circle; margin-left: 20px;">
+                    <li>Cuota mensual: {{item.paymentPlan.monthlyFee}}</li>
+                    <li>TCEA: {{item.paymentPlan.tcea}}%</li>
+                    <li>VAN: {{item.paymentPlan.van}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

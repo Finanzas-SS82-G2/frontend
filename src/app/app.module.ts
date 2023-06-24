@@ -42,6 +42,8 @@ import { CompareComponent } from './views/history/compare-modal/compare/compare.
 import { DialogPlanDePagosComponent } from './views/dialog-plan-de-pagos/dialog-plan-de-pagos.component';
 import { DialogComparacionComponent } from './views/dialog-comparacion/dialog-comparacion.component';
 import { PoliciesComponent } from './views/policies/policies.component';
+import { DialogHistoryDetailsComponent } from './views/dialog-history-details/dialog-history-details.component';
+import { DialogComparePlansComponent } from './views/dialog-compare-plans/dialog-compare-plans.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +60,8 @@ import { PoliciesComponent } from './views/policies/policies.component';
     CompareComponent,
     DialogComparacionComponent,
     PoliciesComponent,
+    DialogHistoryDetailsComponent,
+    DialogComparePlansComponent,
     ],
   imports: [
     BrowserModule,
