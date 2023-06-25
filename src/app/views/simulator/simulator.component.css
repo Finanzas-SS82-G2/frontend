@@ -10,7 +10,7 @@ img {
 }
 
 .gray .mat-mdc-card-content {
-  background-color: rgba(0, 0, 0, 0.16);
+  
 }
 
 .green .mat-mdc-card-content {
@@ -26,3 +26,63 @@ img {
   width:100%;
   height:100%;
 }*/
+mat-card-content{
+  color: #000;
+  text-align: center;
+  font-size: 1.3rem;
+  font-family: Roboto;
+  font-weight: 475;
+
+}
+mat-card{
+  border-radius: 4px;
+  background: #95B270;
+  box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.16);
+  transition: transform 0.2s ease;
+  &:hover{
+    transform: scale(1.02);
+  }
+}
+b{
+  color: #316424;
+font-size: 1.375rem;
+font-family: Roboto;
+font-weight: 550;
+}
+.grei{
+
+background: #DDD;
+/* AC - DS 16 */
+box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.16);
+}
+mat-form-field{
+  
+  transition: transform 0.3s ease;
+  &:hover{
+    transform: scale(1.009);
+  }
+}
+
+.self-center2{
+    
+  color: var(--ac-neutral-white, #FFF);
+  text-align: center;
+  font-size: 0.8rem;
+  font-family: Montserrat;
+  font-weight: 700;
+  letter-spacing: -0.02063rem;
+  border-radius: 8px;
+  transition: all .2s ease-in-out;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  &:hover{
+      box-shadow: 0 0 20px rgba(0,0,0,.05);
+      transform: scale(1.05);
+      -webkit-transform: scale(1.05);
+      -moz-transform: scale(1.05);
+  }
+}
+.self-center2:enabled {
+  border-radius: 8px;
+  background: #91CC30;
+}

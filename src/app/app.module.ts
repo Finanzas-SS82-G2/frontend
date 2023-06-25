@@ -25,7 +25,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import {MatMenuModule} from '@angular/material/menu';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTableModule } from '@angular/material/table';
-
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatTabsModule} from '@angular/material/tabs';
 // Views
 import { StartComponent } from './views/start/start.component';
 import { LoginComponent } from './views/login/login.component';
@@ -87,7 +88,9 @@ import { DialogComparePlansComponent } from './views/dialog-compare-plans/dialog
     MatRadioModule,
     MatMenuModule,
     MatCheckboxModule,
-    MatTableModule
+    MatTableModule,
+    MatExpansionModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,0 +1,22 @@
+.title{
+color: var(--ac-neutral-900, #141825);
+font-size: 1.3rem;
+font-family: Montserrat;
+font-weight: 600;
+line-height: 150%;
+}
+mat-card{
+    border-radius: 20px;
+    margin-top: 1vw;
+    margin-inline: 3vw;
+    padding: 1.2vw;
+}
+
+
+mat-expansion-panel{
+    border-radius: 12px;
+    transition: transform 0.2s ease;
+}
+mat-expansion-panel:hover{
+    transform: scale(1.005);
+}

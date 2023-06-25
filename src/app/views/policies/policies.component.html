@@ -2,10 +2,194 @@
 
 <div class="flex flex-row justify-between mx-20 my-10">
   <mat-card class="w-4/5">
-
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div class="title">
+              Moneda
+              <!--<mat-card-subtitle>Valor de vivienda permitido</mat-card-subtitle>-->
+            </div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-card-content>
+          <p>El programa desarrollado puede evaluar los prestamos en dolares y soles. La equivalencia de cambio es: </p>
+          <ul>
+            <li>1 USD = 3.63 PEN</li>
+            <li>1 PEN = 0.28 USD</li>
+          </ul>
+        </mat-card-content>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div class="title">
+              Precio de la vivienda
+              <!--<mat-card-subtitle>Valor de vivienda permitido</mat-card-subtitle>-->
+            </div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-card-content>
+          <p>Nuevo crédito mivivienda financia viviendas entre S/ 65200 y S/ 464200 en un plazo de pago de 5 a 20 años (Fondo Mivivienda, 2023).</p>
+        </mat-card-content>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div class="title">
+              Porcentaje de cuota inicial
+              <!--<mat-card-subtitle>Valor de vivienda permitido</mat-card-subtitle>-->
+            </div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-card-content>
+          <p>El aporte mínimo de cuota inicial del solicitante del crédito es de 7,5% y el máximo es de 30% del valor de la vivienda (Fondo Mivivienda, 2023). El FMV otorgará como máximo el 90% de crédito del valor de la vivienda si se encuentra en el rango de S/ 343900 hasta S/ 464200, puesto que no contará con el Bono del Buen Pagador y la cuota inicial debe ser del 10% (Fondo Mivivienda, 2023).</p>
+        </mat-card-content>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div class="title">
+              Bono buen pagador
+              <!--<mat-card-subtitle>Valor de vivienda permitido</mat-card-subtitle>-->
+            </div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-card-content>
+          <p>Se otorga a personas que accedan a un crédito MIVIVIENDA para incrementar la cuota inicial, pero el valor del inmueble no debe exceder los S/ 343900 y no haber sido beneficiario de apoyo habitacional por parte del estado (Fondo Mivivienda, 2023). No obstante, al pagar la deuda del crédito MIVIVIENDA antes de los 5 años de haber recibido el préstamo el BBP deberá ser devuelto, con excepción de los casos por aplicación seguro de desgravamen o multirriesgo (Fondo Mivivienda, 2023).</p>
+          <u><a href="https://www.mivivienda.com.pe/PORTALWEB/usuario-busca-viviendas/pagina.aspx?idpage=22" target="_blank">Mas información</a></u>
+        </mat-card-content>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div class="title">
+              Bono vivienda sostenible
+              <!--<mat-card-subtitle>Valor de vivienda permitido</mat-card-subtitle>-->
+            </div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-card-content>
+          <p>Se aplicará 1.166279 UIT adicional al bono del buen pagador si la vivienda pertenece a la categoría de sostenible, pero el monto varía según el precio de la vivienda (Fondo Mivivienda, 2023).</p>
+          <u><a href="https://www.mivivienda.com.pe/PORTALWEB/usuario-busca-viviendas/pagina.aspx?idpage=22" target="_blank">Mas información</a></u>
+        </mat-card-content>    
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div class="title">
+              Tasa efectiva anual
+              <!--<mat-card-subtitle>Valor de vivienda permitido</mat-card-subtitle>-->
+            </div>
+            
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-card-content>
+          <p>Una pregunta que se genera en este punto en particular son las tasas de interés que aplican las entidades financieras. Según el Fondo Mivivienda la tasa base es para el programa Nuevo Crédito Mivivienda es 6.6%, pero la tasa otorgada al final lo decide la Institución Financiera y en promedio esta tasa es 9.8% (2023). Por lo tanto, para el desarrollo de la aplicación del proyecto se brindará la disponibilidad de ingresar las tasa de interés entre 6,6% y 9.8% como máximo (2023).</p>
+          <u><a href="https://www.mivivienda.com.pe/portalweb/entidades-financieras/preguntas-frecuentes.aspx#:~:text=Las%20tasas%20de%20fondeo%20que,CRC%20y%209%25%20con%20CRC" target="_blank">Mas información</a></u>
+        </mat-card-content>   
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div class="title">
+              Los seguron de los bancos
+              <!--<mat-card-subtitle>Valor de vivienda permitido</mat-card-subtitle>-->
+            </div>
+            
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-card-content>
+          <p>Las entidades financieras participantes dentro del programa de entidades financieras son:</p>
+            <ul>
+              <li>BCP</li>
+              <li>BBVA</li>
+              <li>Interbank</li>
+              <li>Scotiabank</li>
+              <li>BanBif</li>
+              <li>Banco Pichincha</li>
+              <li>Banco GNB</li>
+              <li>Banco de Comercio</li>
+              <li>CMAC Huancayo</li>
+              <li>CMAC Ica</li>
+              <li>CMAC Cusco</li>
+              <li>CMAC Trujillo</li>
+              <li>CMAC Maynas</li>
+              <li>CMAC Arequipa</li>
+              <li>Financiera Efectiva</li>
+              <li>CMAC CrediScotia</li>
+              <li>CMAC de Crédito Vívela</li>
+            </ul>
+            <br>
+          <u><a href="https://www.mivivienda.com.pe/PORTALWEB/promotores-constructores/pagina.aspx?idpage=68" target="_blank">Mayor información (Fondo Mivivienda, 2023).</a></u>
+        </mat-card-content>  
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div class="title">
+              Plazo de pago
+              <!--<mat-card-subtitle>Valor de vivienda permitido</mat-card-subtitle>-->
+            </div>
+            
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-card-content>
+          <p>El plazo mínimo para pagar el crédito es de 5 años y máximo 25 años (Fondo Mivivienda, 2023).</p>
+        </mat-card-content>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div class="title">
+              Periodo de gracia
+              <!--<mat-card-subtitle>Valor de vivienda permitido</mat-card-subtitle>-->
+            </div>
+            
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-card-content>
+          <p>Este es conocido como periodo de gracia cero, puesto que el cliente no paga nada, pero las deudas se capitalizan y las cuotas de pago incrementan (Prestamype, s.f.).
+            El periodo de gracia no es administrado por el Fondo Mivivienda, sino por la Institución Financiera que otorga el crédito y sujeto a evaluación crediticia (Fondo Mivivienda, 2023).</p>
+            <u><a href="https://www.scotiabank.com.pe/Personas/Prestamos/Creditos/Mivivienda" target="_blank">Mas información</a></u>
+        </mat-card-content>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div class="title">
+              Cuota mensual
+              <!--<mat-card-subtitle>Valor de vivienda permitido</mat-card-subtitle>-->
+            </div>
+            
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-card-content>
+          <p>Para hallar la cuota mensual constante se realizó mediante el método de plan de pago francés ordinario vencido. A dicha cuota constante se le sumo el valor del seguro de desgravamen que es aplicada sobre el saldo deudor insoluto y el seguro de vivienda que se aplica al valor de la vivienda.</p>
+          <u><a href="http://www.cmacica.com.pe/cmacica/webcmacica/userfiles/file/servicios/Formulas/credito/Formulas%20Credito%20Consumo.pdf" target="_blank">Mas información</a></u>
+        </mat-card-content>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div class="title">
+              La TCEA
+              <!--<mat-card-subtitle>Valor de vivienda permitido</mat-card-subtitle>-->
+            </div>
+            
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-card-content>
+          <p>La TCEA es la tasas de costo efectivo anual; es la tasa que permite conocer el costo total a pagar incluyendo seguro de vivienda, seguro de desgravamen y comisiones en caso aplique, es decir la TEA + seguros y comisiones.
+            Para el desarrollo de este programa el cálculo de la TCEA es mediante interpolación y la aproximación es lo más real cercano posible con un margen de error (± 0,0001) para que el usuario pueda tener una idea de la TCEA que le brindará la entidad financiera.
+          </p>
+        </mat-card-content>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <!--
     <mat-card-header>
       <mat-card-title>Moneda</mat-card-title>
-      <!--<mat-card-subtitle>Valor de vivienda permitido</mat-card-subtitle>-->
+      <mat-card-subtitle>Valor de vivienda permitido</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <p>El programa desarrollado puede evaluar los prestamos en dolares y soles. La equivalencia de cambio es: </p>
@@ -18,23 +202,23 @@
 
     <mat-card-header>
       <mat-card-title>Precio de la vivienda</mat-card-title>
-      <!--<mat-card-subtitle>Valor de vivienda permitido</mat-card-subtitle>-->
+      <mat-card-subtitle>Valor de vivienda permitido</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <p>Nuevo crédito mivivienda financia viviendas entre S/ 65200 y S/ 464200 en un plazo de pago de 5 a 20 años (Fondo Mivivienda, 2023).</p>
     </mat-card-content>
-
+    
     <mat-card-header>
       <mat-card-title>Porcentaje de cuota inicial</mat-card-title>
-      <!--<mat-card-subtitle>Valor de vivienda permitido</mat-card-subtitle>-->
+      <mat-card-subtitle>Valor de vivienda permitido</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <p>El aporte mínimo de cuota inicial del solicitante del crédito es de 7,5% y el máximo es de 30% del valor de la vivienda (Fondo Mivivienda, 2023). El FMV otorgará como máximo el 90% de crédito del valor de la vivienda si se encuentra en el rango de S/ 343900 hasta S/ 464200, puesto que no contará con el Bono del Buen Pagador y la cuota inicial debe ser del 10% (Fondo Mivivienda, 2023).</p>
     </mat-card-content>
-
+    
     <mat-card-header>
       <mat-card-title>Bono buen pagador</mat-card-title>
-      <!--<mat-card-subtitle>Valor de vivienda permitido</mat-card-subtitle>-->
+      <mat-card-subtitle>Valor de vivienda permitido</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <p>Se otorga a personas que accedan a un crédito MIVIVIENDA para incrementar la cuota inicial, pero el valor del inmueble no debe exceder los S/ 343900 y no haber sido beneficiario de apoyo habitacional por parte del estado (Fondo Mivivienda, 2023). No obstante, al pagar la deuda del crédito MIVIVIENDA antes de los 5 años de haber recibido el préstamo el BBP deberá ser devuelto, con excepción de los casos por aplicación seguro de desgravamen o multirriesgo (Fondo Mivivienda, 2023).</p>
@@ -43,7 +227,7 @@
 
     <mat-card-header>
       <mat-card-title>Bono vivienda sostenible</mat-card-title>
-      <!--<mat-card-subtitle>Valor de vivienda permitido</mat-card-subtitle>-->
+      <mat-card-subtitle>Valor de vivienda permitido</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <p>Se aplicará 1.166279 UIT adicional al bono del buen pagador si la vivienda pertenece a la categoría de sostenible, pero el monto varía según el precio de la vivienda (Fondo Mivivienda, 2023).</p>
@@ -52,7 +236,7 @@
 
     <mat-card-header>
       <mat-card-title>Tasa efectiva anual</mat-card-title>
-      <!--<mat-card-subtitle>Valor de vivienda permitido</mat-card-subtitle>-->
+      <mat-card-subtitle>Valor de vivienda permitido</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <p>Una pregunta que se genera en este punto en particular son las tasas de interés que aplican las entidades financieras. Según el Fondo Mivivienda la tasa base es para el programa Nuevo Crédito Mivivienda es 6.6%, pero la tasa otorgada al final lo decide la Institución Financiera y en promedio esta tasa es 9.8% (2023). Por lo tanto, para el desarrollo de la aplicación del proyecto se brindará la disponibilidad de ingresar las tasa de interés entre 6,6% y 9.8% como máximo (2023).</p>
@@ -61,7 +245,7 @@
 
     <mat-card-header>
       <mat-card-title>Los seguron de los bancos</mat-card-title>
-      <!--<mat-card-subtitle>Valor de vivienda permitido</mat-card-subtitle>-->
+      <mat-card-subtitle>Valor de vivienda permitido</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <p>Las entidades financieras participantes dentro del programa de entidades financieras son:</p>
@@ -90,7 +274,7 @@
 
     <mat-card-header>
       <mat-card-title>Plazo de pago</mat-card-title>
-      <!--<mat-card-subtitle>Valor de vivienda permitido</mat-card-subtitle>-->
+      <mat-card-subtitle>Valor de vivienda permitido</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <p>El plazo mínimo para pagar el crédito es de 5 años y máximo 25 años (Fondo Mivivienda, 2023).</p>
@@ -98,7 +282,7 @@
 
     <mat-card-header>
       <mat-card-title>Periodo de gracia</mat-card-title>
-      <!--<mat-card-subtitle>Valor de vivienda permitido</mat-card-subtitle>-->
+      <mat-card-subtitle>Valor de vivienda permitido</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <p>Este es conocido como periodo de gracia cero, puesto que el cliente no paga nada, pero las deudas se capitalizan y las cuotas de pago incrementan (Prestamype, s.f.).
@@ -108,7 +292,7 @@
 
     <mat-card-header>
       <mat-card-title>Cuota mensual</mat-card-title>
-      <!--<mat-card-subtitle>Valor de vivienda permitido</mat-card-subtitle>-->
+      <mat-card-subtitle>Valor de vivienda permitido</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <p>Para hallar la cuota mensual constante se realizó mediante el método de plan de pago francés ordinario vencido. A dicha cuota constante se le sumo el valor del seguro de desgravamen que es aplicada sobre el saldo deudor insoluto y el seguro de vivienda que se aplica al valor de la vivienda.</p>
@@ -117,12 +301,13 @@
 
     <mat-card-header>
       <mat-card-title>La TCEA</mat-card-title>
-      <!--<mat-card-subtitle>Valor de vivienda permitido</mat-card-subtitle>-->
+      <mat-card-subtitle>Valor de vivienda permitido</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <p>La TCEA es la tasas de costo efectivo anual; es la tasa que permite conocer el costo total a pagar incluyendo seguro de vivienda, seguro de desgravamen y comisiones en caso aplique, es decir la TEA + seguros y comisiones.
         Para el desarrollo de este programa el cálculo de la TCEA es mediante interpolación y la aproximación es lo más real cercano posible con un margen de error (± 0,0001) para que el usuario pueda tener una idea de la TCEA que le brindará la entidad financiera.
       </p>
     </mat-card-content>
+  -->
   </mat-card>
 </div>

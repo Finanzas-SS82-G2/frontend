@@ -2,8 +2,77 @@
     <div  class="p-0">
         <h1 class="flex justify-center font-extrabold"><b>Plan de pagos</b></h1>
         <div>
-            <h3>Nombre: {{data.planDePagos.nombre}} {{data.planDePagos.apellido}}</h3>
+            <h2>Nombre: {{data.planDePagos.nombre}} {{data.planDePagos.apellido}}</h2>
             <div class="flex justify-around">
+              <div>
+                <div class="tabla">
+                  <table>
+                    <tr>
+                      <td class="card5">Moneda:</td>
+                      <td class="card4"> {{data.planDePagos.moneda}}</td>
+                    </tr>
+                    <tr>
+                      <td class="card5">Valor de la vivienda:</td>
+                      <td class="card4"> {{verifyMoney() + ' ' + data.planDePagos.valorVivienda}} </td>
+                    </tr>
+                    <tr>
+                      <td class="card5">Cuota inicial:</td>
+                      <td class="card4">{{ verifyMoney() + ' ' + data.planDePagos.cuotaInicial}} </td>
+                    </tr>
+                    <tr>
+                      <td class="card5">Bono de buen pagador:</td>
+                      <td class="card4">{{ verifyMoney() + ' ' + data.planDePagos.bonoBuenPagador}} </td>
+                    </tr>
+                    <tr>
+                      <td class="card5">Importe del préstamo:</td>
+                      <td class="card4">{{ verifyMoney() + ' ' + data.planDePagos.importePrestamo}} </td>
+                    </tr>
+                    <tr>
+                      <td class="card5">Plazo de pago: </td>
+                      <td class="card4"> {{data.planDePagos.plazoPago}} meses</td>
+                    </tr>
+                    <tr>
+                      <td class="card5">Periodo de gracia: </td>
+                      <td class="card4">{{data.planDePagos.periodoGracia}} meses </td>
+                    </tr>
+                  </table>
+                </div>
+            </div>
+            <div>
+              <div class="tabla">
+                <table>
+                  <tr>
+                    <td class="card5">Banco:</td>
+                    <td class="card4"> {{data.planDePagos.banco.nombre}}</td>
+                  </tr>
+                  <tr>
+                    <td class="card5">Tasa efectiva anual:</td>
+                    <td class="card4"> {{data.planDePagos.tea}} % </td>
+                  </tr>
+                  <tr>
+                    <td class="card5">Seguro de desgravamen: </td>
+                    <td class="card4">{{data.planDePagos.porcSeguroDesgravamen}}% </td>
+                  </tr>
+                  <tr>
+                    <td class="card5">Seguro de vivienda:</td>
+                    <td class="card4">{{data.planDePagos.porcSeguroVivienda}}% </td>
+                  </tr>
+                  <tr>
+                    <td class="card5">Cuota Mensual:</td>
+                    <td class="card4">{{ data.planDePagos.cuotaMensual}} </td>
+                  </tr>
+                  <tr>
+                    <td class="card5">TCEA:</td>
+                    <td class="card4"> {{ data.planDePagos.tcea }}%</td>
+                  </tr>
+                  <tr>
+                    <td class="card5">VAN:  </td>
+                    <td class="card4">{{data.planDePagos.van}} </td>
+                  </tr>
+                </table>
+              </div>
+          </div>
+          <!--
               <ul class="list-disc">
                 <li>Moneda: {{data.planDePagos.moneda}} </li>
                 <li>Valor de la vivienda: {{verifyMoney() + ' ' + data.planDePagos.valorVivienda}}</li>
@@ -22,6 +91,7 @@
                 <li>TCEA: {{ data.planDePagos.tcea }}%</li>
                 <li>VAN: {{data.planDePagos.van}}</li>
               </ul>
+              -->
             </div>
         </div>
     </div>
@@ -78,13 +148,16 @@
                        aria-label="Select page of periodic elements">
         </mat-paginator>
       </div>
-      <div>
-        <button mat-raised-button 
-        class="btn-save custom-button"
-        [disabled]="veryfyButtonDisabled()"
-        (click)="saveData()"
-      > 
-      Guardar Consulta 
-</button>
+      <div class="flex flex-row justify-center">
+        <button mat-raised-button class="self-center" [disabled]="veryfyButtonDisabled()" (click)="saveData()">
+          GUARDAR CONSULTA
+        </button>
       </div>
+      <!--
+      <div>
+        <button mat-raised-button class="btn-save custom-button" [disabled]="veryfyButtonDisabled()" (click)="saveData()">
+          Guardar Consulta
+        </button>
+      </div>
+    -->
 </div>
