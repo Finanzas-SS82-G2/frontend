@@ -25,7 +25,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import {MatMenuModule} from '@angular/material/menu';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTableModule } from '@angular/material/table';
-
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatTabsModule} from '@angular/material/tabs';
 // Views
 import { StartComponent } from './views/start/start.component';
 import { LoginComponent } from './views/login/login.component';
@@ -42,6 +43,8 @@ import { CompareComponent } from './views/history/compare-modal/compare/compare.
 import { DialogPlanDePagosComponent } from './views/dialog-plan-de-pagos/dialog-plan-de-pagos.component';
 import { DialogComparacionComponent } from './views/dialog-comparacion/dialog-comparacion.component';
 import { PoliciesComponent } from './views/policies/policies.component';
+import { DialogHistoryDetailsComponent } from './views/dialog-history-details/dialog-history-details.component';
+import { DialogComparePlansComponent } from './views/dialog-compare-plans/dialog-compare-plans.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +60,9 @@ import { PoliciesComponent } from './views/policies/policies.component';
     DialogBoxValidFormComponent,
     CompareComponent,
     DialogComparacionComponent,
-    PoliciesComponent
+    PoliciesComponent,
+    DialogHistoryDetailsComponent,
+    DialogComparePlansComponent,
     ],
   imports: [
     BrowserModule,
@@ -83,7 +88,9 @@ import { PoliciesComponent } from './views/policies/policies.component';
     MatRadioModule,
     MatMenuModule,
     MatCheckboxModule,
-    MatTableModule
+    MatTableModule,
+    MatExpansionModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

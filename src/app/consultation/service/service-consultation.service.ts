@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError} from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import { PaymentPlan } from '../model/payment-plan';
+import { Consultation } from '../model/consultation';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ServicePaymentPlanService {
+export class ServiceConsultationService {
 
-  baseUrl: string = 'https://finanzasapi.azurewebsites.net/api/v1/payment-plans';
+  baseUrl: string = 'https://finanzasapi.azurewebsites.net/api/v1/consultations';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -18,6 +18,7 @@ export class ServicePaymentPlanService {
   }
 
   constructor(private http: HttpClient) { }
+
 
   handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
@@ -32,21 +33,29 @@ export class ServicePaymentPlanService {
     );
   }
 
-  getPaymentPlanById(id: number): Observable<PaymentPlan> {
+
+  getConsultationByUserId(id: number): Observable<Consultation[]> {
     return this.http
-      .get<PaymentPlan>(this.baseUrl + '/' + id)
+      .get<Consultation[]>(this.baseUrl + '/user/' + id)
       .pipe(retry(2), catchError(this.handleError));
   }
 
-  getAllPaymentPlan(): Observable<PaymentPlan[]> {
+  getConsultationById(id: number): Observable<Consultation> {
     return this.http
-      .get<PaymentPlan[]>(this.baseUrl)
+      .get<Consultation>(this.baseUrl + '/' + id)
       .pipe(retry(2), catchError(this.handleError));
   }
 
-  postPaymentPlan(paymentPlan: PaymentPlan): Observable<PaymentPlan> {
+  getAllConsultation(): Observable<Consultation[]> {
     return this.http
-      .post<PaymentPlan>(this.baseUrl, JSON.stringify(paymentPlan), this.httpOptions)
+      .get<Consultation[]>(this.baseUrl)
       .pipe(retry(2), catchError(this.handleError));
   }
+
+  postConsultation(consultation: Consultation, userId: number): Observable<Consultation> {
+    return this.http
+      .post<Consultation>(this.baseUrl + '/' + userId, JSON.stringify(consultation), this.httpOptions)
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
 }

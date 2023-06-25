@@ -1,0 +1,86 @@
+
+h1{
+    color: var(--ac-neutral-900, #141825);
+    font-size: 1.5rem;
+    font-family: Montserrat;
+    font-weight: 800;
+    line-height: 150%;
+    align-items: center;
+    text-align: center;
+    
+
+}
+h2{
+    color: var(--ac-neutral-900, #141825);
+    font-size: 1.2rem;
+    font-family: Montserrat;
+    font-weight: 600;
+    line-height: 120%;
+    align-items: center;
+    text-align: center;
+
+}
+.card {
+    border: 0px solid #ccc;
+    border-radius: 20px;
+    box-shadow: 0 5px 9px rgba(0, 0, 0, 0.2);
+    padding-inline: 3vh;
+    padding-top: 1vh;
+    padding-bottom: 2vh;
+    margin-top: 2vh;
+    background-color: rgb(255, 255, 255);
+  }
+  .card3 {
+    border: 0px solid #ccc;
+    border-radius: 20px;
+    box-shadow: 0 5px 9px rgba(0, 0, 0, 0.2);
+    padding: 3vh;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+  }
+  .card4 {
+    border: 0px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 5px 9px rgba(0, 0, 0, 0.09);
+    padding-inline: 2vh;
+    color: var(--ac-neutral-900, #141825);
+    font-size: 1rem;
+    font-family: Montserrat;
+    font-weight: 500;
+    line-height: 120%;
+    margin: 0.1vh;
+    
+    text-align: center;
+    background-color: rgb(252, 240, 240);
+    transition: transform 0.3s ease-in-out;
+  }
+  .card4:hover {
+    background-color: rgb(243, 242, 242);
+    transform: scale(1.05); /* Aumentamos el tamaño en un 5% */
+  }
+  .card5 {
+    padding-inline: 2vh;
+    text-align: center;
+    color: var(--ac-neutral-900, #141825);
+    font-size: 0.8rem;
+    font-family: Montserrat;
+    font-weight: 500;
+    line-height: 120%;
+    
+  }
+  .card-body {
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+  }
+  .tabla{
+    display: flex;
+    justify-content: center;
+    padding: 1vh;
+    
+  }
+  table{
+    border: 0px solid #ccc;
+    border-radius: 7px;
+    box-shadow: 0 5px 9px rgba(0, 0, 0, 0.1);
+    
+  }

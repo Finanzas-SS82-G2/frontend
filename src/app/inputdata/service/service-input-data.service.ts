@@ -9,7 +9,7 @@ import { InputData } from '../model/input-data';
 })
 export class ServiceInputDataService {
 
-  baseUrl: string = 'https://finanzasrestfulapi.azurewebsites.net/api/v1/input-information';
+  baseUrl: string = 'https://finanzasapi.azurewebsites.net/api/v1/input-information';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -32,9 +32,16 @@ export class ServiceInputDataService {
     );
   }
 
-  postInputInformation(inputInformation: InputData): Observable<any> {
+
+  getInputInformationByConsultationId(id: number): Observable<InputData[]> {
     return this.http
-      .post<any>(this.baseUrl, JSON.stringify(inputInformation), this.httpOptions)
+      .get<InputData[]>(this.baseUrl + '/user/' + id)
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
+  postInputInformation(inputInformation: InputData, consulId: number): Observable<any> {
+    return this.http
+      .post<any>(this.baseUrl + '/' + consulId, JSON.stringify(inputInformation), this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 

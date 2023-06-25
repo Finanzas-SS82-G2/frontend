@@ -1,0 +1,89 @@
+<div style="height: 50vh; width: 40vw; padding: 20px;" class="align-middle">
+    <h1 class="text-center">Comparación de planes de pago</h1>
+    <div class="flex flex-row justify-evenly">
+        <div *ngFor="let item of data">
+            <div class="mt-5">
+                <!--<h3>Cliente: {{item.inputInformation.customerFirstName}}
+                    {{item.inputInformation.customerLastName}}</h3>-->
+                    <div >
+                        <h2 >Cliente: {{item.inputInformation.customerFirstName}}
+                            {{item.inputInformation.customerLastName}}</h2>
+                        <div class="tabla" >
+                            <table >
+                                <tr>
+                                  <td class="card5">Banco </td>
+                                  <td class="card4"> {{item.inputInformation.bank}}</td>
+                                </tr>
+                                <tr>
+                                  <td class="card5">Moneda</td>
+                                  <td class="card4">{{item.inputInformation.currency}} </td>
+                                </tr>
+                                <tr>
+                                    <td class="card5">TEA</td>
+                                    <td class="card4">{{item.inputInformation.effectiveAnnualRate}}% </td>
+                                </tr>
+                                <tr>
+                                    <td class="card5">Bono Buen Pagador</td>
+                                    <td class="card4">{{item.inputInformation.goodPayerBonus}} </td>
+                                </tr>
+                                <tr>
+                                    <td class="card5">Periodo de gracia</td>
+                                    <td class="card4">{{item.inputInformation.gracePeriod}} meses</td>
+                                </tr>
+                                <tr>
+                                    <td class="card5">Seguro de vivienda</td>
+                                    <td class="card4">{{item.inputInformation.homeInsurance}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="card5">Precio de la vivienda</td>
+                                    <td class="card4">{{item.inputInformation.housingPrice}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="card5">Inicial</td>
+                                    <td class="card4">{{item.inputInformation.initialFee}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="card5">Insurance deduction</td>
+                                    <td class="card4">{{item.inputInformation.insuranceDeduction}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="card5">Valor del préstamo</td>
+                                    <td class="card4">{{item.inputInformation.loanAmount}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="card5">Plazo de pago</td>
+                                    <td class="card4">{{item.inputInformation.paymentTerm}}</td>
+                                </tr>
+                              </table>
+                        </div>
+                        <div class="tabla" >    
+                        <table >
+                          <tr>
+                            <td class="card5">Cuota mensual</td>
+                            <td class="card4"> {{item.paymentPlan.monthlyFee}}</td>
+                          </tr>
+                          <tr>
+                            <td class="card5">TCEA</td>
+                            <td class="card4">  {{item.paymentPlan.tcea}}% </td>
+                          </tr>
+                          <tr>
+                              <td class="card5">VAN</td>
+                              <td class="card4"> {{item.paymentPlan.van}} </td>
+                          </tr>
+                        </table>
+                        </div>
+                    </div>
+                    <!--
+                <ul style="list-style:circle; margin-left: 20px;">
+                    <li>Cuota mensual: {{item.paymentPlan.monthlyFee}}</li>
+                    <li>TCEA: {{item.paymentPlan.tcea}}%</li>
+                    <li>VAN: {{item.paymentPlan.van}}</li>
+                </ul>
+                -->
+            </div>
+        </div>
+
+        
+    </div>
+    
+</div>

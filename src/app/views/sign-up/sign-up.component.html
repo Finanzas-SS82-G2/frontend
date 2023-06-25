@@ -1,5 +1,7 @@
 <div class="m-10 pl-20 pr-20 signup-main">
+  <h1>Bienvenido</h1>
   <form class="flex flex-col" [formGroup]="registerForm">
+    
     <mat-label class="m-1 tc-mivivienda">Nombres</mat-label>
     <mat-form-field appearance="outline">
       <input
@@ -100,14 +102,17 @@
         getConfirmPasswordErrorMessage()
         }}</mat-error>
     </mat-form-field>
-
+    <div class="flex flex-row justify-center">
     <button
       mat-raised-button
+      
+      class="self-center2"
       color="primary"
       [disabled]="!registerForm.valid"
       (click)="openDialog()">
       Sign Up
     </button>
+  </div>
     <mat-error *ngIf="passwordMatchMessage !== ''">
       {{ passwordMatchMessage }}</mat-error>
   </form>

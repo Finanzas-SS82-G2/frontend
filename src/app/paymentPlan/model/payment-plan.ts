@@ -1,14 +1,9 @@
-import { InputData } from "src/app/inputdata/model/input-data";
-import { User } from "src/app/users/model/user";
+import { Consultation } from "src/app/consultation/model/consultation";
 
 export interface PaymentPlan {
-    financingAmount: number,
-    goodPayerBonus: number,
+    consultation: Consultation,
     id: number,
-    inputInformation: InputData,
     monthlyFee: number,
-    otherPostage: number,
-    tir: number,
-    user: User,
+    tcea: number,
     van: number,
 }

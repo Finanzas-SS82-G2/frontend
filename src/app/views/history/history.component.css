@@ -1,6 +1,7 @@
 .card-body{
     padding: 1vw;
-    margin-inline: 3vw;
+    margin-inline: 5vw;
+    margin-top: 3vw;
     /* width: 60vw; */
     background-color: #fff;
     border-radius: 10px;
@@ -13,23 +14,21 @@
 .container{
     height: 65vh;
 }
-.card-plan{
-    margin-bottom: 5px;
-    margin-inline: 0.5vw;
+
+.card-table{
+    margin-bottom: 1vw;
     border-radius: 10px;
-    border: 1px solid #e6e6e6;
-    box-shadow: 0 0 10px rgba(0,0,0,.1);
-    padding-inline: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,.05);
     background-color: #fff;
     position: relative;
     transition: all .3s ease-in-out;
     -webkit-transition: all .3s ease-in-out;
     -moz-transition: all .3s ease-in-out;
     &:hover{
-        box-shadow: 0 0 20px rgba(0,0,0,.2);
-        transform: scale(1.01);
-        -webkit-transform: scale(1.01);
-        -moz-transform: scale(1.01);
+        box-shadow: 0 0 20px rgba(0,0,0,.05);
+        transform: scale(1.003);
+        -webkit-transform: scale(1.003);
+        -moz-transform: scale(1.003);
     }
 }
 .label-table{
@@ -84,4 +83,46 @@ td{
         margin-inline: 0.5vw;
         padding-inline: 1vw;
     }
+}
+.df{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+th{
+    color: #547D20;
+    text-align: center;
+    font-size: 1.0625rem;
+    font-family: Montserrat;
+    font-weight: 600;
+    letter-spacing: -0.03188rem;
+}
+td{
+    color: var(--ac-neutral-900, #141825);
+    font-size: 1rem;
+    font-family: Montserrat;
+    font-weight: 600;
+    line-height: 150%;
+}
+.self-center{
+    
+    color: var(--ac-neutral-white, #FFF);
+    text-align: center;
+    font-size: 0.6875rem;
+    font-family: Montserrat;
+    font-weight: 700;
+    letter-spacing: -0.02063rem;
+    transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    &:hover{
+        box-shadow: 0 0 20px rgba(0,0,0,.05);
+        transform: scale(1.05);
+        -webkit-transform: scale(1.05);
+        -moz-transform: scale(1.05);
+    }
+}
+.self-center:enabled {
+    background-color: #586C36;
 }

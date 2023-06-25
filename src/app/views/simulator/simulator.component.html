@@ -6,7 +6,8 @@
       <mat-form-field appearance="outline">
         <input matInput placeholder="Name" formControlName="name" required />
         <mat-error
-          *ngIf="simulatorForm.get('name')?.invalid || simulatorForm.get('name')?.errors?.['pattern']"
+          *ngIf="simulatorForm.get('name')?.invalid || simulatorForm.get('name')?.errors?.['pattern'] 
+                || simulatorForm.get('name')?.errors?.['required']"
           >{{ getOnlyLettersErrorMessage("name") }}</mat-error
         >
       </mat-form-field>
@@ -22,7 +23,8 @@
           required
         />
         <mat-error
-          *ngIf="simulatorForm.get('lastname')?.invalid || simulatorForm.get('lastname')?.errors?.['pattern']"
+          *ngIf="simulatorForm.get('lastname')?.invalid || simulatorForm.get('lastname')?.errors?.['pattern']
+          || simulatorForm.get('lastname')?.errors?.['required']"
           >{{ getOnlyLettersErrorMessage("lastname") }}</mat-error
         >
       </mat-form-field>
@@ -37,7 +39,7 @@
         class="button-group"
         (change)="cuotaCalculadaFalse()"
       >
-        <mat-button-toggle value="'soles'" checked (click)="setMoney('soles')">
+        <mat-button-toggle value="'soles'" checked (click)="setMoney('Soles')">
           <div class="flex flex-row">
             <img
               class="p-3 mt-2"
@@ -47,7 +49,7 @@
             <h2 class="self-center pt-1 ml-0 pr-5">Soles</h2>
           </div>
         </mat-button-toggle>
-        <mat-button-toggle value="'dolares'" (click)="setMoney('dolares')">
+        <mat-button-toggle value="'dolares'" (click)="setMoney('Dolares')">
           <div class="flex flex-row mt-1.5">
             <img
               class="p-3 mt-1"
@@ -72,7 +74,6 @@
         placeholder="0000"
         formControlName="ingreso_mensual"
         required
-        type="number"
         (change)="cuotaCalculadaFalse()"
       />
       <mat-error *ngIf="simulatorForm.get('ingreso_mensual')?.hasError('min')">
@@ -80,6 +81,12 @@
       >
       <mat-error *ngIf="simulatorForm.get('ingreso_mensual')?.hasError('max')">
         {{ getMaxValueErrorMessage("ingreso_mensual", sueldoMax) }}</mat-error
+      >
+      <mat-error *ngIf="simulatorForm.get('ingreso_mensual')?.hasError('pattern')">
+        {{ getOnlyNumbersErrorMessage('ingreso_mensual') }}</mat-error
+      >
+      <mat-error *ngIf="simulatorForm.get('ingreso_mensual')?.hasError('required')">
+        {{ getOnlyNumbersErrorMessage('ingreso_mensual') }}</mat-error
       >
     </mat-form-field>
   </div>
@@ -104,7 +111,6 @@
     <mat-form-field appearance="outline">
       <input
         matInput
-        type="number"
         value="{{ simulatorForm.get('precio_vivienda')?.value }}"
         formControlName="precio_vivienda"
         (change)="cuotaCalculadaFalse()"
@@ -115,6 +121,16 @@
       </mat-error>
       <mat-error *ngIf="simulatorForm.get('precio_vivienda')?.hasError('max')">
         {{ getMaxValueErrorMessage("precio_vivienda", precioViviendaMax) }}
+      </mat-error>
+      <mat-error
+        *ngIf="simulatorForm.get('precio_vivienda')?.hasError('pattern')"
+      >
+        {{ getOnlyNumbersErrorMessage("precio_vivienda") }}
+      </mat-error>
+      <mat-error
+        *ngIf="simulatorForm.get('precio_vivienda')?.hasError('required')"
+      >
+        {{ getOnlyNumbersErrorMessage("precio_vivienda") }}
       </mat-error>
     </mat-form-field>
   </div>
@@ -180,7 +196,7 @@
   </div>
 
   <mat-label class="my-2 font-bold text-lg">Bono del buen pagador</mat-label>
-  <mat-card class="green w-4/12">
+  <mat-card class="green w-3/12">
     <mat-card-content>{{
       verifyMoney() + " " + this.simulatorForm.get("bono_buen_pagador")?.value.toFixed(2)
     }}</mat-card-content>
@@ -225,20 +241,20 @@
   <mat-label class="mb-2 mt-4 font-bold text-lg"
     >Total Bono del buen pagador</mat-label
   >
-  <mat-card class="green w-4/12">
+  <mat-card class="green w-3/12">
     <mat-card-content>{{
       verifyMoney() + " " + simulatorForm.get("total_bono")?.value.toFixed(2)
     }}</mat-card-content>
   </mat-card>
   <mat-label class="mb-2 mt-4 font-bold text-lg">Total Cuota Inicial</mat-label>
-  <mat-card class="green w-4/12">
+  <mat-card class="green w-3/12">
     <mat-card-content>{{
       verifyMoney() + " " + simulatorForm.get("final_initial_fee")?.value.toFixed(2)
     }}</mat-card-content>
   </mat-card>
   <span class="my-3"></span>
-  <mat-card class="gray w-6/12">
-    <mat-card-content>
+  <mat-card class="gray w-4/12">
+    <mat-card-content class="grei">
       <div class="flex flex-row justify-between">
         <h2><b class="font-medium text-lg">Monto a financiar</b></h2>
         <p class="self-center">
@@ -289,6 +305,13 @@
       </mat-error>
       <mat-error
         *ngIf="simulatorForm.get('tasa_efectiva_anual')?.hasError('max')"
+      >
+        {{
+          getMaxValueErrorMessage("tasa_efectiva_anual", tasaEfectivaAnualMax)
+        }}
+      </mat-error>
+      <mat-error
+        *ngIf="simulatorForm.get('tasa_efectiva_anual')?.hasError('required')"
       >
         {{
           getMaxValueErrorMessage("tasa_efectiva_anual", tasaEfectivaAnualMax)
@@ -401,19 +424,14 @@
   <mat-label class="mb-2 mt-4 font-medium text-lg">
     Periodo de gracia: {{ simulatorForm.get("periodo_gracia")?.value }} meses
   </mat-label>
-  <div>
-    <button
+  <div class="flex flex-row justify-center">
+    <button class="self-center2" 
       mat-raised-button
       color="primary"
       [disabled]="!simulatorForm.valid"
       (click)="elaborarCronogramaDePagos()"
     >
-      <p class="uppercase">Mostrar Plan de Pagos</p>
+      MOSTRAR PLAN DE PAGOS
     </button>
   </div>
-  <!--<p>
-    <pre>
-      {{ simulatorForm.value | json }}
-    </pre>
-  -->
 </form>
