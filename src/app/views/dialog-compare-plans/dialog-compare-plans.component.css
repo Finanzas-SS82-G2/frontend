@@ -120,3 +120,7 @@ h2{
       transform: scale(1.009);
     }
   }
+
+  .moneda{
+    font-weight: bold;
+  }

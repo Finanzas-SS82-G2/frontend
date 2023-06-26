@@ -84,3 +84,7 @@ h2{
     box-shadow: 0 5px 9px rgba(0, 0, 0, 0.1);
     
   }
+
+  .moneda{
+    font-weight: bold;
+  }
